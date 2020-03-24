@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Office Hours Viwe Controller-->
+        <scene sceneID="GEW-Bh-8f4">
+            <objects>
+                <viewController storyboardIdentifier="SelectOfficeHoursViweController" id="PVO-k7-LU0" customClass="SelectOfficeHoursViweController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uSm-s0-mTy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-W5-3Cj">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="3DY-ie-n1G">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a time slot for Monday August 5, 2020. It will automatically add this event to your calendar." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGn-9h-BZ0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="12" width="382" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular12"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="EGn-9h-BZ0" firstAttribute="top" secondItem="3DY-ie-n1G" secondAttribute="top" constant="12" id="Emk-wj-cHF"/>
+                                        <constraint firstAttribute="trailing" secondItem="EGn-9h-BZ0" secondAttribute="trailing" constant="16" id="aCC-t3-6eI"/>
+                                        <constraint firstAttribute="bottom" secondItem="EGn-9h-BZ0" secondAttribute="bottom" constant="12" id="prD-UC-poj"/>
+                                        <constraint firstItem="EGn-9h-BZ0" firstAttribute="leading" secondItem="3DY-ie-n1G" secondAttribute="leading" constant="16" id="r38-Lc-Za5"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlannerFilterCell" id="WTs-tm-ubq" customClass="PlannerFilterCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="63.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WTs-tm-ubq" id="7Vj-S3-utd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="63.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-KF-Jfi">
+                                                    <rect key="frame" x="16" y="22" width="382" height="20.5"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHF-Le-Bv1">
+                                                            <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="8E8-fR-Pzr"/>
+                                                                <constraint firstAttribute="height" constant="20" id="iAp-rr-HRS"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE7-tL-tjB" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="36" y="0.5" width="346" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="vTf-1D-jk1">
+                                                    <rect key="frame" x="14" y="20.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="3dQ-L3-4qk"/>
+                                                        <constraint firstAttribute="height" constant="24" id="vU5-g1-Mpe"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textLightest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="checkSolid"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="onQ-KF-Jfi" firstAttribute="top" secondItem="7Vj-S3-utd" secondAttribute="top" constant="22" id="XWo-1m-35X"/>
+                                                <constraint firstItem="vTf-1D-jk1" firstAttribute="centerY" secondItem="yHF-Le-Bv1" secondAttribute="centerY" id="YDe-xi-XOh"/>
+                                                <constraint firstItem="vTf-1D-jk1" firstAttribute="centerX" secondItem="yHF-Le-Bv1" secondAttribute="centerX" id="dVC-PP-xXM"/>
+                                                <constraint firstItem="onQ-KF-Jfi" firstAttribute="leading" secondItem="7Vj-S3-utd" secondAttribute="leading" constant="16" id="dWV-5g-UoZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="onQ-KF-Jfi" secondAttribute="bottom" constant="21" id="gjy-Jq-e19"/>
+                                                <constraint firstAttribute="trailing" secondItem="onQ-KF-Jfi" secondAttribute="trailing" constant="16" id="zWc-bg-lZI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="checkboxView" destination="yHF-Le-Bv1" id="34c-Dy-suJ"/>
+                                            <outlet property="checkmark" destination="vTf-1D-jk1" id="huQ-X9-UCf"/>
+                                            <outlet property="courseNameLabel" destination="AE7-tL-tjB" id="z8i-fH-bwg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PVO-k7-LU0" id="6dB-Yq-4JZ"/>
+                                    <outlet property="delegate" destination="PVO-k7-LU0" id="5JY-tg-XWC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jKv-aG-Fc1" firstAttribute="bottom" secondItem="0BP-W5-3Cj" secondAttribute="bottom" id="0BJ-oe-LMA"/>
+                            <constraint firstItem="jKv-aG-Fc1" firstAttribute="trailing" secondItem="0BP-W5-3Cj" secondAttribute="trailing" id="ABc-L3-xmD"/>
+                            <constraint firstItem="0BP-W5-3Cj" firstAttribute="leading" secondItem="jKv-aG-Fc1" secondAttribute="leading" id="VEp-Zb-N6T"/>
+                            <constraint firstItem="0BP-W5-3Cj" firstAttribute="top" secondItem="jKv-aG-Fc1" secondAttribute="top" id="w1t-t1-JE5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jKv-aG-Fc1"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerLabel" destination="EGn-9h-BZ0" id="bZN-AA-xtI"/>
+                        <outlet property="tableView" destination="0BP-W5-3Cj" id="ovl-TM-p0t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IRL-3x-1Yt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="100"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="filter-checkbox" width="24" height="24"/>
+    </resources>
+</document>

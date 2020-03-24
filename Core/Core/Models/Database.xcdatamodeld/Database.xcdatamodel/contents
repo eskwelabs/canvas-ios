@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -16,6 +16,18 @@
         <attribute name="studentID" optional="YES" attributeType="String"/>
         <attribute name="threshold" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Appointment" representedClassName="Core.Appointment" syncable="YES">
+        <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="appointmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppointmentGroup" inverseName="appointmentsRaw" inverseEntity="AppointmentGroup"/>
+    </entity>
+    <entity name="AppointmentGroup" representedClassName="Core.AppointmentGroup" syncable="YES">
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="appointmentsRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Appointment" inverseName="appointmentGroup" inverseEntity="Appointment"/>
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
@@ -680,5 +692,7 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="AppointmentGroup" positionX="-540" positionY="-18" width="128" height="103"/>
+        <element name="Appointment" positionX="-531" positionY="-9" width="128" height="103"/>
     </elements>
 </model>

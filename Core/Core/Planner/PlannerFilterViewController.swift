@@ -159,4 +159,10 @@ class PlannerFilterCell: UITableViewCell {
         checkboxView.layer.borderColor = UIColor.named(.borderDark).cgColor
         checkmark.tintColor = .named(.backgroundInfo)
     }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        checkboxView.layer.borderWidth = isSelected ? 0 : 1
+        checkmark.isHidden = !isSelected
+    }
 }
