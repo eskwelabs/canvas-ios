@@ -21,31 +21,19 @@ import CoreData
 
 public class GetAppointmentGroups: CollectionUseCase {
     public typealias Model = AppointmentGroup
+    public var cacheKey: String? = nil
 
-    public var cacheKey: String? {
-        "get-appointment-groups"
+    var contextCodes: [String]?
+
+    init(contextCodes: [String]? = nil) {
+        self.contextCodes = contextCodes
     }
 
     public var scope: Scope {
-//        var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
-//            startDate as NSDate, #keyPath(Plannable.date),
-//            #keyPath(Plannable.date), endDate as NSDate
-//        )
-//        if let userID = userID {
-//            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-//                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
-//                predicate,
-//            ])
-//        }
-//        let order = [
-//            NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
-//            NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true),
-//        ]
-//        return Scope(predicate: predicate, order: order)
         return .all(orderBy: #keyPath(AppointmentGroup.id))
     }
 
     public var request: GetAppointmentGroupsRequest {
-        return GetAppointmentGroupsRequest(includes: [GetAppointmentGroupsRequest.Include.appointments])
+        return GetAppointmentGroupsRequest(includes: [GetAppointmentGroupsRequest.Include.appointments], contextCodes: contextCodes)
     }
 }

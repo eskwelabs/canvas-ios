@@ -17,6 +17,7 @@
 		3B158CB822E241130039A568 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB722E241130039A568 /* KeychainTests.swift */; };
 		3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */; };
 		3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */; };
+		3B160724242AB6A200520830 /* GetAppointmentGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B160723242AB6A200520830 /* GetAppointmentGroupsTests.swift */; };
 		3B1669DD233DAF3B00B2EFAB /* SyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */; };
 		3B1988B724293296004ADCC6 /* APIAppointmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1988B624293296004ADCC6 /* APIAppointmentGroup.swift */; };
 		3B1988B924293510004ADCC6 /* APIAppointmentGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1988B824293510004ADCC6 /* APIAppointmentGroupTests.swift */; };
@@ -955,6 +956,7 @@
 		3B158CB722E241130039A568 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocolTests.swift; sourceTree = "<group>"; };
 		3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
+		3B160723242AB6A200520830 /* GetAppointmentGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAppointmentGroupsTests.swift; sourceTree = "<group>"; };
 		3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		3B166A562343CEAF00B2EFAB /* HorizontalMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewController.swift; sourceTree = "<group>"; };
 		3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestable.swift; sourceTree = "<group>"; };
@@ -3169,6 +3171,7 @@
 				977EAC442412AA26005E1290 /* CreateTodoViewControllerTests.swift */,
 				3B1988B824293510004ADCC6 /* APIAppointmentGroupTests.swift */,
 				3B1988BA24297008004ADCC6 /* SelectOfficeHoursViewControllerTests.swift */,
+				3B160723242AB6A200520830 /* GetAppointmentGroupsTests.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -4535,6 +4538,7 @@
 				9F5C93032375F682005105BB /* GetPage.swift in Sources */,
 				B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */,
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,
+				3B160724242AB6A200520830 /* GetAppointmentGroupsTests.swift in Sources */,
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,

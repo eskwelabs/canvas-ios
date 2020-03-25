@@ -81,6 +81,53 @@ public struct APIAppointmentGroup: Codable, Equatable {
 //    let updated_at: Date?
 }
 
+
+#if DEBUG
+
+extension APIAppointment {
+    public static func make(
+        id: ID = "1",
+        start_at: Date = Clock.now.addDays(1),
+        end_at: Date = Clock.now.addDays(1).addMinutes(15)
+    ) -> APIAppointment {
+        return APIAppointment(id: id, start_at: start_at, end_at: end_at)
+    }
+}
+
+extension APIAppointmentGroup {
+    public static func make(
+        id: ID = "1",
+        title: String = "title",
+        html_url: URL? = nil,
+        appointments: [APIAppointment]? = [.make()]
+    ) -> APIAppointmentGroup {
+        return APIAppointmentGroup(id: id,
+                                   title: title,
+                                   start_at: nil,
+                                   end_at: nil,
+                                   description: nil,
+                                   location_name: nil,
+                                   location_address: nil, 
+                                   participant_count: nil,
+                                   context_codes: nil,
+                                   sub_context_codes: nil,
+                                   workflow_state: "active",
+                                   requiring_action: nil,
+                                   appointments_count: nil,
+                                   appointments: appointments,
+                                   max_appointments_per_participant: nil,
+                                   min_appointments_per_participant: nil,
+                                   participants_per_appointment: nil,
+                                   participant_visibility: nil,
+                                   participant_type: "USER",
+                                   url: nil,
+                                   html_url: html_url)
+    }
+}
+
+#endif
+
+
 //  https://canvas.instructure.com/doc/api/appointment_groups.html#method.appointment_groups.next_appointment
 public struct GetAppointmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAppointmentGroup]

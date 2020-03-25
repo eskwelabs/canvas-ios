@@ -19,20 +19,15 @@
 import XCTest
 @testable import Core
 
-class APIAppointmentGroupTests: CoreTestCase {
-    func testGetNextAppointmentRequest() {
-        let r = GetNextAppointmentRequest()
-        XCTAssertEqual(r.path, "appointment_groups/next_appointment")
+class GetAppointmentGroupsTests: CoreTestCase {
+
+    func testScope() {
+        let u = GetAppointmentGroups()
+        XCTAssertEqual(u.scope.order, [NSSortDescriptor(key: #keyPath(AppointmentGroup.id), ascending: true)])
     }
 
-    func testGetAppointmentGroupsRequest() {
-        let codes = ["course_1"]
-        let r = GetAppointmentGroupsRequest(includes: [.appointments], contextCodes: codes)
-        XCTAssertEqual(r.path, "appointment_groups")
-
-        XCTAssertEqual(r.query, [
-            APIQueryItem.include([GetAppointmentGroupsRequest.Include.appointments.rawValue]),
-            APIQueryItem.array("context_codes", codes)
-        ])
+    func testRequest() {
+        let u = GetAppointmentGroups(contextCodes: ["course_1"])
+        XCTAssertNotNil(u.request)
     }
 }

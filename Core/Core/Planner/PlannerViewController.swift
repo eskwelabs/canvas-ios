@@ -88,6 +88,22 @@ public class PlannerViewController: UIViewController {
         list.tableView.contentInset.top = calendar.minHeight
 
         planners.refresh()
+
+        let officeHours = UIButton()
+        officeHours.setTitleColor(.black, for: .normal)
+        officeHours.backgroundColor = UIColor.blue
+        view.addSubview(officeHours)
+        officeHours.translatesAutoresizingMaskIntoConstraints = false
+        officeHours.addConstraintsWithVFL("H:|[view]|")
+        officeHours.addConstraintsWithVFL("V:[view(200)]|")
+        officeHours.setTitle("Office hours", for: .normal)
+        officeHours.addTarget(self, action: #selector(bookAppointment), for: .primaryActionTriggered)
+
+    }
+
+    @objc func bookAppointment() {
+        let vc = SelectOfficeHoursViweController.create()
+        env.router.show(vc, from: self, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
     }
 
     public override func viewWillAppear(_ animated: Bool) {

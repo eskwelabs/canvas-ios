@@ -24,6 +24,7 @@ class SelectOfficeHoursViweController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     var appointments: [Appointment] = []
     var selectedAppointmentIndex: IndexPath?
+    var contextCodes: [String]?
 
     let env = AppEnvironment.shared
 
@@ -31,8 +32,10 @@ class SelectOfficeHoursViweController: UIViewController {
         self?.update()
     }
 
-    static func create() -> SelectOfficeHoursViweController {
-        return loadFromStoryboard()
+    static func create(contextCodes: [String]? = nil) -> SelectOfficeHoursViweController {
+        let vc = loadFromStoryboard()
+        vc.contextCodes = contextCodes
+        return vc
     }
 
     override func viewDidLoad() {

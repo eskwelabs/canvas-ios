@@ -19,4 +19,18 @@
 import XCTest
 @testable import Core
 
-class  SelectOfficeHoursViweControllerTests: CoreTestCase {}
+class  SelectOfficeHoursViweControllerTests: CoreTestCase {
+    var vc: SelectOfficeHoursViweController!
+
+    override func setUp() {
+        super.setUp()
+        vc = SelectOfficeHoursViweController.create(["course_1"])
+    }
+
+    func testLayout() {
+
+
+
+        api.mock(GetAppointmentGroupsRequest(includes: [.appointments], contextCodes: ["course_1"]), value: [])
+    }
+}
