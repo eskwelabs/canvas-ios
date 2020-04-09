@@ -172,7 +172,7 @@ extension PeopleListViewController: UISearchBarDelegate {
     }
 
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.searchTextField.resignFirstResponder()
+        view.endEditing(true)
         tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.height), animated: true)
     }
 
@@ -227,7 +227,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
-        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail(embedInNav: true))
+        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail)
     }
 }
 

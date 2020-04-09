@@ -65,8 +65,6 @@ abstract_target 'defaults' do
   pod 'Mantle', '~> 1.5.5'
   pod 'GoogleUtilities', '~> 6.0'
 
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/TRIAL-OQ0pa-gRkNjrDr9wlmDbSJV0S-PrAap-9amO1oXgpce-SCvFx-IJMPH29_L0dTuLZ8xJhCZzUYEIVk0a2DJ_dng50pM0JdtnhVg8wqwxAuc/latest.podspec'
-
   target 'PactTests' do
     project 'Core/Core.xcodeproj'
     pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
