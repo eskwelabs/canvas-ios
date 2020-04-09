@@ -43,7 +43,7 @@ for (const secret of process.argv.slice(2)) {
   }
   padding[padding.length - 1] = paddingSize
 
-  const mixer = Buffer.from(`${name}+com.instructure.icanvas.Core`, 'utf8')
+  const mixer = Buffer.from(`${name}+com.eskwelabs.icanvas.Core`, 'utf8')
   let data = Buffer.concat([ Buffer.from(value, 'utf8'), padding ])
   for (const [ offset, element ] of data.entries()) {
     data[offset] = data[offset] ^ mixer[offset % mixer.length]

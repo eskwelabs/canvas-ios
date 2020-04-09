@@ -4,8 +4,8 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.instructure.Contexts</string>
-		<string>group.com.instructure.icanvas</string>
+		<string>group.com.eskwelabs.Contexts</string>
+		<string>group.com.eskwelabs.icanvas</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>

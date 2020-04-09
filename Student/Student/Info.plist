@@ -55,7 +55,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>

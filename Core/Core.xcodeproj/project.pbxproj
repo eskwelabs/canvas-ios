@@ -57,6 +57,8 @@
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BF3428E233D2D010095D0D3 /* SyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF3428D233D2D010095D0D3 /* SyllabusViewController.storyboard */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
+		3C2E1E4124338567009024B5 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DD2214907C0083E660 /* PSPDFKit.framework */; };
+		3C2E1E4424338568009024B5 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DE2214907C0083E660 /* PSPDFKitUI.framework */; };
 		5859503A27B333221FD6E835 /* DiscussionReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859511C5D2888D3B3E01A30 /* DiscussionReply.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
 		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
@@ -828,8 +830,6 @@
 		EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CB48522F8C8890013D9A5 /* PageListPresenterTests.swift */; };
 		F9435B692216162600292D38 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DD2214907C0083E660 /* PSPDFKit.framework */; };
 		F9435B6A2216162600292D38 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DE2214907C0083E660 /* PSPDFKitUI.framework */; };
-		F9435B6B2216163500292D38 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DD2214907C0083E660 /* PSPDFKit.framework */; };
-		F9435B6C2216163500292D38 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946DE2214907C0083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1905,8 +1905,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9435B6B2216163500292D38 /* PSPDFKit.framework in Frameworks */,
-				F9435B6C2216163500292D38 /* PSPDFKitUI.framework in Frameworks */,
+				3C2E1E4124338567009024B5 /* PSPDFKit.framework in Frameworks */,
+				3C2E1E4424338568009024B5 /* PSPDFKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5505,7 +5505,7 @@
 					"@loader_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -5538,7 +5538,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;

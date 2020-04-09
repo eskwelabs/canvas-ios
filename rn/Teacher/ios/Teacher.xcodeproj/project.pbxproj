@@ -1337,7 +1337,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"DEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1400,7 +1400,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";

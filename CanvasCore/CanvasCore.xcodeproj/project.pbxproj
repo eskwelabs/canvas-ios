@@ -3379,7 +3379,7 @@
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REEXPORTED_FRAMEWORK_NAMES = "";
@@ -3413,7 +3413,7 @@
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eskwelabs.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REEXPORTED_FRAMEWORK_NAMES = "";
