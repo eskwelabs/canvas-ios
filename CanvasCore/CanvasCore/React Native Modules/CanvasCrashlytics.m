@@ -25,7 +25,7 @@
 @implementation CanvasCrashlytics
 @synthesize bridge = _bridge;
 
-NSString *const DefaultDomain = @"com.instructure.icanvas";
+NSString *const DefaultDomain = @"com.eskwelabs.icanvas";
 NSInteger const DefaultCode = 999;
 
 RCT_EXPORT_MODULE();
@@ -66,7 +66,7 @@ RCT_EXPORT_MODULE();
                 logType = OS_LOG_TYPE_FAULT;
                 break;
         }
-        
+
         os_log_with_type(OS_LOG_DEFAULT, logType, "%s", message.UTF8String);
     });
 }

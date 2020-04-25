@@ -28,6 +28,17 @@ workflows:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - cache-pull: {}
+    - script:
+        title: Install build tools
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            brew unlink carthage
+            brew install --HEAD carthage
+            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -35,11 +46,9 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
-    - npm:
+    - cocoapods-install:
         inputs:
-        - command: install -g react-native-cli
-        title: npm install -g react-native-cli
-    - cocoapods-install: {}
+        - verbose: 'false'
     - ios-auto-provision:
         inputs:
         - generate_profiles: 'yes'
@@ -78,7 +87,7 @@ workflows:
                 <string>$BITRISE_EXPORT_METHOD</string>
                 <key>provisioningProfiles</key>
                 <dict>
-                    <key>com.instructure.parentapp</key>
+                    <key>com.eskwelabs.parentapp</key>
                     <string>$BITRISE_PROFILE</string>
                 </dict>
                 <key>signingCertificate</key>

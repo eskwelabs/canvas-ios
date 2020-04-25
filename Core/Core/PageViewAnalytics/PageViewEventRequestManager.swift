@@ -20,7 +20,7 @@ import UIKit
 import Security
 
 struct Pandata {
-    static let tokenKeychainKey = "com.instructure.pandataToken"
+    static let tokenKeychainKey = "com.eskwelabs.pandataToken"
     static let tokenKeychainService = Bundle.main.bundleIdentifier ?? Bundle.studentBundleID
 }
 

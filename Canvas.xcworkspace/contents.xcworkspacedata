@@ -41,9 +41,6 @@
          location = "group:index.ios.js">
       </FileRef>
       <FileRef
-         location = "group:launchPackager.command">
-      </FileRef>
-      <FileRef
          location = "group:metro.config.js">
       </FileRef>
       <FileRef
@@ -59,6 +56,9 @@
          location = "group:yarn.lock">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:scripts">
+   </FileRef>
    <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
@@ -81,4 +81,13 @@
          location = "group:IPadTests.xctestplan">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:Cartfile">
+   </FileRef>
+   <FileRef
+      location = "group:dangerfile.js">
+   </FileRef>
+   <FileRef
+      location = "group:package.json">
+   </FileRef>
 </Workspace>

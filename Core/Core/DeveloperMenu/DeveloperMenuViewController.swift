@@ -21,9 +21,9 @@ import UIKit
 public class DeveloperMenuViewController: UIViewController {
 
     struct DeveloperUserDefaultKeys {
-        static let route = "com.instructure.devMenu.route"
-        static let modalSelection = "com.instructure.devMenu.modalSelection"
-        static let routeHistory = "com.instructure.devMenu.routeHistory"
+        static let route = "com.eskwelabs.devMenu.route"
+        static let modalSelection = "com.eskwelabs.devMenu.modalSelection"
+        static let routeHistory = "com.eskwelabs.devMenu.routeHistory"
     }
 
     enum Section: Int, CaseIterable {

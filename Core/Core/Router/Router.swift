@@ -111,12 +111,12 @@ public extension RouterProtocol {
                 (nav ?? view).isModalInPresentation = true
             }
             from.present(nav ?? view, animated: true, completion: completion)
-        case .detail where from.splitViewController != nil && !from.isInSplitViewDetail:
-            from.showDetailViewController(nav ?? view, sender: from)
         case .detail:
-            // not in a split view so we can ignore `embedInNav`
-            // and must not `show` `nav` otherwise it will modal
-            from.show(view, sender: nil)
+            if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
+                from.show(view, sender: nil)
+            } else {
+                from.showDetailViewController(nav ?? view, sender: from)
+            }
         case .push:
             from.show(nav ?? view, sender: nil)
         }
@@ -181,6 +181,12 @@ public class Router: RouterProtocol {
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
         Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
+        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
+            fallback(url, from, options)
+            return
+        }
+
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {
@@ -190,5 +196,10 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
+    }
+
+    private func urlMatchesSessionHost(_ url: URLComponents) -> Bool {
+        let sessionHost = AppEnvironment.shared.currentSession?.baseURL.host ?? ""
+        return url.host == sessionHost
     }
 }

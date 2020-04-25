@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import ReactiveSwift
 import CanvasCore
 import Core
 
@@ -29,8 +28,10 @@ func rootViewController(_ session: Session) -> UIViewController {
         calendarTab(session: session),
         todoTab(),
         notificationsTab(),
-        inboxTab(),
     ]
+    if AppEnvironment.shared.currentSession?.isFakeStudent == false {
+        tabs.viewControllers?.append(inboxTab())
+    }
 
     let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
     tabs.selectedIndex = AppEnvironment.shared.userDefaults?.landingPath

@@ -25,7 +25,7 @@
 
 ```
 Error:
-Failed to find development Xcode managed provisioning profile for bundle id: com.instructure.parentapp.
+Failed to find development Xcode managed provisioning profile for bundle id: com.eskwelabs.parentapp.
 Please open your project in your local Xcode and generate and ipa file
 with the desired distribution type and by using Xcode managed codesigning.
 This will create / refresh the desired managed profiles.
@@ -37,7 +37,7 @@ Locally build the app for archiving and then export (`Window` -> `Organizer` -> 
 
 ```
 generate_profiles set to true, but failed to generate Provisioning Profiles with error:
-Apple provided the following error info: There were errors in the data supplied. Please correct and re-submit. Multiple profiles found with the name 'Bitrise ad-hoc - (com.instructure.parentapp)'.  Please remove the duplicate profiles and try again.
+Apple provided the following error info: There were errors in the data supplied. Please correct and re-submit. Multiple profiles found with the name 'Bitrise ad-hoc - (com.eskwelabs.parentapp)'.  Please remove the duplicate profiles and try again.
 ```
 
 Visit the [Apple dev portal](http://developer.apple.com/), click on `Account`, then `Certificates, IDs & Profiles`, and finally select `Distribution` under `Provisioning Profiles`. Delete the Bitrsie profile related to the failing build.

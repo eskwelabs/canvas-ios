@@ -40,6 +40,7 @@ const {
   deletePendingReplies,
   markAllAsRead,
   markEntryAsRead,
+  markEntryAsUnread,
   rateEntry,
 } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
@@ -262,7 +263,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         ...state,
         [discussionID]: {
           ...entity,
-          pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
+          pending: (state[discussionID]?.pending || 1) - 1,
           error: null,
           unread_entries: unreadEntries,
           entry_ratings: entryRatings,
@@ -328,7 +329,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             ...entity.data,
             discussion_subentry_count: entity.data.discussion_subentry_count + 1,
           },
-          pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
+          pending: (state[discussionID]?.pending || 1) - 1,
           error: parseErrorMessage(error),
         },
       }
@@ -359,7 +360,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             ...entity.data,
             discussion_subentry_count: entity.data.discussion_subentry_count - 1,
           },
-          pending: (state[discussionID] && state[discussionID].pending || 0) + 1,
+          pending: (state[discussionID]?.pending || 0) + 1,
           error: null,
         },
       }
@@ -375,7 +376,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         ...state,
         [discussionID]: {
           ...entity,
-          pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
+          pending: (state[discussionID]?.pending || 1) - 1,
           error: null,
         },
       }
@@ -399,7 +400,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [params.id]: {
         ...state[params.id],
-        pending: (state[params.id] && state[params.id].pending || 0) + 1,
+        pending: (state[params.id]?.pending || 0) + 1,
         error: null,
       },
     }),
@@ -413,7 +414,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             replies: data.replies ?? state[params.id]?.data?.replies,
             sections: params.sections,
           },
-          pending: (state[params.id] && state[params.id].pending || 1) - 1,
+          pending: (state[params.id]?.pending || 1) - 1,
           error: null,
         },
       })
@@ -422,7 +423,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [params.id]: {
         ...state[params.id],
-        pending: (state[params.id] && state[params.id].pending || 1) - 1,
+        pending: (state[params.id]?.pending || 1) - 1,
         error: parseErrorMessage(error),
       },
     }),
@@ -432,7 +433,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [discussionID]: {
         ...state[discussionID],
-        pending: (state[discussionID] && state[discussionID].pending || 0) + 1,
+        pending: (state[discussionID]?.pending || 0) + 1,
         error: null,
       },
     }),
@@ -445,7 +446,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [discussionID]: {
         ...state[discussionID],
-        pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
+        pending: (state[discussionID]?.pending || 1) - 1,
         error: parseErrorMessage(error),
       },
     }),
@@ -501,7 +502,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             },
           },
           pendingReplies: {
-            ...(state[discussionID] && state[discussionID].pendingReplies),
+            ...(state[discussionID]?.pendingReplies),
             [result.data.id]: { localIndexPath: indexPath, data: Object.assign({ replies: [] }, result.data) },
           },
         },
@@ -549,7 +550,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             },
           },
           pendingReplies: {
-            ...(state[discussionID] && state[discussionID].pendingReplies),
+            ...(state[discussionID]?.pendingReplies),
             [result.data.id]: { localIndexPath: indexPath, data: result.data },
           },
         },
@@ -588,6 +589,20 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         [discussionID]: {
           ...state[discussionID],
           unread_entries: unreadEntries,
+        },
+      }
+    },
+  }),
+  [markEntryAsUnread.toString()]: handleAsync({
+    resolved: (state, { discussionID, entryID }) => {
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          unread_entries: [
+            ...(state[discussionID].unread_entries || []),
+            entryID,
+          ],
         },
       }
     },

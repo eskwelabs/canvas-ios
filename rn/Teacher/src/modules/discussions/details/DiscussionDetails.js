@@ -88,19 +88,13 @@ type State = {
   groups: GroupsState,
 }
 
-type ViewableReply = {
-  index: number,
-  isViewable: boolean,
-  key: string,
-  item: DiscussionReply,
-}
-
 const {
   refreshDiscussionEntries,
   refreshSingleDiscussion,
   deleteDiscussionEntry,
   markAllAsRead,
   markEntryAsRead,
+  markEntryAsUnread,
   rateEntry,
 } = DetailActions
 const { deleteDiscussion } = EditActions
@@ -113,6 +107,7 @@ const Actions = {
   deleteDiscussionEntry,
   markAllAsRead,
   markEntryAsRead,
+  markEntryAsUnread,
   updateContextPermissions,
   rateEntry,
 }
@@ -143,6 +138,7 @@ export class DiscussionDetails extends Component<Props, any> {
       deletePending: false,
       maxReplyNodeDepth: 2,
       unread_entries: props.unreadEntries || [],
+      markedUnread: [], // [String] of entry IDs
     }
     const groupDiscussion = this.groupDiscussion(props)
     if (groupDiscussion && this.showingWrongDiscussionForGroups(props)) {
@@ -190,9 +186,16 @@ export class DiscussionDetails extends Component<Props, any> {
       return
     }
 
-    this.setState({
-      unread_entries: nextProps.unreadEntries,
-      flatReplies: this.rootRepliesData(nextProps.discussion, this.state.rootNodePath, this.state.maxReplyNodeDepth, nextProps.entryRatings),
+    // set unread_entries first because rootRepliesData depends on it
+    this.setState({ unread_entries: nextProps.unreadEntries }, () => {
+      this.setState({
+        flatReplies: this.rootRepliesData(
+          nextProps.discussion,
+          this.state.rootNodePath,
+          this.state.maxReplyNodeDepth,
+          nextProps.entryRatings
+        ),
+      })
     })
   }
 
@@ -437,9 +440,17 @@ export class DiscussionDetails extends Component<Props, any> {
           isLastReply={this.state.flatReplies.length - 1 === index}
           isAnnouncement={Boolean(this.props.isAnnouncement)}
           rateEntry={this.props.rateEntry}
+          onMarkUnread={this.markEntryAsUnread}
+          markEntryAsRead={this.props.markEntryAsRead}
         />
       </View>
     )
+  }
+
+  markEntryAsUnread = (entryID) => {
+    const { context, contextID, discussionID } = this.props
+    this.props.markEntryAsUnread(context, contextID, discussionID, entryID)
+    this.setState({ markedUnread: [ ...this.state.markedUnread, entryID ] })
   }
 
   rootRepliesData = (discussion: ?Discussion, rootNodePath: number[], maxDepth: number, entryRatings: EntryRatings) => {
@@ -670,8 +681,8 @@ export class DiscussionDetails extends Component<Props, any> {
     return (unread.has(id)) ? 'unread' : 'read'
   }
 
-  _markViewableAsRead = (info: { viewableItems: Array<ViewableReply>, changed: Array<ViewableReply>}) => {
-    requestIdleCallback(() => {
+  _markViewableAsRead = (info) => {
+    setTimeout(() => {
       let dID = this.props.discussionID
       let inView = info.viewableItems
       let unread = [...this.state.unread_entries] || []
@@ -680,7 +691,8 @@ export class DiscussionDetails extends Component<Props, any> {
         if (inView[i].index !== null && inView[i].isViewable) {
           let reply = inView[i].item
           if (reply.id === dID) { continue }
-          if (this.checkReadState(reply.id) === 'unread') {
+          let markedUnread = this.state.markedUnread.includes(reply.id)
+          if (this.checkReadState(reply.id) === 'unread' && !markedUnread) {
             update = true
             let index = unread.indexOf(reply.id)
             if (index > -1) unread.splice(index, 1)
@@ -691,7 +703,7 @@ export class DiscussionDetails extends Component<Props, any> {
         }
       }
       if (update) this.setState({ unread_entries: unread })
-    })
+    }, 1000)
   }
 }
 

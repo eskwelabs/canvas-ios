@@ -25,11 +25,11 @@ import { shallow } from 'enzyme'
 import AssignmentListRow from '../components/AssignmentListRow'
 import * as templates from '../../../__templates__/index'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('../../../routing')
 
-jest.mock('ActionSheetIOS', () => ({
+jest.mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
 }))
 
@@ -377,7 +377,7 @@ describe('AssignmentList', () => {
     defaultProps.courseID = '1'
     shallow(<AssignmentList {...defaultProps} showGrades />)
     expect(NativeModules.SiriShortcutManager.donateSiriShortcut).toHaveBeenCalledWith({
-      identifier: 'com.instructure.siri.shortcut.getgrades',
+      identifier: 'com.eskwelabs.siri.shortcut.getgrades',
       name: '123',
       url: '/courses/1/grades',
     })

@@ -33,7 +33,7 @@ import * as template from '../../../../__templates__'
 
 jest
   .mock('../../../../routing')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
   .mock('../../../../redux/middleware/error-handler', () => {
@@ -47,6 +47,7 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
+    jest.useFakeTimers()
     app.setCurrentApp('teacher')
     let discussion = template.discussion({
       id: '1',

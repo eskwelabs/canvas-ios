@@ -24,20 +24,20 @@ struct ResponsePage<T> {
     var hasMorePages: Bool {
         return nextPage != nil
     }
-    
+
     init(content: T, nextPage: Request<T>? = nil) {
         self.content = content
         self.nextPage = nextPage
     }
-    
+
     typealias PaginatedResult = Result<ResponsePage<T>, NSError>
-    
+
     func getNextPage(_ response: @escaping (PaginatedResult)->()) -> URLSessionTask? {
         if let nextPage = nextPage {
             return makeRequest(nextPage, completed: response)
         } else {
             // YOU SHOULDN'T EVER GET HERE.
-            let error = NSError(domain: "com.instructure.authentication", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The Pages are gone!? Why are the pages always gone?", tableName: "Localizable", bundle: .core, value: "", comment: "This shouldn't ever happen.")])
+            let error = NSError(domain: "com.eskwelabs.authentication", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("The Pages are gone!? Why are the pages always gone?", tableName: "Localizable", bundle: .core, value: "", comment: "This shouldn't ever happen.")])
             response(.failure(error))
             return nil
         }
@@ -47,7 +47,7 @@ struct ResponsePage<T> {
 func parseNextPageFromJSONAPI(_ json: Any?) -> URL? {
     let jsonObject = json as? NSDictionary
     let stringURL = jsonObject?.value(forKeyPath: "meta.pagination.next") as? String
-    
+
     return stringURL.flatMap {
         return URL(string: $0)
     }

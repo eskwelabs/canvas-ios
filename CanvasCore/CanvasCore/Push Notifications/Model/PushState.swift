@@ -20,9 +20,9 @@ public enum PushPreAuthStatus: Int {
     case neverShown = 0
     case shownAndAccepted
     case shownAndDeclined
-    
-    fileprivate static let pushPreAuthStatusKey = "com.instructure.canvas.pushPreAuthStatusKey"
-    
+
+    fileprivate static let pushPreAuthStatusKey = "com.eskwelabs.canvas.pushPreAuthStatusKey"
+
     public static func currentPushPreAuthStatus() -> PushPreAuthStatus {
         let defaults = UserDefaults.standard
         if let status = PushPreAuthStatus(rawValue: defaults.integer(forKey: pushPreAuthStatusKey)) {
@@ -32,13 +32,13 @@ public enum PushPreAuthStatus: Int {
             return PushPreAuthStatus.currentPushPreAuthStatus()
         }
     }
-    
+
     public static func setCurrentPushPreAuthStatus(_ status: PushPreAuthStatus) {
         let defaults = UserDefaults.standard
         defaults.set(status.rawValue, forKey: pushPreAuthStatusKey)
         defaults.synchronize()
     }
-    
+
     fileprivate static func registerDefaults() {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [pushPreAuthStatusKey: PushPreAuthStatus.neverShown.rawValue])

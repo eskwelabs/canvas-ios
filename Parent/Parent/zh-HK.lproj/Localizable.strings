@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "（無主題）";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d 來自 %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@截止於%2$@";
 
@@ -22,9 +19,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "作為使用者";
-
 /* No comment provided by engineer. */
 "Add" = "添加";
 
@@ -34,8 +28,8 @@
 /* No comment provided by engineer. */
 "Add Student" = "添加學生";
 
-/* Label displayed when logged in as an admin */
-"Admin" = "管理員";
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "在頂部添加學生或瀏覽全域選單以便以學生身份檢視。";
 
 /* Alert Section Header */
 "Alert me when:" = "在下列情形時提醒我：";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "課程大綱";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "點選以開始作為另一個人檢視 Canvas。";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "載入 AlertKit 資料庫檔案時出現問題。";
 
@@ -309,8 +300,8 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上傳 %1$@ 在%2$@";
 
-/* Header title of admin view */
-"Welcome!" = "歡迎！";
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "歡迎，管理員！";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";

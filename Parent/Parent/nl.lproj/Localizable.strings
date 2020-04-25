@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Geen onderwerp)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d van %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ vervalt op %2$@";
 
@@ -22,9 +19,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Optreden als gebruiker";
-
 /* No comment provided by engineer. */
 "Add" = "Toevoegen";
 
@@ -34,8 +28,8 @@
 /* No comment provided by engineer. */
 "Add Student" = "Cursist toevoegen";
 
-/* Label displayed when logged in as an admin */
-"Admin" = "Beheer";
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Voeg bovenaan cursisten toe of open het algemene menu om je voor te doen als cursist.";
 
 /* Alert Section Header */
 "Alert me when:" = "Waarschuw me als:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Tik hierop om Canvas weer te geven als een andere persoon.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
 
@@ -309,8 +300,8 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ wordt geüpload om %2$@";
 
-/* Header title of admin view */
-"Welcome!" = "Welkom!";
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Welkom beheerder!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";

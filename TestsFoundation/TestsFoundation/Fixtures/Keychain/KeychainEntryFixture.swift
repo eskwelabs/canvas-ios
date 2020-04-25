@@ -52,7 +52,7 @@ extension LoginSession {
     }
 
     public static func useTestKeychain() {
-        Keychain.app = Keychain(serviceName: "com.instructure.shared-credentials.tests")
+        Keychain.app = Keychain(serviceName: "com.eskwelabs.shared-credentials.tests")
         clearAll()
     }
 }

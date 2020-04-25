@@ -6,10 +6,11 @@
 	<array>
 		<string>group.com.eskwelabs.icanvas</string>
 		<string>group.eskwelabs.shared</string>
+		<string>group.com.eskwelabs.Contexts</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.instructure.shared-credentials</string>
+		<string>$(AppIdentifierPrefix)com.eskwelabs.shared-credentials</string>
 	</array>
 </dict>
 </plist>

@@ -91,6 +91,9 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
             tableView.contentInset.bottom = -footer.frame.height
         }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(moduleItemViewDidLoad), name: .moduleItemViewDidLoad, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshProgress), name: .moduleItemRequirementCompleted, object: nil)
+
         courses.refresh()
         colors.refresh()
 
@@ -105,7 +108,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
+            tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
@@ -119,6 +122,12 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
 
     @objc func refresh() {
         errorView.isHidden = true
+        store.refresh(force: true)
+    }
+
+    @objc func refreshProgress() {
+        errorView.isHidden = true
+        spinnerView.isHidden = false
         store.refresh(force: true)
     }
 
@@ -141,6 +150,32 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         if let moduleID = moduleID, let section = store.sectionForModule(moduleID) {
             let rect = tableView.rect(forSection: section)
             tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
+        }
+    }
+
+    @objc func moduleItemViewDidLoad(_ notification: Notification) {
+        guard
+            splitViewController?.isCollapsed == false,
+            let userInfo = notification.userInfo,
+            let moduleID = userInfo["moduleID"] as? String,
+            let itemID = userInfo["itemID"] as? String,
+            let section = store.sectionForModule(moduleID)
+        else {
+            return
+        }
+        let module = store[section]
+        guard let row = module.items.firstIndex(where: { $0.id == itemID }) else { return }
+        let indexPath = IndexPath(row: row, section: section)
+        if tableView.indexPathsForSelectedRows?.contains(indexPath) == true { return }
+        tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: true) }
+        if tableView.cellForRow(at: indexPath) != nil {
+            tableView.selectRow(
+                at: indexPath,
+                animated: true,
+                scrollPosition: tableView.indexPathsForVisibleRows?.contains(indexPath) == true
+                    ? .none
+                    : .bottom
+            )
         }
     }
 }
@@ -212,23 +247,8 @@ extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
-        switch item.type {
-        case .externalTool(let id, _):
-            let lti = LTITools(context: ContextModel(.course, id: courseID), id: id, launchType: .module_item, moduleItemID: item.id)
-            lti.presentTool(from: self, animated: true) { [weak tableView] _ in
-                tableView?.deselectRow(at: indexPath, animated: true)
-            }
-        case .externalURL(let url):
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .overFullScreen
-            env.router.show(safari, from: self, options: .modal()) {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        default:
-            if let url = item.url {
-                env.router.route(to: url, from: self, options: .detail)
-            }
-        }
+        guard let htmlURL = item.htmlURL else { return }
+        env.router.route(to: htmlURL, from: self, options: .detail)
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -261,7 +281,7 @@ extension ModuleListViewController {
 extension ModuleListViewController: ModuleStoreDelegate {
     func moduleStoreDidChange(_ moduleStore: ModuleStore) {
         if store.isLoading {
-            spinnerView.isHidden = refreshControl.isRefreshing || store.count > 0
+            spinnerView.isHidden = refreshControl.isRefreshing
             if store.count > 0 {
                 emptyView.isHidden = true
                 showLoadingNextPage()
@@ -272,7 +292,11 @@ extension ModuleListViewController: ModuleStoreDelegate {
             refreshControl.endRefreshing()
             hideLoadingNextPage()
         }
+        let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        if let selected = selected, tableView.cellForRow(at: selected) != nil {
+            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
+        }
         scrollToModule()
     }
 

@@ -26,7 +26,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.instructure.icanvas</string>
+			<string>com.eskwelabs.icanvas</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>canvas-courses</string>
@@ -46,7 +46,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.instructure.icanvas</string>
+			<string>com.eskwelabs.icanvas</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>canvas-student</string>
@@ -85,11 +85,13 @@
 	<string>Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.instructure.icanvas.watchApp</string>
-		<string>com.instructure.siri.shortcut.getgrades</string>
+		<string>com.eskwelabs.icanvas.watchApp</string>
+		<string>com.eskwelabs.siri.shortcut.getgrades</string>
 	</array>
 	<key>UIBackgroundModes</key>
-	<array/>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>

@@ -27,10 +27,10 @@ enum FileUploaderError: Error {
 }
 
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
-    public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
+    public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.eskwelabs.core.assignment-submitted")
     public typealias Store = Core.Store<LocalUseCase<File>>
 
-    public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
+    public static var shared = UploadManager(identifier: "com.eskwelabs.core.file-uploads")
 
     public let identifier: String
     public let sharedContainerIdentifier: String?
@@ -310,6 +310,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         object: nil,
                         userInfo: ["assignmentID": assignmentID, "submission": submission]
                     )
+                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
                     if let userID = file.userID, let batchID = file.batchID {
                         self.delete(userID: userID, batchID: batchID)
                     }

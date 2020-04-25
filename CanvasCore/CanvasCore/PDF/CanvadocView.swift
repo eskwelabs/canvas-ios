@@ -20,7 +20,6 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 import React
-import AFNetworking
 import Core
 
 // CREDIT: https://stackoverflow.com/a/24590678
@@ -103,6 +102,10 @@ public class CanvadocView: UIView {
     required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
     deinit {
+        if pdfViewController?.parent != nil {
+            pdfViewController?.willMove(toParent: nil)
+            pdfViewController?.removeFromParent()
+        }
         self.pdfViewController?.annotationStateManager.remove(self)
         task?.cancel()
     }
@@ -137,7 +140,7 @@ public class CanvadocView: UIView {
             }
         }
     }
-    
+
     private func embed(pdfViewController: PDFViewController) {
         guard let parentVC = parentViewController else { return }
         guard self.pdfViewController == nil else { return }
@@ -255,6 +258,19 @@ public class CanvadocView: UIView {
     @objc public func syncAnnotations() {
         guard let presenter = pdfViewController?.delegate as? CanvadocsPDFDocumentPresenter else { return }
         presenter.annotationProvider?.syncAllAnnotations()
+    }
+
+    public override func didMoveToWindow() {
+        super.didMoveToWindow()
+        guard let controller = pdfViewController else { return }
+        let parent = parentViewController
+        parent?.addChild(controller)
+        controller.didMove(toParent: parent)
+    }
+
+    public override func removeFromSuperview() {
+        pdfViewController?.dismiss(animated: false) // avoid orphan popovers
+        super.removeFromSuperview()
     }
 }
 

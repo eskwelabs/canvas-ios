@@ -273,7 +273,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     }
 
     if (this.props.showGrades) {
-      SiriShortcutManager.donateSiriShortcut({ 'identifier': 'com.instructure.siri.shortcut.getgrades', 'url': `/courses/${this.props.courseID}/grades`, 'name': this.props.courseCode })
+      SiriShortcutManager.donateSiriShortcut({ 'identifier': 'com.eskwelabs.siri.shortcut.getgrades', 'url': `/courses/${this.props.courseID}/grades`, 'name': this.props.courseCode })
     }
 
     return (

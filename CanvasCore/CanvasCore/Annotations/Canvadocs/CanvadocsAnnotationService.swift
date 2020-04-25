@@ -32,7 +32,7 @@ struct CanvadocsAnnotationMetadata {
         case ReadWrite = "readwrite"
         case ReadWriteManage = "readwritemanage"
     }
-    
+
     let enabled: Bool
     let userID: String?
     let userName: String?
@@ -64,11 +64,11 @@ class CanvadocsAnnotationService: NSObject {
     @objc let sessionURL: URL
     fileprivate let baseURLString: String
     fileprivate let sessionID: String
-    
+
     var metadata: CanvadocsFileMetadata? = nil
-    
+
     fileprivate let clientId: String
-    
+
     @objc static let ISO8601MillisecondFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -77,7 +77,7 @@ class CanvadocsAnnotationService: NSObject {
         formatter.timeZone = tz
         return formatter
     }()
-    
+
     @objc init(sessionURL: URL) {
         self.sessionURL = sessionURL
         self.sessionID = sessionURL.lastPathComponent
@@ -91,11 +91,11 @@ class CanvadocsAnnotationService: NSObject {
         } else {
             baseURLString = ""
         }
-        
+
         self.clientId = UUID().uuidString
         URLSession.shared.configuration.httpAdditionalHeaders = ["X-Client-Id": self.clientId]
     }
-    
+
     fileprivate func removeLeadingSlash(_ path: String) -> String {
         if path.first == "/" {
             return String(path.dropFirst())
@@ -109,12 +109,12 @@ class CanvadocsAnnotationService: NSObject {
         let prefix = self.sessionURL.absoluteString[endIndex...]
         return "\(prefix)_doc.pdf"
     }
-    
+
     fileprivate func genericError() -> NSError {
         let description = NSLocalizedString("An unexpected error has occurred.", tableName: nil, bundle: .core, value: "An unexpected error has occurred.", comment: "")
-        return NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
+        return NSError(domain: "com.eskwelabs.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
     }
-    
+
     func getMetadata(_ completed: @escaping (MetadataResult)->()) {
         let request = URLRequest(url: sessionURL)
         let genericError = self.genericError()
@@ -122,33 +122,33 @@ class CanvadocsAnnotationService: NSObject {
             if let error = error {
                 return completed(.failure(error as NSError))
             }
-            
+
             guard let data = data else {
                 return completed(.failure(genericError))
             }
-            
+
             do {
                 let response = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
                 guard let json = response as? [String: AnyObject], let urls = json["urls"] as? [String: AnyObject] else {
                     return completed(.failure(genericError))
                 }
-                
+
                 var annotationMetadata: CanvadocsAnnotationMetadata?
                 if let annotationSettings = json["annotations"] as? [String: AnyObject] {
                     let enabled = annotationSettings["enabled"] as? Bool ?? false
                     let userID = annotationSettings["user_id"] as? String
                     let userName = annotationSettings["user_name"] as? String
-                    
+
                     var permissions: CanvadocsAnnotationMetadata.Permissions = .None
                     if let permissionsStr = annotationSettings["permissions"] as? String, let annotationPermissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr) {
                         permissions = annotationPermissions
                     }
-                    
+
                     annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userID: userID, userName: userName, permissions: permissions)
                 } else {
                     annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userID: nil, userName: nil, permissions: nil)
                 }
-                
+
                 var pandaPushMetadata: PandaPushMetadata?
                 if let pandaPush = json["panda_push"] as? [String: AnyObject] {
                     if let host = pandaPush["host"] as? String,
@@ -170,7 +170,7 @@ class CanvadocsAnnotationService: NSObject {
                 } else {
                     completed(.failure(genericError))
                 }
-                
+
             } catch let error as NSError {
                 completed(.failure(error))
             }
@@ -178,7 +178,7 @@ class CanvadocsAnnotationService: NSObject {
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: completion)
         dataTask.resume()
     }
-    
+
     func getDocument(_ completed: @escaping (DocumentResult)->()) {
         let genericError = self.genericError()
         guard let metadata = metadata else {
@@ -190,16 +190,16 @@ class CanvadocsAnnotationService: NSObject {
             if let error = error {
                 return completed(Result.failure(error as NSError))
             }
-            
+
             guard let tempURL = temporaryURL else {
                 return completed(Result.failure(genericError))
             }
-            
+
             // Move the doc to a permanent location
             let fileManager = FileManager.default
             let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             let copyURL = directoryURL.appendingPathComponent(filename)
-            
+
             if fileManager.fileExists(atPath: copyURL.path) {
                 do {
                     try fileManager.removeItem(at: copyURL)
@@ -207,18 +207,18 @@ class CanvadocsAnnotationService: NSObject {
                     return completed(Result.failure(error as NSError))
                 }
             }
-            
+
             do {
                 try fileManager.copyItem(at: tempURL, to: copyURL)
             } catch let error {
                 return completed(Result.failure(error as NSError))
             }
-            
+
             completed(.success(copyURL))
         })
         downloadTask.resume()
     }
-    
+
     func getAnnotations(_ completed: @escaping (AnnotationsResult)->()) {
         guard let url = URL(string: "/2018-04-06/sessions/\(sessionID)/annotations", relativeTo: sessionURL) else {
             return
@@ -237,7 +237,7 @@ class CanvadocsAnnotationService: NSObject {
                             let dateStr = try decoder.singleValueContainer().decode(String.self)
                             guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
                                 let description = NSLocalizedString("Invalid date received from API.", tableName: nil, bundle: .core, value: "Invalid date received from API.", comment: "")
-                                throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
+                                throw NSError(domain: "com.eskwelabs.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
                             }
                             return date
                         }
@@ -254,7 +254,7 @@ class CanvadocsAnnotationService: NSObject {
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: completion)
         dataTask.resume()
     }
-    
+
     func upsertAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<CanvadocsAnnotation, CanvadocsAnnotationError>) ->()) {
         guard let annotationID = annotation.id else { return }
         guard let url = URL(string: "/2018-03-07/sessions/\(sessionID)/annotations/\(annotationID)", relativeTo: sessionURL) else {
@@ -264,7 +264,7 @@ class CanvadocsAnnotationService: NSObject {
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let encoder = JSONEncoder()
         do {
             let json = try encoder.encode(annotation)
@@ -277,7 +277,7 @@ class CanvadocsAnnotationService: NSObject {
             completed(.failure(.nsError(error as NSError)))
             return
         }
-        
+
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let data = data {
                 do {
@@ -285,7 +285,7 @@ class CanvadocsAnnotationService: NSObject {
                     decoder.dateDecodingStrategy = .custom { decoder in
                         let dateStr = try decoder.singleValueContainer().decode(String.self)
                         guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
-                            throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "Invalid date received from API"])
+                            throw NSError(domain: "com.eskwelabs.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "Invalid date received from API"])
                         }
                         return date
                     }
@@ -300,7 +300,7 @@ class CanvadocsAnnotationService: NSObject {
         }
         dataTask.resume()
     }
-    
+
     func deleteAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<Bool, NSError>)->()) {
         guard let annotationID = annotation.id else { return }
         guard let url = URL(string: "/1/sessions/\(sessionID)/annotations/\(annotationID)", relativeTo: sessionURL) else {
@@ -308,7 +308,7 @@ class CanvadocsAnnotationService: NSObject {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
-        
+
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completed(.failure(error as NSError))

@@ -20,7 +20,6 @@ import AVKit
 import UIKit
 import PSPDFKit
 import CanvasCore
-import ReactiveSwift
 import UserNotifications
 import Firebase
 import Core
@@ -48,10 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
-        UIApplication.shared.reactive.applicationIconBadgeNumber
-            <~ TabBarBadgeCounts.applicationIconBadgeNumber
+        TabBarBadgeCounts.application = UIApplication.shared
         Core.Analytics.shared.handler = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+
+        if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
+            let url = launchOptions?[.url] as? URL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            components.path == "student_view",
+            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            LoginSession.add(fakeStudent)
+        }
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
@@ -120,9 +126,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
+        BackgroundVideoPlayer.shared.background()
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        BackgroundVideoPlayer.shared.reconnect()
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {

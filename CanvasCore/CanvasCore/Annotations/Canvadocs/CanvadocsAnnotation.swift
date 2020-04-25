@@ -98,7 +98,7 @@ struct CanvadocsAnnotation: Codable {
     let deletedBy: String?
     let deletedByID: String?
     let width: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case documentID = "document_id"
@@ -112,7 +112,7 @@ struct CanvadocsAnnotation: Codable {
         case deletedBy = "deleted_by"
         case deletedByID = "deleted_by_id"
         case width
-        
+
         case type
         case subject
         case contents
@@ -125,14 +125,14 @@ struct CanvadocsAnnotation: Codable {
         case rect
         case icon
     }
-    
+
     enum InklistCodingKeys: String, CodingKey {
         case gestures
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         self.id = try container.decode(String.self, forKey: .id)
         self.documentID = try container.decode(String.self, forKey: .documentID)
         self.userID = try container.decode(String.self, forKey: .userID)
@@ -145,7 +145,7 @@ struct CanvadocsAnnotation: Codable {
         self.deletedBy = try container.decodeIfPresent(String.self, forKey: .deletedBy)
         self.deletedByID = try container.decodeIfPresent(String.self, forKey: .deletedByID)
         self.width = try container.decodeIfPresent(Double.self, forKey: .width)
-        
+
         let type = try container.decode(String.self, forKey: .type)
         switch type {
         case "highlight":
@@ -189,10 +189,10 @@ struct CanvadocsAnnotation: Codable {
             self.type = .unsupported
         }
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         func encodeRect(rect: CGRect) throws {
             var rectContainer = container.nestedUnkeyedContainer(forKey: .rect)
             let points: [CGPoint] = [rect.origin, CGPoint(x: rect.origin.x+rect.size.width, y: rect.origin.y+rect.size.height)]
@@ -202,9 +202,9 @@ struct CanvadocsAnnotation: Codable {
                 try pointContainer.encode(point.y)
             }
         }
-        
+
         try container.encode(page, forKey: .page)
-        
+
         switch type {
         case .highlight(let color, let boundingBoxes, let rect), .strikeout(let color, let boundingBoxes, let rect):
             try container.encode(color, forKey: .color)
@@ -276,10 +276,10 @@ struct CanvadocsAnnotation: Codable {
             try container.encode("square", forKey: .type)
             try encodeRect(rect: rect)
         case .unsupported:
-            throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "can't encode an unsupported type yo"])
+            throw NSError(domain: "com.eskwelabs.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "can't encode an unsupported type yo"])
         }
     }
-    
+
     init?(pspdfAnnotation: Annotation, onDocument document: Document) {
         self.id = pspdfAnnotation.name
         self.documentID = nil
@@ -349,7 +349,7 @@ struct CanvadocsAnnotation: Codable {
         }
         self.width = width
     }
-    
+
     func pspdfAnnotation(for document: Document) -> Annotation? {
         var pspdfAnnotation: Annotation?
         switch self.type {
@@ -411,7 +411,7 @@ struct CanvadocsAnnotation: Codable {
         case .unsupported:
             return nil
         }
-        
+
         pspdfAnnotation?.name = self.id
         pspdfAnnotation?.user = self.userID
         pspdfAnnotation?.userName = self.userName
@@ -425,7 +425,7 @@ struct CanvadocsAnnotation: Codable {
 
         return pspdfAnnotation
     }
-    
+
     var isEmpty: Bool {
         get {
             switch self.type {
@@ -438,7 +438,7 @@ struct CanvadocsAnnotation: Codable {
             }
         }
     }
-    
+
     private static func decodeCoords(with decoder: Decoder, in container: KeyedDecodingContainer<CanvadocsAnnotation.CodingKeys>) throws -> [CGRect] {
         // Each coords has: a list of bounding boxes that encompasses this annotation
         // Each box has: a list of 4 points to represent each corner.
@@ -464,7 +464,7 @@ struct CanvadocsAnnotation: Codable {
         }
         return boundingBoxes
     }
-    
+
     private static func decodeInklist(with decoder: Decoder, in container: KeyedDecodingContainer<CanvadocsAnnotation.CodingKeys>) throws -> [CanvadocsInkAnnotationGesture] {
         let inklist = try container.nestedContainer(keyedBy: InklistCodingKeys.self, forKey: .inklist)
         var gesturesContainer = try inklist.nestedUnkeyedContainer(forKey: .gestures)
@@ -480,7 +480,7 @@ struct CanvadocsAnnotation: Codable {
         }
         return gestures
     }
-    
+
     private static func decodeRect(with decoder: Decoder, in container: KeyedDecodingContainer<CanvadocsAnnotation.CodingKeys>) throws -> CGRect {
         var rectContainer = try container.nestedUnkeyedContainer(forKey: .rect)
         var points: [CGPoint] = []
@@ -498,10 +498,10 @@ struct CanvadocsAnnotation: Codable {
         let rect = CGRect(origin: points[0], size: CGSize(width: points[1].x - points[0].x, height: points[1].y - points[0].y))
         return rect
     }
-    
+
     private static func pointsToRect(_ points: [CGPoint]) -> CGRect {
         guard points.count == 4 else { return .zero }
-        
+
         var greatestXValue = points[0].x
         var greatestYValue = points[0].y
         var smallestXValue = points[0].x

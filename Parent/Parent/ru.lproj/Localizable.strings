@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Нет субъекта)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d из %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
 
@@ -22,9 +19,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Действовать как пользователь";
-
 /* No comment provided by engineer. */
 "Add" = "Добавить";
 
@@ -34,8 +28,8 @@
 /* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
 
-/* Label displayed when logged in as an admin */
-"Admin" = "Админ";
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Добавьте учащихся в верхней части или пройдите в общее меню, чтобы выступит в качестве учащегося.";
 
 /* Alert Section Header */
 "Alert me when:" = "Оповестить меня, когда:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
 
@@ -309,8 +300,8 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
-/* Header title of admin view */
-"Welcome!" = "Добро пожаловать!";
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Добро пожаловать, администратор!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";

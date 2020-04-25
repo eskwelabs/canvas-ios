@@ -22,7 +22,7 @@ import CoreData
 extension NSManagedObjectModel {
     @objc public convenience init?(named: String, inBundle bundle: Bundle = Bundle.main) {
         guard let url = bundle.url(forResource: named, withExtension: "momd") else { return nil }
-        
+
         self.init(contentsOf: url)
     }
 }
@@ -34,13 +34,13 @@ public enum StoreResilience {
 
 extension NSPersistentStoreCoordinator {
     func addStore(url: URL, type: String, resilience: StoreResilience, cacheReset: ()->()) throws {
-        
+
         if resilience == .userData || type != NSSQLiteStoreType {
             try addPersistentStore(ofType: type, configurationName: nil, at: url, options: nil)
             return
         }
 
-        
+
         // if it's just cache then let's remove the old store first and then create a new one
         do {
             try addPersistentStore(ofType: type, configurationName: nil, at: url, options: nil)
@@ -56,19 +56,19 @@ extension NSPersistentStoreCoordinator {
     }
 }
 
-let pendingMergesQueue = DispatchQueue(label: "com.instructure.PendingCoreDataMerges")
+let pendingMergesQueue = DispatchQueue(label: "com.eskwelabs.PendingCoreDataMerges")
 
 extension NSManagedObjectContext {
-    
+
     public convenience init(storeURL: URL, model: NSManagedObjectModel, resilience: StoreResilience = .cache,  concurrencyType: NSManagedObjectContextConcurrencyType = .mainQueueConcurrencyType, storeType: String = NSSQLiteStoreType, cacheReset: ()->()) throws {
         self.init(concurrencyType: concurrencyType)
-        
+
         let psc = NSPersistentStoreCoordinator(managedObjectModel: model)
         try psc.addStore(url: storeURL, type: storeType, resilience: resilience, cacheReset: cacheReset)
-        
+
         persistentStoreCoordinator = psc
     }
-    
+
     @objc var persistentStoreCoordinatorFRD: NSPersistentStoreCoordinator {
         guard let psc: NSPersistentStoreCoordinator =
             persistentStoreCoordinator
@@ -78,24 +78,24 @@ extension NSManagedObjectContext {
         else {
             fatalError("Seriously? Either you have no psc or you're trolling me.")
         }
-        
+
         return psc
     }
-    
+
     @objc public func saveFRD() throws {
         try save()
-        
+
         var parent = self.parent
         while let p = parent {
             try p.save()
             parent = parent?.parent
         }
     }
-    
+
     private var pointerDerivedID: String {
         return String(format: "%p", self)
     }
-    
+
     @objc func observeChangesFromContext(_ key: String, context: NSManagedObjectContext) {
         self.userInfo[key] = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextDidSave, object: context, queue: nil) { [weak self] note in
             self?.perform {
@@ -103,26 +103,26 @@ extension NSManagedObjectContext {
             }
         }
     }
-    
+
     @objc public var syncContext: NSManagedObjectContext {
         var sync: NSManagedObjectContext!
-        
+
         performAndWait {
             if let context = self.userInfo[SyncContextKey] as? NSManagedObjectContext { sync = context; return }
-            
+
             let context = NSManagedObjectContext(concurrencyType: SyncContextConcurrencyType)
             context.persistentStoreCoordinator = self.persistentStoreCoordinatorFRD
             context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
-            
+
             self.observeChangesFromContext(MainContextObserverKey, context: context)
             context.perform {
                 context.observeChangesFromContext(MainContextObserverKey, context: self)
             }
-            
+
             self.userInfo[SyncContextKey] = context
             sync = context
         }
-        
+
         return sync
     }
 }
@@ -141,7 +141,7 @@ extension NSManagedObjectContext {
             return false
         }
     }
-    
+
     @objc public func performChanges(_ block: @escaping () -> ()) {
         perform {
             block()
@@ -218,22 +218,22 @@ extension NSManagedObjectContext {
         let request: NSFetchRequest<T> = fetch(predicate)
         return try findAll(fromFetchRequest: request)
     }
-    
-    
+
+
     public func fetch<T: NSManagedObject>(_ predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]? = nil) -> NSFetchRequest<T> {
         let request = NSFetchRequest<T>(entityName: T.entityName(self))
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         return request
     }
-    
+
     public func fetchedResults<T: NSManagedObject>(_ predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor], sectionNameKeypath: String? = nil, propertiesToFetch: [String]? = nil) -> NSFetchedResultsController<T> {
         let fetchRequest: NSFetchRequest<T> = fetch(predicate, sortDescriptors: sortDescriptors)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 30
         if let props = propertiesToFetch { fetchRequest.propertiesToFetch = props }
         let frc = NSFetchedResultsController<T>(fetchRequest: fetchRequest, managedObjectContext: self, sectionNameKeyPath: sectionNameKeypath, cacheName: nil)
-        
+
         return frc
     }
 }

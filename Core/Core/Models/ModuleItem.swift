@@ -22,6 +22,22 @@ import CoreData
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
+public class ModuleItemSequence: NSManagedObject {
+    public typealias AssetType = GetModuleItemSequenceRequest.AssetType
+
+    @NSManaged public var courseID: String
+    @NSManaged public var assetTypeRaw: String
+    @NSManaged public var assetID: String
+    @NSManaged public var prev: ModuleItem?
+    @NSManaged public var current: ModuleItem?
+    @NSManaged public var next: ModuleItem?
+
+    public var assetType: AssetType {
+        get { AssetType(rawValue: assetTypeRaw) ?? .moduleItem }
+        set { assetTypeRaw = newValue.rawValue }
+    }
+}
+
 public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var courseID: String
@@ -35,6 +51,12 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var typeRaw: Data?
     @NSManaged public var module: Module?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var pointsPossibleRaw: NSNumber?
+    @NSManaged public var completionRequirementTypeRaw: String?
+    @NSManaged public var minScoreRaw: NSNumber?
+    @NSManaged public var completed: Bool
+    @NSManaged public var lockedForUser: Bool
+    @NSManaged public var lockExplanation: String?
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -51,21 +73,67 @@ public class ModuleItem: NSManagedObject {
         set { typeRaw = try? encoder.encode(newValue) }
     }
 
+    public var isAssignment: Bool {
+        if case .assignment(_) = type {
+            return true
+        }
+        return false
+    }
+
+    public var pointsPossible: Double? {
+        get { return pointsPossibleRaw?.doubleValue }
+        set { pointsPossibleRaw = NSNumber(value: newValue) }
+    }
+
+    public var completionRequirementType: CompletionRequirementType? {
+        get { return completionRequirementTypeRaw.flatMap { CompletionRequirementType(rawValue: $0) } }
+        set { completionRequirementTypeRaw = newValue?.rawValue }
+    }
+
+    public var minScore: Double? {
+        get { return minScoreRaw?.doubleValue }
+        set { minScoreRaw = NSNumber(value: newValue) }
+    }
+
+    public var completionRequirement: CompletionRequirement? {
+        get {
+            guard let type = completionRequirementType else { return nil }
+            return CompletionRequirement(type: type, completed: completed, min_score: minScore)
+        }
+        set {
+            completionRequirementType = newValue?.type
+            completed = newValue?.completed ?? false
+            minScore = newValue?.min_score
+        }
+    }
+
     @discardableResult
     public static func save(_ item: APIModuleItem, forCourse courseID: String, in context: NSManagedObjectContext) -> ModuleItem {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(ModuleItem.id), item.id.value)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value),
+        ])
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id.value
-        model.moduleID = item.module_id.value
-        model.position = item.position
-        model.title = item.title
-        model.indent = item.indent
-        model.htmlURL = item.html_url
-        model.url = item.url
-        model.published = item.published
-        model.type = item.content
+        model.update(item)
         model.courseID = courseID
-        model.dueAt = item.content_details.due_at
         return model
+    }
+
+    func update(_ item: APIModuleItem) {
+        id = item.id.value
+        moduleID = item.module_id.value
+        position = item.position
+        title = item.title
+        indent = item.indent
+        htmlURL = item.html_url
+        url = item.url
+        published = item.published
+        type = item.content
+        if let contentDetails = item.content_details {
+            pointsPossible = contentDetails.points_possible
+            dueAt = contentDetails.due_at
+            lockedForUser = contentDetails.locked_for_user == true
+            lockExplanation = contentDetails.lock_explanation
+        }
     }
 }

@@ -59,11 +59,11 @@ RCT_EXPORT_METHOD(requestCompleted:(NSString *)requestID result:(id)result error
         NSLog(@"APIBridge: Cannot find callback for request: %@", requestID);
         return;
     }
-    
+
     NSError *error = nil;
     if (errorString) {
         NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: errorString };
-        error = [NSError errorWithDomain:@"com.instructure.apibridge" code:0 userInfo:userInfo];
+        error = [NSError errorWithDomain:@"com.eskwelabs.apibridge" code:0 userInfo:userInfo];
     }
     callback(result, error);
     self.requests[requestID] = nil;

@@ -23,7 +23,7 @@ import WebKit // fixes random "library not loaded" errors.
 import AVFoundation // fixes random "library not loaded" errors.
 import Core
 
-let LocalStoreAppGroupName = "group.com.instructure.Contexts"
+let LocalStoreAppGroupName = "group.com.eskwelabs.Contexts"
 
 open class Session: NSObject {
     public enum LocalStoreDirectory: String {
@@ -37,7 +37,12 @@ open class Session: NSObject {
     @objc public private(set) var baseURL: URL
     @objc public private(set) var user: SessionUser
     public let URLSession: Foundation.URLSession
-    public let localStoreDirectory: LocalStoreDirectory
+    public private(set) lazy var localStoreDirectoryURL: URL = {
+        var url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: LocalStoreAppGroupName) ?? URL.cachesDirectory
+        url.appendPathComponent(sessionID)
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        return url
+    }()
 
     fileprivate static var _current: Session?
     @objc public static var current: Session? {
@@ -57,9 +62,9 @@ open class Session: NSObject {
         self.baseURL = session.baseURL
         self.user = SessionUser(loginSession: session)
         self.URLSession = api.urlSession
-        self.localStoreDirectory = .AppGroup
+        super.init()
     }
-    
+
     @objc open var sessionID: String {
         let host = baseURL.host ?? "unknown-host"
         let userID = user.id
@@ -69,47 +74,9 @@ open class Session: NSObject {
         }
         return components.joined(separator: "-")
     }
-    
+
     @objc open var isSiteAdmin: Bool {
         return env.currentSession?.baseURL.host?.lowercased().contains("siteadmin") == true
-    }
-    
-    @objc open var localStoreDirectoryURL: URL {
-        let fileURL: URL
-
-        switch localStoreDirectory {
-        case .Default:
-            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { fatalError("GASP! There were no user library search paths") }
-            fileURL = URL(fileURLWithPath: lib)
-        case .AppGroup:
-            guard let appGroup = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: LocalStoreAppGroupName) else {
-                fatalError("GASP! There is not an app group")
-            }
-            fileURL = appGroup
-        }
-
-        let url = fileURL.appendingPathComponent(sessionID)
-        let _ = try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-        return url
-    }
-
-    @objc open var logDirectoryURL: URL {
-        let fileURL: URL
-
-        switch localStoreDirectory {
-        case .Default:
-            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { fatalError("GASP! There were no user library search paths") }
-            fileURL = URL(fileURLWithPath: lib)
-        case .AppGroup:
-            guard let appGroup = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: LocalStoreAppGroupName) else {
-                fatalError("GASP! There is not an app group")
-            }
-            fileURL = appGroup
-        }
-
-        let url = fileURL.appendingPathComponent("\(sessionID)_logs")
-        let _ = try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-        return url
     }
 }
 

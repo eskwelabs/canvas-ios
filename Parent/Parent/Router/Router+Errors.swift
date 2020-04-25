@@ -24,7 +24,7 @@ import CanvasCore
 extension Router {
     func defaultErrorHandler() -> ((UIViewController, NSError) -> Void) {
         return { [unowned self] viewController, error in
-            let networkError = error.domain == "com.instructure.TooLegit"
+            let networkError = error.domain == "com.eskwelabs.TooLegit"
             if networkError {
                 switch error.code {
                 case 403:

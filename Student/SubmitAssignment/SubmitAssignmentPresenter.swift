@@ -27,8 +27,8 @@ class SubmitAssignmentPresenter {
     let env: AppEnvironment = .shared
     let sharedContainer: URL
     var uploadManager = UploadManager(
-        identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads",
-        sharedContainerIdentifier: "group.instructure.shared"
+        identifier: "com.eskwelabs.icanvas.SubmitAssignment.file-uploads",
+        sharedContainerIdentifier: "group.eskwelabs.shared"
     )
     weak var view: SubmitAssignmentView?
 

@@ -71,7 +71,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         XCTAssertNotNil(LoginSession.mostRecent)
         let presenter = SubmitAssignmentPresenter()
         XCTAssertNotNil(presenter)
-        XCTAssertEqual(presenter?.uploadManager.sharedContainerIdentifier, "group.instructure.shared")
+        XCTAssertEqual(presenter?.uploadManager.sharedContainerIdentifier, "group.eskwelabs.shared")
     }
 
     func testViewIsReady() {
