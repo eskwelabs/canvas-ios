@@ -17,25 +17,30 @@
 //
 
 import UIKit
-import ReactiveSwift
-import ReactiveCocoa
 import Core
 
 public func inboxTab() -> UIViewController {
-    let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-    let inboxNav = HelmNavigationController(rootViewController: inboxVC)
-    
+    let inboxVC: UIViewController
+    let inboxNav: UINavigationController
+    let inboxSplit = HelmSplitViewController()
+
+    if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
+        inboxVC = ConversationsViewController.create()
+        inboxNav = UINavigationController(rootViewController: inboxVC)
+    } else {
+        inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
+        inboxNav = HelmNavigationController(rootViewController: inboxVC)
+    }
+
     inboxNav.navigationBar.useGlobalNavStyle()
     inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
-    
-    let inboxSplit = HelmSplitViewController()
-    
+
     let empty = HelmNavigationController()
     empty.navigationBar.useGlobalNavStyle()
-    
+
     inboxSplit.viewControllers = [inboxNav, empty]
     let title = NSLocalizedString("Inbox", bundle: .core, comment: "Inbox tab title")
-    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
+    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.inboxTab), selectedImage: .icon(.inboxTabActive))
     inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem

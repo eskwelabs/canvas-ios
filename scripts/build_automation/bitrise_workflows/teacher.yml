@@ -38,7 +38,13 @@ workflows:
             set -euxo pipefail
 
             brew unlink carthage
-            brew install --HEAD carthage
+            carthage_head=(/usr/local/Cellar/carthage/HEAD-*(Y1N))
+            if [[ -n $carthage_head ]]; then
+                brew switch carthage $carthage_head
+            else
+                brew install --HEAD carthage
+            fi
+
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - carthage:
         inputs:
@@ -107,7 +113,9 @@ workflows:
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - cache-push:
         inputs:
-        - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
+        - cache_paths: |-
+            $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
+            /usr/local/Cellar/carthage
     - deploy-to-bitrise-io: {}
 
   ad-hoc:
@@ -152,9 +160,9 @@ workflows:
             scripts/build_automation/automateVersioning.sh verifyInputs
             scripts/build_automation/automateVersioning.sh checkoutReleaseBranch
             scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist rn/Teacher/ios/Teacher/Info.plist
-            scripts/build_automation/automateVersioning.sh generateReleaseNotes
             git add rn/Teacher/ios/Teacher/Info.plist
             scripts/build_automation/automateVersioning.sh checkInReleaseBranchAndTag
+            scripts/build_automation/automateVersioning.sh generateReleaseNotes
 
         title: Branch,Tag,Trigger Release
     - trigger-bitrise-workflow:

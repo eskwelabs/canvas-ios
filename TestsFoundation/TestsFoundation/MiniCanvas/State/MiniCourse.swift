@@ -29,6 +29,10 @@ public class MiniCourse {
     public var gradingPeriods: [APIGradingPeriod] = []
     public var featureFlags: [String] = []
     public var conferences: [APIConference] = []
+    public var pages: [APIPage] = []
+    public var courseFiles: MiniFolder?
+    public var contentLicenses: [Any] = []
+    public var settings: APICourseSettings = .make()
 
     public var id: String { api.id.value }
 
@@ -93,6 +97,42 @@ public class MiniCourse {
         }
         state.enroll(state.teachers[0], intoCourse: course, as: "TeacherEnrollment")
         state.enroll(state.observers[0], intoCourse: course, as: "ObserverEnrollment", observing: state.students[0])
+
+        for i in 0...1 {
+            let pageId = state.nextId()
+            course.pages.append(APIPage.make(
+                body: "This is a page!",
+                editing_roles: "teacher",
+                front_page: i == 0,
+                html_url: URL(string: "/courses/\(course.id)/pages/page-\(pageId)")!,
+                page_id: pageId,
+                title: "Page \(pageId)",
+                url: "page-\(pageId)"
+            ))
+        }
+
+        let folderID = state.nextId()
+        let folder = MiniFolder(APIFileFolder.make(
+            context_type: "Course",
+            context_id: course.api.id,
+            folders_url: state.baseUrl.appendingPathExtension("/api/v1/folders/\(folderID)/folders"),
+            files_url: state.baseUrl.appendingPathExtension("/api/v1/folders/\(folderID)/files"),
+            full_name: "course files",
+            id: folderID,
+            name: "course files"
+        ))
+        state.folders[folder.id] = folder
+        course.courseFiles = folder
+
+        let file = MiniFile(APIFile.make(
+            id: state.nextId(),
+            folder_id: folderID,
+            display_name: "hamburger",
+            filename: "hamburger.jpg",
+            url: UIImage.icon(.hamburger).asDataUrl!
+        ))
+        state.files[file.id] = file
+        folder.fileIDs.append(file.id)
     }
 
     func createQuizAssignment(state: MiniCanvasState) {

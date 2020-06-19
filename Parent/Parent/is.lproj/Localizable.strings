@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Ekkert efnisheiti)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Nemandinn þú ert að reyna að bæta við er í annarri Canvas stofnun.\n                    Skráðu þig inn eða stofnaðu reikning hjá þeirri stofnun til að bæta við þessum nemanda.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ skiladagur er %2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ mun hefjast þann %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, í %2$@, síðustu skilaboðin voru þann %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, ólesið";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Bæta við";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Bæta við viðhengjum";
 
 /* No comment provided by engineer. */
 "Add Student" = "Bæta við nemanda";
 
 /* No comment provided by engineer. */
+"Add student with..." = "Bæta nemanda við…";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Bæta nemendum við efst eða fara í altæka valmynd til að dyljast sem nemandi.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "Bæta við nemendum efst.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Vara mig við þegar:";
 
 /* Alerts Tab */
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Villa kom upp";
+"Already have an account? %@" = "Áttu nú þegar reikning? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Verkefnaeinkunn fyrir ofan";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Verkefnaeinkunn fyrir neðan";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Verkefni vantar";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Áminning um verkefni";
 
 /* No comment provided by engineer. */
 "Back" = "Til baka";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Með því að smella á „stofna reikning“ samþykkir þú %1$@ og viðurkennir %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Dagatal";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Hætta við";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Ekki er hægt að nota prósentu sem er hærri en 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Ekki er hægt að nota prósentu sem er lægri en 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Þú ert búin(n) að sinna öllum viðvörunum";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Veldu námskeið til að senda skilaboð til";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Semja skilaboð";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Námskeiðs tilkynningar";
-
-/* Course Grade High On Description */
-"Course grade above" = "Námskeiðseinkunn fyrir ofan";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Námskeiðseinkunn fyrir neðan";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Ekki var hægt að þátta QR-kóða, eða QR-kóði var ógildur";
 
 /* Courses Tab */
 "Courses" = "Námskeið";
+
+/* No comment provided by engineer. */
+"Create Account" = "Stofna reikning";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
@@ -107,7 +80,13 @@
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Breyta viðtakendum";
+"Domain mismatch" = "Léna misræmi";
+
+/* No comment provided by engineer. */
+"Email address" = "Netfang";
+
+/* No comment provided by engineer. */
+"Email..." = "Netfang…";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Mistókst að hlaða (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Tókst ekki. Smelltu fyrir valkosti";
-
-/* No comment provided by engineer. */
-"File" = "Skrá";
-
-/* No comment provided by engineer. */
 "Find School" = "Finna skóla";
-
-/* No comment provided by engineer. */
-"for %@" = "fyrir %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Forsíða";
 
 /* No comment provided by engineer. */
+"Full name" = "Fullt nafn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Fullt nafn…";
+
+/* No comment provided by engineer. */
 "Grades" = "Einkunnir";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Há verkefniseinkunn getur ekki verið lægri en lág verkefniseinkunn";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Há námskeiðseinkunn getur ekki verið lægri en lág námskeiðseinkunn";
 
 /* No comment provided by engineer. */
 "In-Class" = "í bekknum";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Settu inn pörunarkóða nemanda sem þú fékkst.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Stofnana tilkynningar";
-
-/* Title for an alert view */
-"Invalid Input" = "Ógilt inntak";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ógildur þröskuldur";
 
 /* No comment provided by engineer. */
 "Late" = "Seint";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Lág verkefniseinkunn getur ekki verið hærri en há verkefniseinkunn";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Lág námskeiðseinkunn getur ekki verið hærri en há námskeiðseinkunn";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Stjórna nemendum";
-
-/* No comment provided by engineer. */
-"Message" = "Skilaboð";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Skilaboð frá %1$@, %2$@, þann %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Vantar";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "á ekki við";
 
-/* No comment provided by engineer. */
-"New Message" = "Ný skilaboð";
-
 /* Empty Courses Text */
 "No Courses" = "Engin námskeið";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Engin einkunn";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Engir nemendur";
 
 /* No comment provided by engineer. */
-"No Subject" = "Ekkert efnisheiti";
-
-/* OK Button Title */
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Pörunarkóði";
 
 /* No comment provided by engineer. */
+"Password" = "Lykilorð";
+
+/* No comment provided by engineer. */
+"Password is required" = "Lykilorðs er krafist";
+
+/* No comment provided by engineer. */
+"Password..." = "Lykilorð…";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Leyfis krafist";
 
 /* No comment provided by engineer. */
-"Recipients" = "Viðtakendur";
+"Please enter an email address" = "Settu inn netfang";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Settu inn fullt nafn";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Persónuverndarstefna";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR kóði";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Varðandi: %@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Varðandi: %1$@, verkefni - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Svara";
-
-/* No comment provided by engineer. */
-"Reply All" = "Svara öllum";
-
-/* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
-
-/* No comment provided by engineer. */
-"Send" = "Senda";
 
 /* No comment provided by engineer. */
 "Settings" = "Stillingar";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Stillingar. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Efni";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Innskráning";
 
 /* No comment provided by engineer. */
 "Submitted" = "Skilað";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Þjónustuskilmálar";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Gildið þarf að vera á milli 0 og 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Vandamál kom upp við að sækja AlertKit gagnagrunnsskránna.";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Vandamál kom upp við að sækja DiscussionKit gagnagrunnsskránna.";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Villa kom upp við að sækja nemendur. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Þessi tilkynning er útrunnin.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Námskeið þessa nemanda eru ef til vill ekki birt enn.";
-
-/* No comment provided by engineer. */
-"To" = "Til";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Vandamál við innskráningu";
@@ -298,10 +262,13 @@
 "Unread" = "Ólesið";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Upphleðsla %1$@ er í %2$@";
+"Welcome, Admin!" = "Velkominn, stjórnandi!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "Velkominn, stjórnandi!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Ekki er hægt að setja inn hámark sem er lægri eða jafnt og lágmark sem er búið að setja inn.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ekki er hægt að setja inn lágmark sem er hærra eða jafnt og hámark sem er búið að setja inn.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Þú verður að leyfa tilkynningar í stillingum til að setja inn áminningar.";

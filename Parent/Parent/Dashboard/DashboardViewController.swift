@@ -62,7 +62,7 @@ class DashboardViewController: UIViewController {
             self?.students.exhaust()
         }
     })
-    lazy var permissions = env.subscribe(GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])) { [weak self] in
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .account("self"), permissions: [.becomeUser])) { [weak self] in
         self?.update()
     }
     lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
@@ -85,7 +85,7 @@ class DashboardViewController: UIViewController {
 
         studentListHiddenHeight.isActive = true
 
-        tabsController.tabBar.barTintColor = .named(.backgroundLightest)
+        tabsController.tabBar.useGlobalNavStyle()
         tabsController.tabBar.isTranslucent = false
         embed(tabsController, in: tabsContainer)
 
@@ -198,14 +198,12 @@ class DashboardViewController: UIViewController {
             studentListStack.addArrangedSubview(button)
         }
         let addButton = AddStudentButton()
-        addButton.addTarget(addStudentController, action: #selector(addStudentController.actionAddStudent), for: .primaryActionTriggered)
+        addButton.addTarget(self, action: #selector(actionDidTapAddStudent), for: .primaryActionTriggered)
         studentListStack.addArrangedSubview(addButton)
     }
 
     @IBAction func didTapDropdownButton() {
-        guard !students.isEmpty else {
-            return addStudentController.actionAddStudent()
-        }
+        guard !students.isEmpty else { return actionDidTapAddStudent() }
         toggleStudentList(studentListHiddenHeight.isActive)
     }
 
@@ -235,8 +233,8 @@ class DashboardViewController: UIViewController {
             return controller
         } ?? AdminViewController.create()
         courses.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses Tab")
-        courses.tabBarItem.image = UIImage.icon(.courses)
-        courses.tabBarItem.selectedImage = UIImage.icon(.courses)
+        courses.tabBarItem.image = UIImage.icon(.coursesTab)
+        courses.tabBarItem.selectedImage = UIImage.icon(.coursesTabActive)
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
 
         var selectedDate = Clock.now
@@ -247,8 +245,8 @@ class DashboardViewController: UIViewController {
             PlannerViewController.create(studentID: id, selectedDate: selectedDate)
         } ?? AdminViewController.create()
         calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar Tab")
-        calendar.tabBarItem.image = UIImage.icon(.calendar)
-        calendar.tabBarItem.selectedImage = UIImage.icon(.calendar)
+        calendar.tabBarItem.image = UIImage.icon(.calendarTab)
+        calendar.tabBarItem.selectedImage = UIImage.icon(.calendarTabActive)
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
 
         let alerts = currentStudentID.flatMap { (id: String) -> UIViewController? in
@@ -258,8 +256,8 @@ class DashboardViewController: UIViewController {
             return controller
         } ?? AdminViewController.create()
         alerts.tabBarItem.title = NSLocalizedString("Alerts", comment: "Alerts Tab")
-        alerts.tabBarItem.image = UIImage.icon(.notification)
-        alerts.tabBarItem.selectedImage = UIImage.icon(.notification)
+        alerts.tabBarItem.image = UIImage.icon(.alertsTab)
+        alerts.tabBarItem.selectedImage = UIImage.icon(.alertsTabActive)
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
         alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.named(.white) ], for: .normal)
@@ -279,6 +277,60 @@ class DashboardViewController: UIViewController {
         }
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
+    }
+
+    @objc func actionDidTapAddStudent() {
+        if ExperimentalFeature.parentQRCodePairing.isEnabled {
+            let selectionVC = SelectAddStudentMethodViewController.create(delegate: self)
+            env.router.show(selectionVC, from: self, options: .modal())
+        } else {
+            addStudentController.actionAddStudent()
+        }
+    }
+}
+
+extension DashboardViewController: ScannerDelegate, ErrorViewController {
+    func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
+        env.router.dismiss(scanner) {
+            guard
+                let comps = URLComponents(string: code),
+                let pairingCode = comps.url?.lastPathComponent,
+                comps.queryItems?.first?.name == "baseURL",
+                let host = comps.queryItems?.first?.value
+            else {
+                let error = NSError.instructureError(NSLocalizedString("Could not parse QR code, QR code invalid", comment: ""))
+                self.showError(error)
+                return
+            }
+
+            if host != self.env.currentSession?.baseURL.host {
+                let title = NSLocalizedString("Domain mismatch", comment: "")
+                let msg = NSLocalizedString(
+                    """
+                    The student you are trying to add is at a different Canvas institution.
+                    Sign in or create an account with that institution to add this student.
+                    """,
+                    comment: "")
+                self.showAlert(title: title, message: msg)
+                return
+            }
+            self.addStudentController.addPairingCode(code: pairingCode)
+        }
+    }
+}
+
+extension DashboardViewController: AddStudentMethodProtocol {
+    func didSelectAddStudentMethod(method: AddObserveeMethod) {
+        env.router.dismiss(self) {
+            switch method {
+            case .qr:
+                let scanner = ScannerViewController()
+                scanner.delegate = self
+                self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+            case .pairingCode:
+                self.addStudentController.actionAddStudent()
+            }
+        }
     }
 }
 

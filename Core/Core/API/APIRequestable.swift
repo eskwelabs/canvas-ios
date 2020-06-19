@@ -58,6 +58,25 @@ public class APIJSONDecoder: JSONDecoder {
         super.init()
         dateDecodingStrategy = .iso8601
     }
+
+    // Can decode dates like "2019-06-02T18:07:28.000Z" that RN generates
+    public static var extendedPrecisionDecoder: APIJSONDecoder {
+        let decoder = APIJSONDecoder()
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFractionalSeconds]
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            guard let date = formatter.date(from: dateString) else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Expected date string to be ISO8601-formatted"
+                )
+            }
+            return date
+        }
+        return decoder
+    }
 }
 
 public class APIJSONEncoder: JSONEncoder {
@@ -94,6 +113,7 @@ public protocol APIRequestable {
     var form: APIFormData? { get }
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
+    var shouldHandleCookies: Bool { get }
 
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
@@ -122,6 +142,9 @@ extension APIRequestable {
     }
     public var cachePolicy: URLRequest.CachePolicy {
         return .useProtocolCachePolicy
+    }
+    public var shouldHandleCookies: Bool {
+        return true
     }
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
@@ -161,6 +184,8 @@ extension APIRequestable {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+
+        request.httpShouldHandleCookies = shouldHandleCookies
 
         return request
     }

@@ -384,6 +384,19 @@ open class CoreUITestCase: XCTestCase {
         return true
     }
 
+    open func navBarColorHex() -> String? {
+        let image = app.navigationBars.firstMatch.screenshot().image
+        guard let pixelData = image.cgImage?.dataProvider?.data,
+            let data = CFDataGetBytePtr(pixelData) else {
+            return nil
+        }
+        // test bottom because of potential rounded corners at the top
+        let bottom = Int(image.size.width) * Int(image.size.height) * 4
+        let red = UInt(data[bottom + 0]), green = UInt(data[bottom + 1]), blue = UInt(data[bottom + 2]), alpha = UInt(data[bottom + 3])
+        let num = (alpha << 24) + (red << 16) + (green << 8) + blue
+        return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+    }
+
     // MARK: mock (convenience)
 
     open func mockData<R: APIRequestable>(
@@ -407,6 +420,12 @@ open class CoreUITestCase: XCTestCase {
         let api = URLSessionAPI()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
         return mockRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    open func mockData<R: APIRequestable>(_ requestable: R, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
+        let api = URLSessionAPI()
+        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
+        return mockResponse(request, response: dynamicResponse)
     }
 
     open func mockEncodableRequest<D: Codable>(
@@ -480,8 +499,8 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(course: APICourse) -> APICourse {
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        mockData(GetCourseRequest(courseID: course.id, include: [
+        mockData(GetCourseRequest(courseID: course.id.value), value: course)
+        mockData(GetCourseRequest(courseID: course.id.value, include: [
             .courseImage,
             .currentGradingPeriodScores,
             .favorites,
@@ -491,22 +510,22 @@ open class CoreUITestCase: XCTestCase {
             .term,
             .totalScores,
         ]), value: course)
-        mockData(GetCourseRequest(courseID: course.id, include: [
+        mockData(GetCourseRequest(courseID: course.id.value, include: [
             .courseImage,
             .favorites,
             .permissions,
             .sections,
             .term,
         ]), value: course)
-        mockData(GetContextPermissionsRequest(context: course), value: .make())
-        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: [
+        mockData(GetContextPermissionsRequest(context: .course(course.id.value)), value: .make())
+        mockData(GetEnabledFeatureFlagsRequest(context: .course(course.id.value)), value: [
             "rce_enhancements",
             "new_gradebook",
         ])
-        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=99", value: [String]())
+        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=100", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
         if Bundle.main.isTeacherApp {
-            mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/\(course.id)/lti_apps/launch_definitions?per_page=99&placements%5B%5D=course_navigation", value: [String]())
+            mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/\(course.id)/lti_apps/launch_definitions?per_page=100&placements%5B%5D=course_navigation", value: [String]())
         }
         return course
     }
@@ -531,7 +550,7 @@ open class CoreUITestCase: XCTestCase {
         for submission in assignment.submission?.values ?? [] {
             for userId in ["1", "self"] {
                 mockData(GetSubmissionRequest(
-                    context: ContextModel(.course, id: assignment.course_id.value),
+                    context: .course(assignment.course_id.value),
                     assignmentID: assignment.id.value, userID: userId),
                          value: submission)
             }
@@ -557,7 +576,7 @@ open class CoreUITestCase: XCTestCase {
                 .tabs,
                 .term,
                 .total_scores,
-            ], perPage: 99), value: courses)
+            ], perPage: 100), value: courses)
         } else {
             XCTFail("Unknown app")
         }
@@ -570,7 +589,7 @@ open class CoreUITestCase: XCTestCase {
             role: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
     }
-    open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
+    open lazy var baseCourse = mock(course: .make(workflow_state: .available, enrollments: [ baseEnrollment ]))
 
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
@@ -580,7 +599,7 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: ["course_1": "#5F4DCE"]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
-        mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
+        mockData(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
         mock(courses: [ baseCourse ])
         mockData(GetDashboardCardsRequest(), value: [APIDashboardCard.make()])
@@ -591,8 +610,9 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("conferences?state=live", value: [String]())
+        mockData(GetEnabledFeatureFlagsRequest(context: .currentUser), value: [])
         if Bundle.main.isTeacherApp {
-            mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [])
+            mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [])
         }
     }
 

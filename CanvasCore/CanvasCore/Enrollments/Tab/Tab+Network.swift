@@ -23,8 +23,8 @@ import Marshal
 
 
 extension Tab {
-    public static func get(_ session: Session, contextID: ContextID) -> SignalProducer<[JSONObject], NSError> {
-        let path = "\(contextID.apiPath)/tabs"
+    public static func get(_ session: Session, contextID: Context) -> SignalProducer<[JSONObject], NSError> {
+        let path = "/api/v1/\(contextID.pathComponent)/tabs"
         return attemptProducer { try session.GET(path) }
             .flatMap(.merge) { request in
                 return session.paginatedJSONSignalProducer(request)

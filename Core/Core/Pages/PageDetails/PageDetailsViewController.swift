@@ -20,13 +20,14 @@ import UIKit
 
 public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showOptions))
-    @IBOutlet weak var webView: CoreWebView!
+    @IBOutlet weak var webViewContainer: UIView!
+    let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
     var app = App.student
     public var color: UIColor?
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
     var pageURL = ""
 
@@ -68,6 +69,8 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
+        webViewContainer.addSubview(webView)
+        webView.pin(inside: webViewContainer)
         webView.linkDelegate = self
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -109,6 +112,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     func update() {
         guard let page = page else { return }
         titleSubtitleView.title = page.title
+        optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
         webView.loadHTMLString(page.body)
     }

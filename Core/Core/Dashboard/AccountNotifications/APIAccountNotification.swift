@@ -29,12 +29,34 @@ struct APIAccountNotification: Codable {
     let subject: String
 }
 
+#if DEBUG
+extension APIAccountNotification {
+    static func make(
+        end_at: Date? = nil,
+        icon: AccountNotificationIcon = .warning,
+        id: ID = "1",
+        message: String = "The financial aid office is closed on Tuesdays.",
+        start_at: Date = Date(),
+        subject: String = "Financial Aid"
+    ) -> APIAccountNotification {
+        return APIAccountNotification(
+            end_at: end_at,
+            icon: icon,
+            id: id,
+            message: message,
+            start_at: start_at,
+            subject: subject
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.user_index
 struct GetAccountNotificationsRequest: APIRequestable {
     typealias Response = [APIAccountNotification]
 
     let path = "accounts/self/users/self/account_notifications"
-    let query: [APIQueryItem] = [ .perPage(99) ]
+    let query: [APIQueryItem] = [ .perPage(100) ]
 }
 
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.user_close_notification

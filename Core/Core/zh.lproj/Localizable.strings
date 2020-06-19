@@ -4,8 +4,26 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "“临时代理”本质上是作为此用户不使用密码登录。您将如同用户一样可以采取任何操作，在别人看来，就如同是该用户在执行这些操作一样。但是，审计日志记录您是代表该用户执行操作的人。";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
+/* No comment provided by engineer. */
+"(No subject)" = "(无标题)";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
+
+/* No comment provided by engineer. */
+"%@ pts" = "%@得分";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@，上一条消息位于%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@，未读";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "家长";
@@ -20,6 +38,9 @@
 "Act as User" = "临时代理用户";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "添加附件";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加规划器备注";
 
 /* No comment provided by engineer. */
@@ -30,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "警告";
+
+/* No comment provided by engineer. */
+"All" = "全部";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "所有注释已保存。";
@@ -53,6 +77,12 @@
 "Announcement Created By You" = "您所创建的公告";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "公告详细信息";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "公告回复";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "预约可用性";
 
 /* No comment provided by engineer. */
@@ -62,10 +92,31 @@
 "Appointment Signups" = "预约注册";
 
 /* No comment provided by engineer. */
+"Archived" = "已归档";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "是否确定要删除此页面？";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "是否确定要退出学生视图？";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "作业详情";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "作业评分高于";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "作业评分低于";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "缺少作业";
+
+/* No comment provided by engineer. */
+"Attachment" = "附件";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -152,6 +203,9 @@
 "Check network and try again!" = "请检查网络，并重试！";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "选择一个课程来发送讯息";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "选择照片";
 
 /* No comment provided by engineer. */
@@ -162,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "清除筛选条件";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "清除筛选器";
 
 /* No comment provided by engineer. */
 "Clear recording" = "清除录制";
@@ -194,6 +251,12 @@
 "Complete" = "完成";
 
 /* No comment provided by engineer. */
+"Compose new message" = "撰写新消息";
+
+/* concluded datetime */
+"Concluded %@" = "已结束%@";
+
+/* No comment provided by engineer. */
 "Concluded Conferences" = "已结束的会议";
 
 /* No comment provided by engineer. */
@@ -204,6 +267,12 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
+
+/* No comment provided by engineer. */
+"Contribute" = "投寄";
+
+/* No comment provided by engineer. */
+"Contributed" = "已投寄";
 
 /* No comment provided by engineer. */
 "Conversation Created By Me" = "我创建的会话";
@@ -221,13 +290,25 @@
 "Copied!" = "已复制";
 
 /* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "无法启动工具。请重试。";
+
+/* No comment provided by engineer. */
 "Could not save notification preference" = "无法保存通知首选项";
 
 /* No comment provided by engineer. */
 "Course Activities" = "课程活动";
 
 /* No comment provided by engineer. */
+"Course announcements" = "课程通告";
+
+/* No comment provided by engineer. */
 "Course Content" = "课程内容";
+
+/* No comment provided by engineer. */
+"Course grade above" = "课程评分高于";
+
+/* No comment provided by engineer. */
+"Course grade below" = "课程评分低于";
 
 /* No comment provided by engineer. */
 "Courses" = "课程";
@@ -236,7 +317,13 @@
 "Current position" = "当前位置";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -263,6 +350,9 @@
 "Delete Comment" = "删除评论";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "删除此回复。";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "描述功能";
 
 /* No comment provided by engineer. */
@@ -287,7 +377,13 @@
 "Discussion Comment" = "讨论评论";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "讨论详细信息";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "讨论帖";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "讨论回复";
 
 /* No comment provided by engineer. */
 "Discussions" = "讨论";
@@ -312,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Edit" = "编辑";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "编辑收件人";
 
 /* Description for email communication channel */
 "Email Notifications" = "电邮通知";
@@ -347,6 +446,9 @@
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"External URL" = "外部 URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "十万火急的紧急事件";
 
 /* No comment provided by engineer. */
@@ -359,7 +461,13 @@
 "Failed Upload" = "上传失败";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "失败。点击以获取选项";
+
+/* No comment provided by engineer. */
 "File" = "文件";
+
+/* No comment provided by engineer. */
+"File Details" = "文件详细信息";
 
 /* No comment provided by engineer. */
 "File Upload" = "文件上传";
@@ -395,7 +503,13 @@
 "Find your school or district" = "查找您的学校或地区";
 
 /* No comment provided by engineer. */
+"for %@" = "事由%@";
+
+/* No comment provided by engineer. */
 "Forget %@" = "忘记%@";
+
+/* No comment provided by engineer. */
+"Front Page" = "首页";
 
 /* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
@@ -408,6 +522,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "转至今天";
+
+/* No comment provided by engineer. */
+"Grades" = "评分";
 
 /* No comment provided by engineer. */
 "Grading" = "评分";
@@ -423,6 +540,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "小组";
+
+/* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "您的父母是否已从 Canvas Parent 应用程序扫描此二维码与您配对？";
 
 /* No comment provided by engineer. */
 "Help" = "帮助";
@@ -455,7 +575,13 @@
 "Inbox" = "收件箱";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "收件箱为零";
+
+/* No comment provided by engineer. */
 "Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "机构通告";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "在此页面上的互动被您的机构限制。";
@@ -465,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "今天看起来是休息、放松和恢复的好日子。";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "似乎尚未在此区域创建作业。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您似乎没有以%@身份注册任何课程。我们的其他应用程序可能更合适。单击任一应用程序可访问应用商店。";
@@ -498,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "库";
+
+/* like action */
+"Like" = "赞";
 
 /* No comment provided by engineer. */
 "Link" = "链接";
@@ -536,6 +668,9 @@
 "Locate QR Code" = "查找二维码";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "锁定至\"%@\"升级";
+
+/* No comment provided by engineer. */
 "Log In" = "登录";
 
 /* No comment provided by engineer. */
@@ -554,6 +689,9 @@
 "Login Error" = "登录错误";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI工具";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "请务必在设置中启用摄像头权限";
 
 /* No comment provided by engineer. */
@@ -561,6 +699,30 @@
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "手动 OAuth 登录";
+
+/* No comment provided by engineer. */
+"Mark All as Read" = "全部标记为已读";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "全部标记为未读";
+
+/* No comment provided by engineer. */
+"Mark as Done" = "标记为已完成";
+
+/* No comment provided by engineer. */
+"Mark as Read" = "标记为已读";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "标记为未完成";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "标记为未读";
+
+/* No comment provided by engineer. */
+"Mark done" = "标记为完成";
+
+/* No comment provided by engineer. */
+"Marked done" = "已做记号";
 
 /* No comment provided by engineer. */
 "me" = "本人";
@@ -575,7 +737,16 @@
 "Membership Update" = "会员更新";
 
 /* No comment provided by engineer. */
+"Message" = "消息";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "消息来自 %1$@，%2$@，位于 %3$@，%4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "缺失";
+
+/* No comment provided by engineer. */
+"Module Item" = "单元项目";
 
 /* No comment provided by engineer. */
 "Modules" = "单元";
@@ -590,10 +761,16 @@
 "New Conferences" = "新会议";
 
 /* No comment provided by engineer. */
+"New Message" = "新消息";
+
+/* No comment provided by engineer. */
 "New To Do" = "新待办事项";
 
 /* No comment provided by engineer. */
 "Next" = "下一步";
+
+/* No comment provided by engineer. */
+"No Assignments" = "无作业";
 
 /* No comment provided by engineer. */
 "No Conferences" = "无会议";
@@ -620,7 +797,13 @@
 "No Modules" = "无模块";
 
 /* No comment provided by engineer. */
+"No Pages" = "无页面";
+
+/* No comment provided by engineer. */
 "No Results" = "无结果";
+
+/* No comment provided by engineer. */
+"No Subject" = "无主题";
 
 /* No comment provided by engineer. */
 "No Submission" = "无提交项";
@@ -665,6 +848,9 @@
 "Open %@ user preferences" = "打开%@用户首选项";
 
 /* No comment provided by engineer. */
+"Options" = "选项";
+
+/* No comment provided by engineer. */
 "orange" = "桔黄色";
 
 /* No comment provided by engineer. */
@@ -677,10 +863,16 @@
 "Page" = "页面";
 
 /* No comment provided by engineer. */
+"Page Details" = "页面详细信息";
+
+/* No comment provided by engineer. */
 "Pages" = "页面";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "与旁听者配对";
+
+/* No comment provided by engineer. */
+"Pairing Code: " = "配对码：";
 
 /* No comment provided by engineer. */
 "Password" = "密码";
@@ -728,6 +920,9 @@
 "published" = "已发布";
 
 /* No comment provided by engineer. */
+"Published" = "已发布";
+
+/* No comment provided by engineer. */
 "purple" = "紫色";
 
 /* Description for Push Notification channel */
@@ -735,6 +930,12 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "测验";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "测验详情";
+
+/* No comment provided by engineer. */
+"Recipients" = "收件人";
 
 /* No comment provided by engineer. */
 "Record Audio" = "录制音频";
@@ -749,6 +950,9 @@
 "Redo" = "重新操作";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "事由：%@";
+
+/* No comment provided by engineer. */
 "Remove" = "移除";
 
 /* No comment provided by engineer. */
@@ -756,6 +960,15 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "已删除 %1$@，删除人%2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "回复";
+
+/* No comment provided by engineer. */
+"Reply" = "回复";
+
+/* No comment provided by engineer. */
+"Reply All" = "回复所有人";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
@@ -782,6 +995,12 @@
 "Scheduling" = "日程安排";
 
 /* No comment provided by engineer. */
+"Score at least %@" = "最低评分%@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "最低评分%@";
+
+/* No comment provided by engineer. */
 "Search" = "搜索";
 
 /* No comment provided by engineer. */
@@ -797,10 +1016,19 @@
 "See what's new." = "查看新增内容。";
 
 /* No comment provided by engineer. */
+"Select" = "选择";
+
+/* No comment provided by engineer. */
+"Select a Path" = "选择路径";
+
+/* No comment provided by engineer. */
 "Select Course" = "选择课程";
 
 /* No comment provided by engineer. */
 "Select One" = "选择一个";
+
+/* No comment provided by engineer. */
+"Selected!" = "已选择！";
 
 /* No comment provided by engineer. */
 "Send" = "发送";
@@ -815,16 +1043,28 @@
 "Send weekly summary" = "发送每周摘要";
 
 /* No comment provided by engineer. */
+"Sent" = "已发送";
+
+/* No comment provided by engineer. */
 "Set text color" = "设置文本颜色";
 
 /* No comment provided by engineer. */
 "Settings" = "设置";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "与旁听者共享以下配对码以允许其与您建立联系。该代码将在七天后或使用一次后失效。";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "一次显示一个月";
 
 /* No comment provided by engineer. */
 "Show Grades" = "显示评分";
+
+/* No comment provided by engineer. */
+"Show more options" = "显示更多的选项";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "站点管理员登录";
@@ -845,7 +1085,13 @@
 "Something is Wrong" = "出错";
 
 /* No comment provided by engineer. */
+"Starred" = "已标记";
+
+/* No comment provided by engineer. */
 "Start recording" = "开始录制";
+
+/* started datetime */
+"Started %@" = "已开始%@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止临时代理用户";
@@ -938,6 +1184,9 @@
 "There are no modules to display yet." = "没有可以显示的单元。";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "没有可显示的页面。";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
 
 /* No comment provided by engineer. */
@@ -950,7 +1199,13 @@
 "There was an error loading events. Pull to refresh to try again." = "加载活动时出错。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "加载评分时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "加载单元时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "加载页面时发生错误。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "加载人脉时出错。下拉刷新以重试。";
@@ -980,10 +1235,16 @@
 "Title..." = "标题...";
 
 /* No comment provided by engineer. */
+"To" = "致";
+
+/* No comment provided by engineer. */
 "to %@" = "至%@";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";
+
+/* No comment provided by engineer. */
+"Total Grade" = "总分";
 
 /* No comment provided by engineer. */
 "Total time" = "总时间";
@@ -1004,10 +1265,22 @@
 "unpublished" = "取消发布";
 
 /* No comment provided by engineer. */
+"Unpublished" = "未发布";
+
+/* No comment provided by engineer. */
+"Unread" = "未读";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "不受支持的项目";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";
 
 /* No comment provided by engineer. */
 "Upload File" = "上传文件";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
@@ -1037,7 +1310,22 @@
 "Video" = "视频";
 
 /* No comment provided by engineer. */
+"View" = "查看";
+
+/* No comment provided by engineer. */
+"View Less" = "查看更少";
+
+/* No comment provided by engineer. */
 "View Modules" = "查看模块";
+
+/* No comment provided by engineer. */
+"View More" = "查看更多";
+
+/* No comment provided by engineer. */
+"View more replies" = "查看更多回复";
+
+/* No comment provided by engineer. */
+"Viewed" = "已查看";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "找不到这样的人。";
@@ -1079,13 +1367,13 @@
 "You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
 
 /* No comment provided by engineer. */
-"You will be logged out of this student account." = "您将退出此学生账户。";
-
-/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "你将停止担当%@并返回至帐号。";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "你将停止担当该用户并返回至帐号。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "您全部看完了！";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "您孩子的课程可能尚未发布。";

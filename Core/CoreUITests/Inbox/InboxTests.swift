@@ -29,8 +29,8 @@ class InboxTests: CoreUITestCase {
     override func setUp() {
         super.setUp()
         mockBaseRequests()
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [conversation1])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil), value: [])
         mockURL(avatarURL)
     }
 
@@ -49,7 +49,7 @@ class InboxTests: CoreUITestCase {
         )
 
         mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: before)
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [after])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil), value: [after])
         mockData(PutConversationRequest(id: "1", workflowState: .read), value: before)
         mockData(PostAddMessageRequest(conversationID: "1", body: .init(
             attachment_ids: nil,
@@ -69,8 +69,8 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageEntireClass() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true, send_messages_all: true))
 
         logIn()
@@ -89,7 +89,7 @@ class InboxTests: CoreUITestCase {
 
         let conversation = APIConversation.make(id: "2", subject: "Subject Two", properties: [.last_author])
         mockEncodableRequest("conversations", value: conversation)
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent),
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil),
                  value: [conversation])
 
         NewMessage.sendButton.tap().waitToVanish()
@@ -103,12 +103,12 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageMultiple() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
             .make(id: 1, name: "Recepient One"),
             .make(id: 2, name: "Recepient Two"),
             .make(id: 3, name: "Recepient Three"),
         ])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true))
 
         logIn()
@@ -140,8 +140,8 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageAttachment() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true))
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"

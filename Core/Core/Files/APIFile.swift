@@ -33,7 +33,7 @@ public struct APIFile: Codable, Equatable {
     let updated_at: Date
     let unlock_at: Date?
     let locked: Bool
-    let hidden: Bool
+    var hidden: Bool
     let lock_at: Date?
     let hidden_for_user: Bool
     let thumbnail_url: APIURL?
@@ -49,6 +49,7 @@ public struct APIFile: Codable, Equatable {
     // making the api call. Only included in submission endpoints.
     let preview_url: APIURL?
     let avatar: APIFileToken?
+    var usage_rights: APIUsageRights?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -74,6 +75,7 @@ public struct APIFile: Codable, Equatable {
         case lock_explanation = "lock_explanation"
         case preview_url = "preview_url"
         case avatar = "avatar"
+        case usage_rights = "usage_rights"
     }
 
     init(
@@ -99,7 +101,8 @@ public struct APIFile: Codable, Equatable {
         locked_for_user: Bool,
         lock_explanation: String?,
         preview_url: APIURL?,
-        avatar: APIFileToken?
+        avatar: APIFileToken?,
+        usage_rights: APIUsageRights?
     ) {
         self.id = id
         self.uuid = uuid
@@ -124,6 +127,7 @@ public struct APIFile: Codable, Equatable {
         self.lock_explanation = lock_explanation
         self.preview_url = preview_url
         self.avatar = avatar
+        self.usage_rights = usage_rights
     }
 
     public init(from decoder: Decoder) throws {
@@ -134,12 +138,7 @@ public struct APIFile: Codable, Equatable {
         display_name = try container.decode(String.self, forKey: .display_name)
         filename = try container.decode(String.self, forKey: .filename)
         contentType = try container.decode(String.self, forKey: .contentType)
-        let urlRaw = try container.decodeIfPresent(String.self, forKey: .url)
-        if urlRaw == nil || urlRaw?.isEmpty == true {
-            url = nil
-        } else {
-            url = try container.decode(APIURL.self, forKey: .url)
-        }
+        url = try container.decodeURLIfPresent(forKey: .url)
         size = try container.decode(Int.self, forKey: .size)
         created_at = try container.decode(Date.self, forKey: .created_at)
         updated_at = try container.decode(Date.self, forKey: .updated_at)
@@ -148,13 +147,13 @@ public struct APIFile: Codable, Equatable {
         hidden = try container.decode(Bool.self, forKey: .hidden)
         lock_at = try container.decodeIfPresent(Date.self, forKey: .lock_at)
         hidden_for_user = try container.decode(Bool.self, forKey: .hidden_for_user)
-        thumbnail_url = try container.decodeIfPresent(APIURL.self, forKey: .thumbnail_url)
+        thumbnail_url = try container.decodeURLIfPresent(forKey: .thumbnail_url)
         modified_at = try container.decode(Date.self, forKey: .modified_at)
         mime_class = try container.decode(String.self, forKey: .mime_class)
         media_entry_id = try container.decodeIfPresent(String.self, forKey: .media_entry_id)
         locked_for_user = try container.decode(Bool.self, forKey: .locked_for_user)
         lock_explanation = try container.decodeIfPresent(String.self, forKey: .lock_explanation)
-        preview_url = try container.decodeIfPresent(APIURL.self, forKey: .preview_url)
+        preview_url = try container.decodeURLIfPresent(forKey: .preview_url)
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
     }
 }
@@ -174,7 +173,7 @@ public struct APIFileFolder: Codable, Equatable {
     let files_url: APIURL
     let full_name: String
     let lock_at: Date?
-    let id: ID
+    public let id: ID
     let folders_count: Int
     let name: String
     let parent_folder_id: ID?
@@ -186,6 +185,130 @@ public struct APIFileFolder: Codable, Equatable {
     let locked_for_user: Bool
     let for_submissions: Bool
 }
+
+// https://canvas.instructure.com/doc/api/files.html#UsageRights
+public struct APIUsageRights: Codable, Equatable {
+    public let legal_copyright: String?
+    public let use_justification: String?
+}
+
+#if DEBUG
+extension APIFile {
+    public static func make(
+        id: ID = "1",
+        uuid: String = "uuid-1234",
+        folder_id: ID = "1",
+        display_name: String = "File",
+        filename: String = "File.jpg",
+        contentType: String = "image/jpeg",
+        url: URL = URL(string: "https://canvas.instructure.com/files/1/download")!,
+        size: Int = 1024,
+        created_at: Date = Date(),
+        updated_at: Date = Date(),
+        unlock_at: Date? = nil,
+        locked: Bool = false,
+        hidden: Bool = false,
+        lock_at: Date? = nil,
+        hidden_for_user: Bool = false,
+        thumbnail_url: URL? = nil,
+        modified_at: Date = Date(),
+        mime_class: String = "image",
+        media_entry_id: String? = nil,
+        locked_for_user: Bool = false,
+        lock_explanation: String? = nil,
+        preview_url: URL? = nil,
+        avatar: APIFileToken? = nil,
+        usage_rights: APIUsageRights? = nil
+    ) -> APIFile {
+        return APIFile(
+            id: id,
+            uuid: uuid,
+            folder_id: folder_id,
+            display_name: display_name,
+            filename: filename,
+            contentType: contentType,
+            url: APIURL(rawValue: url),
+            size: size,
+            created_at: created_at,
+            updated_at: updated_at,
+            unlock_at: unlock_at,
+            locked: locked,
+            hidden: hidden,
+            lock_at: lock_at,
+            hidden_for_user: hidden_for_user,
+            thumbnail_url: APIURL(rawValue: thumbnail_url),
+            modified_at: modified_at,
+            mime_class: mime_class,
+            media_entry_id: media_entry_id,
+            locked_for_user: locked_for_user,
+            lock_explanation: lock_explanation,
+            preview_url: APIURL(rawValue: preview_url),
+            avatar: avatar,
+            usage_rights: usage_rights
+        )
+    }
+}
+
+extension APIFileFolder {
+    public static func make(
+        context_type: String = "User",
+        context_id: ID = 1,
+        files_count: Int = 1,
+        position: Int? = nil,
+        updated_at: Date = Date(),
+        folders_url: URL = URL(string: "https://canvas.instructure.com/api/v1/folders/1/folders")!,
+        files_url: URL = URL(string: "https://canvas.instructure.com/api/v1/folders/1/files")!,
+        full_name: String = "my files",
+        lock_at: Date? = nil,
+        id: ID = 1,
+        folders_count: Int = 1,
+        name: String = "my files",
+        parent_folder_id: ID? = nil,
+        created_at: Date = Date(),
+        unlock_at: Date? = nil,
+        hidden: Bool? = nil,
+        hidden_for_user: Bool = false,
+        locked: Bool = false,
+        locked_for_user: Bool = false,
+        for_submissions: Bool = false
+    ) -> APIFileFolder {
+        APIFileFolder(
+            context_type: context_type,
+            context_id: context_id,
+            files_count: files_count,
+            position: position,
+            updated_at: updated_at,
+            folders_url: APIURL(rawValue: folders_url),
+            files_url: APIURL(rawValue: files_url),
+            full_name: full_name,
+            lock_at: lock_at,
+            id: id,
+            folders_count: folders_count,
+            name: name,
+            parent_folder_id: parent_folder_id,
+            created_at: created_at,
+            unlock_at: unlock_at,
+            hidden: hidden,
+            hidden_for_user: hidden_for_user,
+            locked: locked,
+            locked_for_user: locked_for_user,
+            for_submissions: for_submissions
+        )
+    }
+}
+
+extension APIUsageRights {
+    public static func make(
+        legal_copyright: String? = nil,
+        use_justification: String? = nil
+    ) -> APIUsageRights {
+        return APIUsageRights(
+            legal_copyright: legal_copyright,
+            use_justification: use_justification
+        )
+    }
+}
+#endif
 
 // https://canvas.instructure.com/doc/api/files.html#method.files.api_show
 public struct GetFileRequest: APIRequestable {
@@ -246,22 +369,18 @@ public struct PostFileUploadTargetRequest: APIRequestable {
 
     public var path: String {
         switch context {
-        case let .course(courseID):
-            let context = ContextModel(.course, id: courseID)
-            return "\(context.pathComponent)/files"
-        case let .user(userID):
-            let context = ContextModel(.user, id: userID)
+        case let .context(context):
             return "\(context.pathComponent)/files"
         case let .submission(courseID, assignmentID, _):
-            let context = ContextModel(.course, id: courseID)
+            let context = Context(.course, id: courseID)
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/files"
         case let .submissionComment(courseID, assignmentID):
-            let context = ContextModel(.course, id: courseID)
+            let context = Context(.course, id: courseID)
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/comments/files"
         }
     }
 
-    public init(context: FileUploadContext, body: Body) {
+    public init(context: FileUploadContext, body: Body?) {
         self.context = context
         self.body = body
     }
@@ -328,7 +447,7 @@ public class ListFoldersRequest: APIRequestable {
     let context: Context
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99) {
+    init(context: Context, perPage: Int? = 100) {
         self.context = context
         self.perPage = perPage
     }
@@ -352,7 +471,7 @@ public class ListFilesRequest: APIRequestable {
     let context: Context
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99) {
+    init(context: Context, perPage: Int? = 100) {
         self.context = context
         self.perPage = perPage
     }
@@ -374,9 +493,9 @@ public class GetFolderRequest: APIRequestable {
     public typealias Response = APIFileFolder
 
     let context: Context?
-    let id: ID
+    let id: String
 
-    init(context: Context?, id: ID) {
+    init(context: Context?, id: String) {
         self.context = context
         self.id = id
     }
@@ -402,4 +521,27 @@ struct DeleteFileRequest: APIRequestable {
 
     let method = APIMethod.delete
     var path: String { "files/\(fileID)" }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.usage_rights.set_usage_right
+public struct SetUsageRightsRequest: APIRequestable {
+    public struct Body: Codable {
+        let file_ids: [String]
+        let publish: Bool?
+        let usage_rights: APIUsageRights
+    }
+    public typealias Response = APIUsageRights
+
+    public let context: Context
+    public let body: Body?
+
+    public init(context: Context, body: Body? = nil) {
+        self.context = context
+        self.body = body
+    }
+
+    public let method = APIMethod.put
+    public var path: String {
+        return "\(context.pathComponent)/usage_rights"
+    }
 }

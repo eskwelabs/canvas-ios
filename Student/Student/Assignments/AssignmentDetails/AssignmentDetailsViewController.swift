@@ -134,14 +134,26 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.viewIsReady()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let color = presenter?.courses.first?.color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter?.viewDidAppear()
+        AppStoreReview.handleNavigateToAssignment()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter?.viewDidDisappear()
+    }
+
+    deinit {
+        AppStoreReview.handleNavigateFromAssignment()
     }
 
     @objc
@@ -221,6 +233,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             return
         case .completed:
+            fileSubmissionButton?.isHidden = true
             if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
                 filePicker.dismiss(animated: true, completion: nil)
             }
@@ -255,7 +268,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        let showGradeSection = assignment.submission?.needsGrading == true || assignment.submission?.isGraded == true
+        let showGradeSection = assignment.submission?.needsGrading == true ||
+            assignment.submission?.isGraded == true ||
+            presenter.onlineUploadState != nil
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())

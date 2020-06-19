@@ -60,7 +60,7 @@ class ModuleItemViewModel: NSObject {
                 case let .externalTool(toolID, url):
                     guard let courseID = courseID else { return nil }
                     let tools = LTITools(
-                        context: ContextModel(.course, id: courseID),
+                        context: .course(courseID),
                         id: toolID,
                         url: url,
                         launchType: .module_item,
@@ -168,7 +168,7 @@ class ModuleItemViewModel: NSObject {
             .producer
             .map { $0?.courseID }
             .flatMap(.latest) { [weak self] in
-                $0.flatMap { self?.session.enrollmentsDataSource.color(for: .course(withID: $0)) }
+                $0.flatMap { self?.session.enrollmentsDataSource.color(for: .course($0)) }
                     ?? SignalProducer(value: .prettyGray())
             }
         vm.titleFontStyle <~ self.moduleItem
@@ -305,8 +305,6 @@ class ModuleItemViewModel: NSObject {
         locked = Property(initial: true, then: SignalProducer.combineLatest(lockedForUser, moduleLocked).map { $0 || $1 })
 
         super.init()
-
-        beginObservingLockedStatus()
     }
 
     @objc convenience init(session: Session, moduleItem: ModuleItem) throws {
@@ -327,30 +325,6 @@ class ModuleItemViewModel: NSObject {
     @objc func moduleItemBecameActive() {
         if let id = moduleItem.value?.id {
             NotificationCenter.default.post(name: .moduleItemBecameActive, object: nil, userInfo: ["moduleItemID": id])
-        }
-    }
-
-    fileprivate func beginObservingLockedStatus() {
-        locked.signal
-            .combinePrevious(true)
-            .observeValues { [weak self] previous, current in
-                if previous && !current {
-                    _ = try? self?.invalidateCaches()
-                }
-            }
-    }
-
-    fileprivate func invalidateCaches() throws {
-        guard let content = moduleItem.value?.content, let courseID = moduleItem.value?.courseID else {
-            return
-        }
-        switch content {
-        case let .page(url: url):
-            let contextID = ContextID(id: courseID, context: .course)
-            try Page.invalidateCache(session: session, contextID: contextID)
-            try Page.invalidateDetailCache(session: session, contextID: contextID, url: url)
-        default:
-            break
         }
     }
 }

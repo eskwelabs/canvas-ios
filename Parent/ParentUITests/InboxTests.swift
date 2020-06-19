@@ -33,8 +33,8 @@ class InboxTests: ParentUITestCase {
             body: "This is a reply with attachments"
         )
         let conversation = APIConversation.make(id: "1", messages: [message])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: nil), value: [conversation])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent), value: [])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: nil, filter: nil), value: [conversation])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent, filter: nil), value: [])
         mockData(GetConversationRequest(id: conversation.id.value, include: [.participant_avatars]), value: conversation)
         let target = FileUploadTarget.make()
         mockData(PostFileUploadTargetRequest(
@@ -45,7 +45,7 @@ class InboxTests: ParentUITestCase {
         let fileURL = URL(string: "data:text/plain,")!
         mockData(PostFileUploadRequest(fileURL: fileURL, target: target), value: file)
         mockData(URLRequest(url: file.url!.rawValue), value: try! Data(contentsOf: fileURL))
-        mockData(GetFileRequest(context: ContextModel(.user, id: "self"), fileID: file.id.value, include: []), value: file)
+        mockData(GetFileRequest(context: .user("self"), fileID: file.id.value, include: []), value: file)
         mockData(PostAddMessageRequest(conversationID: conversation.id.value, body: .init(
             attachment_ids: [file.id.value],
             body: newMessage.body,

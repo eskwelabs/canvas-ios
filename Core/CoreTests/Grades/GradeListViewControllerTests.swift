@@ -57,7 +57,7 @@ class GradeListViewControllerTests: CoreTestCase {
 
     func mockGrades(gradingPeriodID: String?, score: Double?) {
         api.mock(GetEnrollments(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             userID: currentSession.userID,
             gradingPeriodID: gradingPeriodID,
             types: [ "StudentEnrollment" ],
@@ -79,7 +79,6 @@ class GradeListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(GetAssignmentsByGroup(courseID: "1"), value: groups)
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "1"), value: [ groups[0] ])
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2"), value: [ groups[1] ])
@@ -156,6 +155,8 @@ class GradeListViewControllerTests: CoreTestCase {
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.errorView.isHidden, false)
         XCTAssertEqual(controller.emptyView.isHidden, true)
+
+        XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
 
     func testHideTotals() {

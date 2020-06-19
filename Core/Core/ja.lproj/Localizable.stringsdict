@@ -44,6 +44,20 @@
 			<string>%d イベント</string>
 		</dict>
 	</dict>
+	<key>d_likes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@likes@</string>
+		<key>likes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%dいいね</string>
+		</dict>
+	</dict>
 	<key>d_needs_grading</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -56,6 +70,20 @@
 			<string>d</string>
 			<key>other</key>
 			<string>%d採点が必要です</string>
+		</dict>
+	</dict>
+	<key>d_options</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@options@</string>
+		<key>options</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%dオプション</string>
 		</dict>
 	</dict>
 	<key>d_questions</key>
@@ -196,6 +224,20 @@
 			<string>g</string>
 			<key>other</key>
 			<string>ポイント</string>
+		</dict>
+	</dict>
+	<key>there_are_d_assignees_without_grades</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@without_grades@</string>
+		<key>without_grades</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>There are %d assignees without grades.</string>
 		</dict>
 	</dict>
 </dict>

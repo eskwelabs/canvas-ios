@@ -109,11 +109,13 @@ public class PlannerViewController: UIViewController {
     }
 
     func getPlannables(from: Date, to: Date) -> GetPlannables {
-        var contextCodes: [String] = []
+        var contextCodes: [String]?
         if let planner = planner, !planner.allSelected {
-            contextCodes = planner.selectedCourses.map { $0.canvasContextID }
+            contextCodes = planner.selectedCourses.map {
+                Context(.course, id: $0.id).canvasContextID
+            }
             if let studentID = studentID ?? env.currentSession?.userID {
-                contextCodes.append(ContextModel(.user, id: studentID).canvasContextID)
+                contextCodes?.append(Context(.user, id: studentID).canvasContextID)
             }
         }
         return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: contextCodes, syncContext: syncContext)

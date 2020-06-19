@@ -24,7 +24,7 @@ import CoreData
 import TestsFoundation
 
 class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDelegate {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     var controller: RichContentEditorViewController!
 
     var canSubmit = false
@@ -42,7 +42,6 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(GetEnabledFeatureFlagsRequest(context: context), value: ["rce_enhancements"])
         controller = RichContentEditorViewController.create(context: context, uploadTo: .myFiles)
         controller.delegate = self

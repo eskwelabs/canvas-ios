@@ -83,7 +83,7 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)\(includeAssignmentPath ? "/assignments" : "")/syllabus")
     }
 
-    public static func files(context: Context = ContextModel.currentUser) -> Route {
+    public static func files(context: Context = Context.currentUser) -> Route {
         return Route("\(context.pathComponent)/files")
     }
 
@@ -177,6 +177,10 @@ public struct Route: Equatable {
     }
 
     public static let wrongApp = Route("/wrong-app")
+
+    public static func createAccount(accountID: String, pairingCode: String) -> Route {
+         Route("/create-account/\(accountID)/\(pairingCode)")
+    }
 
     public static let anythingElse = Route("*")
 }

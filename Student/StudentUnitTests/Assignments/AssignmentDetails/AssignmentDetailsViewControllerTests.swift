@@ -30,7 +30,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        env.mockStore = false
         viewController = AssignmentDetailsViewController.create(env: env, courseID: courseID, assignmentID: assignmentID)
         prevSpeed = UIApplication.shared.keyWindow?.layer.speed ?? 1
         UIApplication.shared.keyWindow?.layer.speed = 100
@@ -164,7 +163,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.gradeSection?.isHidden == true)
     }
 
-    func testUpdateGradeCelWorkflowStateUnsubmitted() {
+    func testUpdateGradeCellWorkflowStateUnsubmitted() {
         mockCourse()
         let a = APIAssignment.make( submission: .make(
         grade: "10",
@@ -178,7 +177,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.gradeSection?.isHidden == true)
     }
 
-    func testUpdateGradeCelWorkflowStateNeedsGrading() {
+    func testUpdateGradeCellWorkflowStateNeedsGrading() {
         mockCourse()
         let assignment = APIAssignment.make(
             id: ID(assignmentID),
@@ -201,6 +200,25 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             score: 10,
             submission_type: .online_text_entry,
             workflow_state: .graded))
+
+        setupFileForSubmittedLabel(uploadError: "error", apiAssignment: aa)
+        load()
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
+        XCTAssertEqual(viewController.gradeSection?.isHidden, false)
+        XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
+        XCTAssertEqual(viewController.gradedView?.isHidden, true)
+        XCTAssertEqual(viewController.submittedView?.isHidden, false)
+        XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, false)
+        XCTAssertEqual(viewController.submittedDetailsLabel?.isHidden, true)
+    }
+
+    func testUpdateGradeCellWhenThereIsUploadStateAndUnsubmitted() {
+        let aa = APIAssignment.make(submission: .make(
+            grade: "10",
+            score: 10,
+            submission_type: .online_text_entry,
+            workflow_state: .unsubmitted))
 
         setupFileForSubmittedLabel(uploadError: "error", apiAssignment: aa)
         load()
@@ -239,7 +257,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
     }
 
     func testUpdateUpdateSubmissionLabelsUploadingState() {
-        setupFileForSubmittedLabel(removeID: true, taskID: 1)
+        setupFileForSubmittedLabel(removeID: true, taskID: "1")
         load()
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Uploading...")
@@ -380,7 +398,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     }
 
-    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: Int? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
+    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = apiAssignment ?? APIAssignment.make(

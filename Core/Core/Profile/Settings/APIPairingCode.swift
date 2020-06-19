@@ -31,6 +31,72 @@ public struct APIPairingCode: Codable, Equatable {
     let workflow_state: String?
 }
 
+public struct GetAccountTermsOfServiceRequest: APIRequestable {
+    public typealias Response = APIAccountTermsOfService
+    public var path: String = "accounts/self/terms_of_service"
+}
+
+public struct APIAccountTermsOfService: Codable, Equatable {
+    let account_id: ID
+    let content: String?
+    let id: ID?
+    let passive: Bool?
+    let terms_type: String?
+}
+
+//  https://canvas.instructure.com/doc/api/users.html#method.users.create
+public struct PostAccountUserRequest: APIRequestable {
+    public typealias Response = APIUser
+    public let method: APIMethod = .post
+    public var body: Body?
+    let baseURL: URL
+    let accountID: String
+    public var shouldHandleCookies: Bool = false
+
+    public init(baseURL: URL, accountID: String, pairingCode: String, name: String, email: String, password: String) {
+        self.baseURL = baseURL
+        self.accountID = accountID
+        self.body = Body(
+            pseudonym: Body.Pseudonym(unique_id: email, password: password),
+            pairing_code: Body.PairingCode(code: pairingCode),
+            user: Body.User(name: name, initial_enrollment_type: "observer")
+        )
+    }
+
+    public let headers: [String: String?] = [
+        HttpHeader.accept: "application/json",
+        HttpHeader.authorization: nil,
+    ]
+
+    public var cachePolicy: URLRequest.CachePolicy {
+        return .reloadIgnoringLocalAndRemoteCacheData
+    }
+
+    public var path: String {
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        components?.scheme = "https"
+        return components?.url?.appendingPathComponent("/api/v1/accounts/\(accountID)/users").absoluteString ??  ""
+    }
+
+    public struct Body: Codable, Equatable {
+        public struct Pseudonym: Codable, Equatable {
+            let unique_id: String
+            let password: String
+        }
+        public struct PairingCode: Codable, Equatable {
+            let code: String
+        }
+        public struct User: Codable, Equatable {
+            let name: String
+            let initial_enrollment_type: String
+            let terms_of_use: Bool = true
+        }
+        let pseudonym: Pseudonym
+        let pairing_code: PairingCode
+        let user: User
+    }
+}
+
 #if DEBUG
 extension APIPairingCode {
     public static func make(
@@ -44,6 +110,24 @@ extension APIPairingCode {
             code: code,
             expires_at: expires_at,
             workflow_state: workflow_state
+        )
+    }
+}
+
+extension APIAccountTermsOfService {
+    public static func make(
+        account_id: ID = "1",
+        content: String? = "content",
+        id: ID? = nil,
+        passive: Bool? = false,
+        terms_type: String? = nil
+    ) -> APIAccountTermsOfService {
+        return APIAccountTermsOfService(
+            account_id: account_id,
+            content: content,
+            id: id,
+            passive: passive,
+            terms_type: terms_type
         )
     }
 }

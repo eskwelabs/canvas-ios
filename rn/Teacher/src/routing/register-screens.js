@@ -48,11 +48,9 @@ import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import DiscussionsList from '../modules/discussions/list/DiscussionsList'
-import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
 import DiscussionEdit from '../modules/discussions/edit/DiscussionEdit'
 import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
-import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
@@ -108,9 +106,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussions', wrap(DiscussionsList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics/new', wrap(DiscussionEdit), store)
-  registerScreen('/:context/:contextID/discussion_topics/:discussionID/reply', wrap(EditReply), store)
+  registerScreen('/:context/:contextID/discussion_topics/:discussionID/reply', null, store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
-  registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store, { deepLink: true })
+  registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', null, store, { deepLink: true })
   registerScreen('/courses/:courseID/users', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/:context/:contextID/files', fileListRouter, store, { canBecomeMaster: true, deepLink: true })
@@ -134,8 +132,10 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/:context/:contextID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/announcements/new', wrap(AnnouncementEdit), store)
-  registerScreen('/:context/:contextID/announcements/:announcementID', wrap(DiscussionDetails), store, { deepLink: true })
+  registerScreen('/:context/:contextID/announcements/:announcementID', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
+  registerScreen('/:context/:contextID/discussions/:discussionID', null, store, { deepLink: true })
+  registerScreen('/:context/:contextID/discussion_topics/:discussionID', null, store, { deepLink: true })
   registerScreen('/courses/:courseID/section-selector', wrap(SectionSelector), store)
   registerScreen('/wrong-app', null, store)
   registerScreen('/filter', wrap(Filter), store)
@@ -176,8 +176,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/attendance/:toolID')
     registerScreen('/courses/:courseID/gradebook/speed_grader', wrap(SpeedGrader), store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
-    registerScreen('/:context/:contextID/discussions/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
-    registerScreen('/:context/:contextID/discussion_topics/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
@@ -214,8 +212,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/:context/:contextID/conferences', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/:context/:contextID/conferences/:conferenceID', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/conferences/:conferenceID/join', null, store, { deepLink: true })
-    registerScreen('/:context/:contextID/discussions/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
-    registerScreen('/:context/:contextID/discussion_topics/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
     registerScreen('/:context/:contextID/pages/:url', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/take', null, store, { deepLink: true })

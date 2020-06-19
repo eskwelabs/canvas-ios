@@ -22,12 +22,11 @@ import XCTest
 import TestsFoundation
 
 class GroupNavigationViewControllerTests: StudentTestCase {
-    let context = ContextModel(.group, id: "1")
+    let context = Context(.group, id: "1")
     lazy var controller = GroupNavigationViewController.create(context: context)
 
     override func setUp() {
         super.setUp()
-        env.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ context.canvasContextID: "#f00" ]))
         api.mock(controller.groups, value: .make(name: "Tests"))
         api.mock(controller.tabs, value: [

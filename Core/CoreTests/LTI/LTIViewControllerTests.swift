@@ -23,11 +23,6 @@ import XCTest
 import SafariServices
 
 class LTIViewControllerTests: CoreTestCase {
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         let tools = LTITools(id: "1")
         let controller = LTIViewController.create(tools: tools)
@@ -62,7 +57,7 @@ class LTIViewControllerTests: CoreTestCase {
 
     func testCourseSubtitle() {
         let course = APICourse.make(id: "1", name: "Fancy Course")
-        let tools = LTITools(context: ContextModel(.course, id: course.id))
+        let tools = LTITools(context: .course(course.id.value))
         let controller = LTIViewController.create(tools: tools)
         api.mock(controller.courses!, value: course)
         controller.view.layoutIfNeeded()

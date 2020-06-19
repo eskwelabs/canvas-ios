@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Okenn Sijè)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Elèv w ap eseye ajoute a nan lòt enstitisyon Canvas.\n                    Konekte oswa kreye yon kont ak enstitisyon sa a pou w ka ajoute elèv sa a.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ delè li se %2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ap kòmanse a %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, nan %2$@, dènye mesaj la se te nan dat %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, poko li";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Ajoute";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
 "Add Student" = "Ajoute Elèv";
 
 /* No comment provided by engineer. */
+"Add student with..." = "Ajoute elèv ak...";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ajoute elèv yo anlè a oswa vizite meni global la pou w ka fè tèt ou pase pou yon elèv.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "Ajoute elèv yo anlè..";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Avèti mwen lè:";
 
 /* Alerts Tab */
 "Alerts" = "Alèt";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Gen yon Erè ki Fèt";
+"Already have an account? %@" = "Ou gen yon kont deja? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Anons";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Nòt sesyon pi wo a";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Nòt sesyon pi ba a";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Sesyon ki manke";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Rapèl sesyon";
 
 /* No comment provided by engineer. */
 "Back" = "Retounen";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Lè w tape ‘Kreye Kont’, ou dakò ak %1$@ epi w rekonèt %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalandriye";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Anile";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Pa kapab itilize pousantaj ki pi wo ke 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Pa kapab itilize pousantaj ki mwens ke 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Pran nan Avètisman";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Chwazi yon kou pou voye mesaj";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Konpoze yon Mesaj";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Anons kou";
-
-/* Course Grade High On Description */
-"Course grade above" = "Nòt kou pi wo a";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Nòt kou pi ba a";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Pa kapab analize Kòd QR la, Kòd QR la pa valid";
 
 /* Courses Tab */
 "Courses" = "Kou";
+
+/* No comment provided by engineer. */
+"Create Account" = "Kreye Kont";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Elèv aktyèl: %@. Tape pou chanje elèv";
@@ -107,7 +80,13 @@
 "Dismiss" = "Rejte";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Chanje Destinatè";
+"Domain mismatch" = "Domèm pa koresponn";
+
+/* No comment provided by engineer. */
+"Email address" = "Adrès imèl";
+
+/* No comment provided by engineer. */
+"Email..." = "Imèl...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Rapèl aktivite";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
-
-/* No comment provided by engineer. */
-"File" = "Fichye";
-
-/* No comment provided by engineer. */
 "Find School" = "Jwenn Lekòl";
-
-/* No comment provided by engineer. */
-"for %@" = "pou %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
 
 /* No comment provided by engineer. */
+"Full name" = "Non Konplè";
+
+/* No comment provided by engineer. */
+"Full name..." = "Non Konplè...";
+
+/* No comment provided by engineer. */
 "Grades" = "Nòt";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Klas kou elve pa kapab enferyè a klas kou fèb";
 
 /* No comment provided by engineer. */
 "In-Class" = "Nan Klas";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Antre kòd kouplaj elèv yo ba ou a.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Anons Enstitisyon";
-
-/* Title for an alert view */
-"Invalid Input" = "Antre Envalid";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Plafon Envalid";
 
 /* No comment provided by engineer. */
 "Late" = "Ta";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Klas sesyon fèb pa kapab siperyè a klas sesyon elve";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Klas kou fèb pa kapab siperyè a klas kou elve";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Jere Elèv";
-
-/* No comment provided by engineer. */
-"Message" = "Mesaj";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Mesaj de %1$@, %2$@, nan dat %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manke";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
-/* No comment provided by engineer. */
-"New Message" = "Nouvo Mesaj";
-
 /* Empty Courses Text */
 "No Courses" = "Pa gen Kou";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Pa gen Klas";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Pa gen Elèv";
 
 /* No comment provided by engineer. */
-"No Subject" = "Pa gen Sijè";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Kòd Kouplaj";
 
 /* No comment provided by engineer. */
+"Password" = "Modpas";
+
+/* No comment provided by engineer. */
+"Password is required" = "Modpas obligatwa";
+
+/* No comment provided by engineer. */
+"Password..." = "Modpas...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
 
 /* No comment provided by engineer. */
-"Recipients" = "Destinatè";
+"Please enter an email address" = "Tanpri ekri yon adrès imèl";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Tanpri antre non konplè a";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Politik Konfidansyalite";
+
+/* No comment provided by engineer. */
+"QR Code" = "Kòd QR";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Konsènan: %@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Konsènan: %1$@, Devwa - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Reponn";
-
-/* No comment provided by engineer. */
-"Reply All" = "Reponn Tout";
-
-/* No comment provided by engineer. */
 "Retry" = "Re eseye";
-
-/* No comment provided by engineer. */
-"Send" = "Voye";
 
 /* No comment provided by engineer. */
 "Settings" = "Paramèt";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Paramèt. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Sijè";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Konekte";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Kondisyon Itilizasyon";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Valè a dwe se yon nonb ant 0 a 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AlertKit a,";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done DiscussionKit a,";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Te gen yon erè nan chajman elèv yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Anons sa a ekspire.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Kou elèv sa a poko ka pibliye.";
-
-/* No comment provided by engineer. */
-"To" = "Pou";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Difikilte pou konekte";
@@ -298,10 +262,13 @@
 "Unread" = "Poko li";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
+"Welcome, Admin!" = "Byenvini,Admin!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "Byenvini,Admin!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Ou pa pakab fikse yon plafon ki wo ki enferyè oswa egal a plafon ba ki te fikse anvan an.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ou pa pakab fikse yon plafon ki ba ki siperyè oswa egal a plafon wo ki te fikse anvan an.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";

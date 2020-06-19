@@ -219,6 +219,26 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
+        if ExperimentalFeature.parentQRCodePairing.isEnabled && app == .parent {
+            let sheet = BottomSheetPickerViewController.create()
+            sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", comment: "")) { [weak self] in
+                self?.showLoginQRCodeTutorial()
+            }
+            sheet.addAction(image: nil, title: NSLocalizedString("I don’t have a Canvas account", comment: "")) { [weak self] in
+                self?.showInstructionsToPairFromStudentApp()
+            }
+            env.router.show(sheet, from: self, options: .modal())
+        } else {
+            showLoginQRCodeTutorial()
+        }
+    }
+
+    func showInstructionsToPairFromStudentApp() {
+        let tutorial = PairWithStudentQRCodeTutorialViewController.create()
+        env.router.show(tutorial, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+    }
+
+    func showLoginQRCodeTutorial() {
         Analytics.shared.logEvent("qr_code_login_clicked")
         let tutorial = LoginQRCodeTutorialViewController.create()
         tutorial.delegate = self
@@ -360,7 +380,13 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
-            self.logIn(withCode: code)
+            if let url = URL(string: code),
+                let host = url.host,
+                self.loginDelegate?.supportedDeepLinkActions.contains(host) == true {
+                self.loginDelegate?.handleDeepLink(url: url)
+            } else {
+                self.logIn(withCode: code)
+            }
         }
     }
 }

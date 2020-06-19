@@ -29,12 +29,17 @@ class APIFileTests: XCTestCase {
 
         fixture["url"] = ""
         data = try! serialize(json: fixture)
-        let file = try! decoder.decode(APIFile.self, from: data)
+        var file = try! decoder.decode(APIFile.self, from: data)
         XCTAssertNil(file.url)
+
+        fixture["thumbnail_url"] = ""
+        data = try! serialize(json: fixture)
+        file = try! decoder.decode(APIFile.self, from: data)
+        XCTAssertNil(file.thumbnail_url)
     }
 
     func testGetFileRequest() {
-        let request = GetFileRequest(context: ContextModel(.course, id: "1"), fileID: "2", include: [.avatar])
+        let request = GetFileRequest(context: .course("1"), fileID: "2", include: [.avatar])
         XCTAssertEqual(request.path, "courses/1/files/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "avatar") ])
     }
@@ -46,37 +51,37 @@ class APIFileTests: XCTestCase {
     }
 
     func testGetContextFolderHierarchyRequest() {
-        let request = GetContextFolderHierarchyRequest(context: ContextModel(.course, id: "1"), fullPath: "a/b")
+        let request = GetContextFolderHierarchyRequest(context: .course("1"), fullPath: "a/b")
         XCTAssertEqual(request.path, "courses/1/folders/by_path/a/b")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
 
     func testListFoldersRequest() {
-        let request = ListFoldersRequest(context: ContextModel(.course, id: "1"))
+        let request = ListFoldersRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/folders")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),
-            URLQueryItem(name: "per_page", value: "99"),
+            URLQueryItem(name: "per_page", value: "100"),
         ])
     }
 
     func testListFilesRequest() {
-        let request = ListFilesRequest(context: ContextModel(.course, id: "1"))
+        let request = ListFilesRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/files")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),
-            URLQueryItem(name: "per_page", value: "99"),
+            URLQueryItem(name: "per_page", value: "100"),
         ])
     }
 
     func testGetFolderRequest() {
-        let request = GetFolderRequest(context: ContextModel(.course, id: "1"), id: 2)
+        let request = GetFolderRequest(context: .course("1"), id: "2")
         XCTAssertEqual(request.path, "courses/1/folders/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
 
     func testListFilesRequestWithRootContext() {
-        let request = GetFolderRequest(context: nil, id: 2)
+        let request = GetFolderRequest(context: nil, id: "2")
         XCTAssertEqual(request.path, "folders/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
@@ -160,7 +165,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .course("1"),
+            context: .context(Context(.course, id: "1")),
             body: body
         )
         XCTAssertEqual(request.path, "courses/1/files")
@@ -174,7 +179,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .user("1"),
+            context: .context(Context(.user, id: "1")),
             body: body
         )
         XCTAssertEqual(request.path, "users/1/files")
@@ -225,5 +230,13 @@ class PostFileUploadRequestTests: XCTestCase {
         ])
         XCTAssertEqual(requestable.form?.count, 2)
         XCTAssertEqual(requestable.form?.last?.key, "file")
+    }
+}
+
+class SetUsageRightsRequestTests: XCTestCase {
+//    func test
+    func testSetUsageRightsRequest() throws {
+        let request = SetUsageRightsRequest(context: .course("1"))
+        XCTAssertEqual(request.path, "courses/1/usage_rights")
     }
 }

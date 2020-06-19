@@ -22,23 +22,21 @@ import TestsFoundation
 import XCTest
 @testable import SubmitAssignment
 
-class AssignmentsViewControllerTests: SubmitAssignmentTests {
+class AssignmentsViewControllerTests: SubmitAssignmentTestCase {
     var courseID = "1"
     var selectedAssignmentID: String?
-    var callback: (Assignment) -> Void = { _ in }
+    var selectedAssignment: Assignment?
 
     lazy var controller = AssignmentsViewController.create(
         courseID: courseID,
         selectedAssignmentID: selectedAssignmentID,
-        callback: callback
+        callback: { [weak self] in self?.selectedAssignment = $0 }
     )
 
     func testLayout() {
         selectedAssignmentID = "1"
-        var selectedAssignment: Assignment?
-        callback = { selectedAssignment = $0 }
         api.mock(
-            controller.assignments,
+            controller.assignments.useCase.request,
             value: [
                 .make(
                     id: "1",
@@ -54,7 +52,7 @@ class AssignmentsViewControllerTests: SubmitAssignmentTests {
                 ),
             ]
         )
-        controller.loadViewIfNeeded()
+        controller.view.layoutIfNeeded()
         let tableView = controller.tableView
         XCTAssertEqual(controller.tableView.dataSource?.tableView(tableView!, numberOfRowsInSection: 0), 2)
         let firstCell = controller.tableView.dataSource?.tableView(tableView!, cellForRowAt: IndexPath(row: 0, section: 0))
@@ -67,41 +65,5 @@ class AssignmentsViewControllerTests: SubmitAssignmentTests {
 
         controller.tableView.delegate?.tableView?(tableView!, didSelectRowAt: IndexPath(row: 1, section: 0))
         XCTAssertEqual(selectedAssignment?.name, "Assignment 2")
-    }
-
-    func testPaginatedFiltering() {
-        let invalid = APIAssignment.make(
-            id: "1",
-            course_id: ID(courseID),
-            name: "invalid",
-            submission_types: [.online_text_entry]
-        )
-        let valid = APIAssignment.make(
-            id: "3",
-            course_id: ID(courseID),
-            name: "valid",
-            submission_types: [.online_upload]
-        )
-        api.mock(
-            controller.assignments,
-            value: [invalid],
-            response: HTTPURLResponse(next: "/page-2")
-        )
-        let task = api.mock(
-            GetNextRequest<[APIAssignment]>(path: "/page-2"),
-            value: [valid],
-            response: nil
-        )
-        task.paused = true
-        controller.loadViewIfNeeded()
-        let tableView = controller.tableView!
-        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
-        let loadingCell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssert(loadingCell is LoadingCell)
-
-        task.paused = false
-        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
-        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(cell?.textLabel?.text, "valid")
     }
 }

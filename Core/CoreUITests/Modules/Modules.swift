@@ -19,32 +19,16 @@
 import XCTest
 import TestsFoundation
 
-enum Modules {
-    static func module(index: Int) -> Element {
-        return app.find(id: "module_cell_0_\(index)")
+enum ModuleList {
+    static func module(section: Int) -> Element {
+        app.find(id: "ModuleList.\(section)")
+    }
+
+    static func item(section: Int, row: Int) -> Element {
+        app.find(id: "ModuleList.\(section).\(row)")
     }
 }
 
-enum ModulesDetail {
-    static func module(index: Int) -> Element {
-        return app.find(id: "module_cell_0_\(index)")
-    }
-
-    static func moduleItem(index: Int) -> Element {
-        return app.find(id: "module_item_cell_0_\(index)")
-    }
-}
-
-enum ModuleItemNavigation {
-    static var nextButton: Element {
-        return app.find(id: "next_module_item_button")
-    }
-
-    static var previousButton: Element {
-        return app.find(id: "previous_module_item_button")
-    }
-
-    static var backButton: Element {
-        return app.find(labelContaining: "Assignment Module")
-    }
+enum ModuleItemSequence: String, ElementWrapper {
+    case previousButton, nextButton
 }

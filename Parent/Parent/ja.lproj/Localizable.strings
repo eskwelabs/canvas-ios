@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "（件名なし）";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    追加しようとしている受講生は、別のCanvas教育機関に所属しています。\n                    この受講生を追加するには、その機関でサインインまたはアカウントを作成してください。\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@の期日は（）です%2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@、未読";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "追加";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
 "Add Student" = "受講生を追加";
 
 /* No comment provided by engineer. */
+"Add student with..." = "受講生を追加...";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講生を追加する、またはグローバルメニューに移動して受講生としてマスカレードします。";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "上部に受講生を追加します。";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "次の時にアラートしてください：";
 
 /* Alerts Tab */
 "Alerts" = "アラート";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "エラーが発生しました。";
+"Already have an account? %@" = "アカウントをすでにお持ちですか？%@";
 
 /* No comment provided by engineer. */
 "Announcement" = "発表";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "より上の課題成績";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "より下の課題成績";
-
-/* Assignment Missing Description */
-"Assignment missing" = "未提出の課題";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "課題のリマインダ";
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "[アカウントを作成]をタップすると、%1$@に同意し、%2$@を受け入れたことになります。";
 
 /* Calendar Tab */
 "Calendar" = "予定表";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "100以上のパーセントは使えません";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "0以下のパーセントは使えません";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "アラートにこだわる";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "メッサージを送るコースを選択する";
 
 /* No comment provided by engineer. */
 "Compose Message" = "メッセージを作成";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "コースのアナウンスメント";
-
-/* Course Grade High On Description */
-"Course grade above" = "より上のコース成績";
-
-/* Course Grade Low On Description */
-"Course grade below" = "より下のコース成績";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "QRコードを解析できませんでした、QRコードが無効です";
 
 /* Courses Tab */
 "Courses" = "コース";
+
+/* No comment provided by engineer. */
+"Create Account" = "アカウントを作成する";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
@@ -107,7 +80,13 @@
 "Dismiss" = "棄却する";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "受信者を編集する";
+"Domain mismatch" = "ドメインの不一致";
+
+/* No comment provided by engineer. */
+"Email address" = "メールアドレス";
+
+/* No comment provided by engineer. */
+"Email..." = "電子メールアドレス...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "イベントのリマインダ";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
-
-/* No comment provided by engineer. */
-"File" = "ファイル";
-
-/* No comment provided by engineer. */
 "Find School" = "学校を探す";
-
-/* No comment provided by engineer. */
-"for %@" = "ための%@";
 
 /* No comment provided by engineer. */
 "Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
+"Full name" = "フル ネーム";
+
+/* No comment provided by engineer. */
+"Full name..." = "姓名...";
+
+/* No comment provided by engineer. */
 "Grades" = "成績";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "高いコース成績は、低いコース成績より低くしないでください";
 
 /* No comment provided by engineer. */
 "In-Class" = "教室内";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
 
-/* Institution Announcement Description */
-"Institution announcements" = "教育機関のアナウンスメント";
-
-/* Title for an alert view */
-"Invalid Input" = "無効な入力";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "無効なしきい値";
 
 /* No comment provided by engineer. */
 "Late" = "遅滞";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
-
 /* No comment provided by engineer. */
 "Manage Students" = "受講生を管理";
-
-/* No comment provided by engineer. */
-"Message" = "メッセージ";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "%1$@からの%2$@、%3$@日のメッセージ、%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "紛失";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "該当せず";
 
-/* No comment provided by engineer. */
-"New Message" = "新しいメッセージ";
-
 /* Empty Courses Text */
 "No Courses" = "コースなし";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "成績なし";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "受講生なし";
 
 /* No comment provided by engineer. */
-"No Subject" = "件名なし";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "ペアリングコード";
 
 /* No comment provided by engineer. */
+"Password" = "パスワード";
+
+/* No comment provided by engineer. */
+"Password is required" = "パスワードは必須です";
+
+/* No comment provided by engineer. */
+"Password..." = "パスワード...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
 
 /* No comment provided by engineer. */
-"Recipients" = "受信者";
+"Please enter an email address" = "メールアドレスを入力してください";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "姓名を入力してください";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "個人情報保護方針";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR コード";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "対象：%@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Re：%1$@、課題 - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "返信";
-
-/* No comment provided by engineer. */
-"Reply All" = "すべてに返信";
-
-/* No comment provided by engineer. */
 "Retry" = "再試行";
-
-/* No comment provided by engineer. */
-"Send" = "送信";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "設定。%@";
 
-/* No comment provided by engineer. */
-"Subject" = "件名";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "サインイン";
 
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "サービス利用規約";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "値は0から100の間でなければなりません。";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "AlertKit データベースファイルを読み込み中、問題がありました。.";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "この発表は終了しました。";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
-
-/* No comment provided by engineer. */
-"To" = "変更後";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "ログインできません";
@@ -298,10 +262,13 @@
 "Unread" = "未読";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
+"Welcome, Admin!" = "ようこそ、管理者さん!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "ようこそ、管理者さん!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "以前に設定した低しきい値以下の高しきい値を設定することはできません。";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "以前に設定した高しきい値以上の低しきい値を設定することはできません。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";

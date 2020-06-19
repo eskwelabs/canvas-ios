@@ -32,25 +32,26 @@ class ParentUITestCase: CoreUITestCase {
     }
 
     override func mockBaseRequests() {
+        mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         for paginated in [true, false] {
             mockEncodableRequest([
                 "users/self/enrollments",
                 "?include[]=avatar_url&include[]=observed_users",
-                paginated ? "&per_page=99" : "",
+                paginated ? "&per_page=100" : "",
                 "&role[]=ObserverEnrollment",
                 "&state[]=active&state[]=completed&state[]=creation_pending",
                 "&state[]=current_and_future&state[]=invited",
                 ].joined(), value: [baseEnrollment])
         }
-        mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
+        mockData(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: .make())
         mock(courses: [.make(enrollments: [baseEnrollment])])
         mockData(GetConversationsUnreadCountRequest(), value: .init(unread_count: 0))
         mockData(GetAccountHelpLinksRequest(), value: .make())
         mockData(GetUserSettingsRequest(userID: "self"), value: .make())
         mockData(GetUserProfileRequest(userID: "self"), value: .make())
         mockData(GetGlobalNavExternalToolsRequest(), value: [])
-        mockEncodableRequest("users/self/observer_alerts/1?per_page=99", value: [String]())
+        mockEncodableRequest("users/self/observer_alerts/1?per_page=100", value: [String]())
     }
 }

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import PSPDFKit
 
 public class CacheManager {
     public private(set) static var lastDeletedAt: Int {
@@ -64,16 +65,41 @@ public class CacheManager {
     }
 
     public static func clearAppGroup(_ id: String?) {
-        guard let id = id, let folder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: id) else { return }
+        guard let id = id, let folder = URL.sharedContainer(id) else { return }
         clearDirectory(folder)
     }
 
     public static func clearCaches() {
-        clearDirectory(.cachesDirectory)
+        clearDirectory(.cachesDirectory(appGroup: nil))
+        clearDirectory(.cachesDirectory(appGroup: Bundle.main.appGroupID()))
     }
 
     public static func clearLibrary() {
         clearDirectory(.libraryDirectory)
+    }
+
+    public static func removeBloat() {
+        let timeout = Clock.now.addSeconds(5)
+        let fs = FileManager.default
+        let enumerator = fs.enumerator(at: .documentsDirectory, includingPropertiesForKeys: [.isDirectoryKey])
+        while let url = enumerator?.nextObject() as? URL {
+            let isDirectory = (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true
+            if isDirectory { continue }
+            if Document(url: url).containsAnnotations {
+                Analytics.shared.logEvent("clear_bloat_item_skipped", parameters: nil)
+                continue
+            }
+            do {
+                try fs.removeItem(at: url)
+                Analytics.shared.logEvent("clear_bloat_item_succeeded", parameters: nil)
+            } catch {
+                Analytics.shared.logEvent("clear_bloat_item_failed", parameters: ["error": error.localizedDescription])
+            }
+            if Clock.now > timeout {
+                Analytics.shared.logEvent("clear_bloat_timeout_exceeded")
+                break
+            }
+        }
     }
 
     public static func clearRNAsyncStorage() {

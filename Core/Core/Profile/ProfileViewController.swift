@@ -78,7 +78,7 @@ public class ProfileViewController: UIViewController {
         self?.reload()
     }
 
-    lazy var permissions = env.subscribe(GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])) { [weak self] in
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .account("self"), permissions: [.becomeUser])) { [weak self] in
         self?.reload()
     }
 
@@ -180,10 +180,6 @@ public class ProfileViewController: UIViewController {
             cells.append(ProfileViewCell("showGrades", type: .toggle(showGrades), name: NSLocalizedString("Show Grades", bundle: .core, comment: "")) { [weak self] cell in
                 let showGrades = (cell.accessoryView as? UISwitch)?.isOn == true
                 self?.env.userDefaults?.showGradesOnDashboard = showGrades
-                NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
-                    "type": "userInfo.updateShowGradesOnDashboard",
-                    "payload": [ "showsGradesOnCourseCards": showGrades ],
-                ])
             })
         }
 

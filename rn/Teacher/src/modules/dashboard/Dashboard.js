@@ -20,43 +20,49 @@
 
 import React, { type Element, type ComponentType } from 'react'
 import {
+  NativeEventEmitter,
+  NativeModules,
   View,
   SectionList,
   StyleSheet,
 } from 'react-native'
-import Screen from '@routing/Screen'
+import Screen from '../../routing/Screen'
 import { connect } from 'react-redux'
-import refresh from '@utils/refresh'
-import localeSort from '@utils/locale-sort'
+import refresh from '../../utils/refresh'
+import localeSort from '../../utils/locale-sort'
 import i18n from 'format-message'
-import App, { isTeacher, isStudent } from '@modules/app'
-import CoursesActions from '@modules/courses/actions'
-import EnrollmentsActions from '@modules/enrollments/actions'
-import GroupsActions from '@modules/groups/actions'
-import GroupsFavoriteActions from '@modules/groups/favorites/actions'
-import DashboardActions from '@modules/dashboard/actions'
-import UserInfoActions from '@modules/userInfo/actions'
+import App, { isTeacher, isStudent } from '../app'
+import CoursesActions from '../courses/actions'
+import EnrollmentsActions from '../enrollments/actions'
+import GroupsActions from '../groups/actions'
+import GroupsFavoriteActions from '../groups/favorites/actions'
+import DashboardActions from '../dashboard/actions'
+import UserInfoActions from '../userInfo/actions'
 import {
   Heading1,
-} from '@common/text'
+} from '../../common/text'
 import {
   LinkButton,
-} from '@common/buttons'
+} from '../../common/buttons'
 import LiveConferenceRow from './LiveConferenceRow'
 import GlobalAnnouncementRow from './GlobalAnnouncementRow'
 import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
-import CourseCard from '@modules/courses/components/CourseCard'
-import NoCourses from '@modules/courses/components/NoCourses'
-import { colors } from '@common/stylesheet'
-import icon from '@images/inst-icons'
-import Navigator from '@routing/Navigator'
-import { getSessionUnsafe, getSession } from '@canvas-api'
+import CourseCard from '../courses/components/CourseCard'
+import NoCourses from '../courses/components/NoCourses'
+import { colors } from '../../common/stylesheet'
+import icon from '../../images/inst-icons'
+import Navigator from '../../routing/Navigator'
+import { getSessionUnsafe, getSession } from '../../canvas-api'
 import AccountNotificationActions from './account-notification-actions'
-import { extractGradeInfo } from '@utils/course-grades'
-import { extractDateFromString } from '@utils/dateUtils'
-import ExperimentalFeature from '@common/ExperimentalFeature'
-import { logEvent } from '@common/CanvasAnalytics'
+import { extractGradeInfo } from '../../utils/course-grades'
+import { extractDateFromString } from '../../utils/dateUtils'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
+import { logEvent } from '../../common/CanvasAnalytics'
+
+const {
+  UserDefaults,
+} = NativeModules
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -76,7 +82,6 @@ type Props = {
   acceptEnrollment?: (string, string) => any,
   rejectEnrollment?: (string, string) => any,
   hideInvite?: (string) => any,
-  showGrades?: boolean,
   pending: number,
   hideOverlays: boolean,
 }
@@ -122,6 +127,11 @@ export class Dashboard extends React.Component<Props, State> {
     showingModal: false,
     fetchingEnrollments: false,
     noCoursesLayout: null,
+    showGrades: false,
+  }
+
+  componentDidMount () {
+    this.observeShowGrades()
   }
 
   async componentWillReceiveProps (newProps: Props) {
@@ -141,6 +151,17 @@ export class Dashboard extends React.Component<Props, State> {
         showingModal: true,
       })
     }
+  }
+
+  observeShowGrades () {
+    const emitter = new NativeEventEmitter(UserDefaults)
+    emitter.addListener(UserDefaults.didChangeNotification, this.updateShowGrades)
+    this.updateShowGrades()
+  }
+
+  updateShowGrades = () => {
+    UserDefaults.getShowGradesOnDashboard()
+      .then(showGrades => this.setState({ showGrades }))
   }
 
   calculateLayout = (width: number, height: number) => {
@@ -244,7 +265,7 @@ export class Dashboard extends React.Component<Props, State> {
         hideOverlay={this.props.hideOverlays}
         course={item}
         grade={extractGradeInfo(item)}
-        showGrade={this.props.showGrades}
+        showGrade={this.state.showGrades}
         onPress={this.selectCourse}
         onCoursePreferencesPressed={this.showUserCoursePreferences}
         initialHeight={cardSize}
@@ -335,14 +356,12 @@ export class Dashboard extends React.Component<Props, State> {
     let sections = []
 
     // Live Conferences
-    if (ExperimentalFeature.dashboardConferences.isEnabled) {
-      sections.push({
-        sectionID: 'dashboard.conferences',
-        data: this.props.liveConferences,
-        renderItem: this.renderLiveConference,
-        keyExtractor: ({ id }) => `conference-${id}`,
-      })
-    }
+    sections.push({
+      sectionID: 'dashboard.conferences',
+      data: this.props.liveConferences,
+      renderItem: this.renderLiveConference,
+      keyExtractor: ({ id }) => `conference-${id}`,
+    })
 
     // Course Invites
     if (this.props.enrollments.length > 0) {
@@ -635,7 +654,6 @@ export function mapStateToProps (isFullDashboard: boolean) {
       (state.asyncActions['userInfo.canActAsUser']?.pending ?? 0)
     )
     const error = state.favoriteCourses.error || accountNotifications.error
-    const showGrades = state.userInfo.showsGradesOnCourseCards
     return {
       pending,
       error,
@@ -646,7 +664,6 @@ export function mapStateToProps (isFullDashboard: boolean) {
       totalCourseCount,
       isFullDashboard,
       groups,
-      showGrades,
       allCourses: allCoursesStringKeys,
       sections,
       enrollments,

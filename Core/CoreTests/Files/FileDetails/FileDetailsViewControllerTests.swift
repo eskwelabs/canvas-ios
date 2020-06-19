@@ -26,7 +26,7 @@ import TestsFoundation
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
-    var context: Context? = ContextModel(.course, id: "2")
+    var context: Context? = Context(.course, id: "2")
     lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
     var navigation: UINavigationController!
     var saveWasCalled = false
@@ -34,7 +34,6 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)
@@ -67,7 +66,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.env.userDefaults?.submitAssignmentID, "3")
 
         controller.assignmentID = nil
-        controller.context = ContextModel.currentUser
+        controller.context = Context.currentUser
         controller.viewWillAppear(false)
         XCTAssertNil(controller.env.userDefaults?.submitAssignmentCourseID)
         XCTAssertNil(controller.env.userDefaults?.submitAssignmentID)

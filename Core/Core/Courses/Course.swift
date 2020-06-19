@@ -19,9 +19,8 @@
 import Foundation
 import CoreData
 
-final public class Course: NSManagedObject, Context, WriteableModel {
+final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
-    public let contextType = ContextType.course
 
     @NSManaged public var courseCode: String?
     @NSManaged var defaultViewRaw: String?
@@ -39,6 +38,10 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
         set { defaultViewRaw = newValue?.rawValue }
+    }
+
+    public var canvasContextID: String {
+        Context(.course, id: id).canvasContextID
     }
 
     @discardableResult
@@ -136,5 +139,20 @@ extension Course {
 
     public var hasStudentEnrollment: Bool {
         return enrollments?.first { $0.isStudent } != nil
+    }
+}
+
+final public class CourseSettings: NSManagedObject {
+    @NSManaged public var courseID: String
+    @NSManaged public var syllabusCourseSummary: Bool
+    @NSManaged public var usageRightsRequired: Bool
+
+    @discardableResult
+    static func save(_ item: APICourseSettings, courseID: String, in context: NSManagedObjectContext) -> CourseSettings {
+        let model: CourseSettings = context.first(where: #keyPath(CourseSettings.courseID), equals: courseID) ?? context.insert()
+        model.courseID = courseID
+        model.syllabusCourseSummary = item.syllabus_course_summary
+        model.usageRightsRequired = item.usage_rights_required
+        return model
     }
 }

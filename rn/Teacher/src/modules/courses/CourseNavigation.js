@@ -43,7 +43,7 @@ import currentWindowTraits from '../../utils/windowTraits'
 import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
-import { logEvent } from '@common/CanvasAnalytics'
+import { logEvent } from '../../common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 import { getFakeStudent } from '../../canvas-api'
 
@@ -306,7 +306,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     tabs.push({
       id: 'student-view',
       label: i18n('Student View'),
-      subtitle: i18n('Opens in Student App'),
+      subtitle: i18n('Opens in Canvas Student'),
       visibility: 'public',
       position: Math.max(),
     })

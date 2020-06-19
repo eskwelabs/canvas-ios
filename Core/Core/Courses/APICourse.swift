@@ -84,6 +84,12 @@ public struct APICourse: Codable, Equatable {
     }
 }
 
+public struct APICourseSettings: Codable {
+    let usage_rights_required: Bool
+    // let home_page_announcement_limit: Int
+    let syllabus_course_summary: Bool
+}
+
 public enum CourseDefaultView: String, Codable {
     case assignments, feed, modules, syllabus, wiki
 }
@@ -157,8 +163,16 @@ extension APICourse.Term {
     }
 }
 
-extension APICourse: APIContext {
-    public var contextType: ContextType { return .course }
+extension APICourseSettings {
+    static func make(
+        usage_rights_required: Bool = false,
+        syllabus_course_summary: Bool = true
+    ) -> APICourseSettings {
+        return APICourseSettings(
+            usage_rights_required: usage_rights_required,
+            syllabus_course_summary: syllabus_course_summary
+        )
+    }
 }
 #endif
 
@@ -168,6 +182,10 @@ public struct GetCoursesRequest: APIRequestable {
 
     public enum EnrollmentState: String {
         case active, invited_or_pending, completed
+    }
+
+    public enum EnrollmentType: String {
+        case teacher, student, ta, observer, designer
     }
 
     public enum State: String {
@@ -198,6 +216,7 @@ public struct GetCoursesRequest: APIRequestable {
     ]
 
     let enrollmentState: EnrollmentState?
+    let enrollmentType: EnrollmentType?
     let state: [State]?
     let include: [Include]
     let perPage: Int
@@ -205,12 +224,14 @@ public struct GetCoursesRequest: APIRequestable {
 
     public init(
         enrollmentState: EnrollmentState? = .active,
+        enrollmentType: EnrollmentType? = nil,
         state: [State]? = nil,
         include: [Include] = Self.defaultIncludes,
         perPage: Int = 10,
         studentID: String? = nil
     ) {
         self.enrollmentState = enrollmentState
+        self.enrollmentType = enrollmentType
         self.state = state
         self.include = include
         self.perPage = perPage
@@ -231,6 +252,7 @@ public struct GetCoursesRequest: APIRequestable {
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
+            .optionalValue("enrollment_type", enrollmentType?.rawValue),
         ]
     }
 }
@@ -272,7 +294,7 @@ public struct GetCourseRequest: APIRequestable {
     }
 
     public var path: String {
-        return ContextModel(.course, id: courseID).pathComponent
+        return Context(.course, id: courseID).pathComponent
     }
 
     public var query: [APIQueryItem] {
@@ -300,7 +322,7 @@ struct PutCourseRequest: APIRequestable {
     ]
     let method = APIMethod.put
     var path: String {
-        return ContextModel(.course, id: courseID).pathComponent
+        return Context(.course, id: courseID).pathComponent
     }
 }
 
@@ -320,6 +342,15 @@ struct PostCourseRequest: APIRequestable {
     ]
     let method = APIMethod.post
     var path: String {
-        return "\(ContextModel(.account, id: accountID).pathComponent)/courses"
+        return "\(Context(.account, id: accountID).pathComponent)/courses"
     }
+}
+
+// https://canvas.instructure.com/doc/api/courses.html#method.courses.api_settings
+public struct GetCourseSettingsRequest: APIRequestable {
+    public typealias Response = APICourseSettings
+
+    let courseID: String
+
+    public var path: String { "courses/\(courseID)/settings" }
 }

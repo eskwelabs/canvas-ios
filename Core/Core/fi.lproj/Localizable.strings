@@ -4,8 +4,26 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Toimi nimellä\" tarkoittaa sisäänkirjautumista tänä käyttäjänä ilman salasanaa. Pystyt ryhtymään toimenpiteisiin tänä käyttäjänä ja muille käyttäjille näyttää siltä, että tämä käyttäjä on suorittanut kyseiset toimenpiteet. Tarkistuslokit kuitenkin kirjaavat, että sinä suoritit toimenpiteet tämän käyttäjän toimesta.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
+/* No comment provided by engineer. */
+"(No subject)" = "(ei aihetta)";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"%@ pts" = "%@ pts";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@kohdassa %2$@ viimeinen viesti oli %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, lukematon";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "vanhempi";
@@ -20,6 +38,9 @@
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Lisää liite";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lisää muistokirjoituksen merkintä";
 
 /* No comment provided by engineer. */
@@ -30,6 +51,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Hälytykset";
+
+/* No comment provided by engineer. */
+"All" = "Kaikki";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Kaikki huomautukset tallennettiin.";
@@ -53,6 +77,12 @@
 "Announcement Created By You" = "Luomasi ilmoitus";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Ilmoituksen tiedot";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Ilmoituksen vastaukset";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tapaamisen saatavilla olo";
 
 /* No comment provided by engineer. */
@@ -62,10 +92,31 @@
 "Appointment Signups" = "Tapaamisen rekisteröitymiset";
 
 /* No comment provided by engineer. */
+"Archived" = "Arkistoitu";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Haluatko varmasti poistaa tämän sivun?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Oletko varma, että haluat poistua opiskelijanäkymästä?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Tehtävän tiedot";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Tehtävän arvosana yllä";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Tehtävän arvosana alla";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Tehtävä puuttuu";
+
+/* No comment provided by engineer. */
+"Attachment" = "Liite";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Yritys %d";
@@ -152,6 +203,9 @@
 "Check network and try again!" = "Tarkasta verkkoyhteys ja yritä uudelleen!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Valitse valokuva";
 
 /* No comment provided by engineer. */
@@ -162,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "Tyhjennä suodatin";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Tyhjennä suodatin";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
@@ -194,6 +251,12 @@
 "Complete" = "Valmis";
 
 /* No comment provided by engineer. */
+"Compose new message" = "Luo uusi viesti";
+
+/* concluded datetime */
+"Concluded %@" = "Viety päätökseen %@";
+
+/* No comment provided by engineer. */
 "Concluded Conferences" = "Loppuunviedyt konferenssit";
 
 /* No comment provided by engineer. */
@@ -204,6 +267,12 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Sisällön linkin virhe";
+
+/* No comment provided by engineer. */
+"Contribute" = "Anna lausunto";
+
+/* No comment provided by engineer. */
+"Contributed" = "Osallistui";
 
 /* No comment provided by engineer. */
 "Conversation Created By Me" = "Luomani keskustelu";
@@ -221,13 +290,25 @@
 "Copied!" = "Kopioitu!";
 
 /* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Työkalun käynnistys ei onnistunut. Yritä uudelleen.";
+
+/* No comment provided by engineer. */
 "Could not save notification preference" = "Ilmoitusasetuksien tallennus ei onnistunut";
 
 /* No comment provided by engineer. */
 "Course Activities" = "Kurssiaktiviteetit";
 
 /* No comment provided by engineer. */
+"Course announcements" = "Kurssin ilmoitukset";
+
+/* No comment provided by engineer. */
 "Course Content" = "Kurssisisältö";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Kurssin arvosana yläpuolella";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Kurssin arvosana alapuolella";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurssit";
@@ -236,7 +317,13 @@
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -263,6 +350,9 @@
 "Delete Comment" = "Poista kommentti";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Poisti tämä vastauksen.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Kuvaa ominaisuus";
 
 /* No comment provided by engineer. */
@@ -287,7 +377,13 @@
 "Discussion Comment" = "Keskustelua koskeva kommentti";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Keskustelun tiedot";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Keskustelun lähetys";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Keskustelun vastaukset";
 
 /* No comment provided by engineer. */
 "Discussions" = "Keskustelut";
@@ -312,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Edit" = "Muokkaa";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Muokkaa vastaanottajia";
 
 /* Description for email communication channel */
 "Email Notifications" = "Sähköposti-ilmoitukset";
@@ -347,6 +446,9 @@
 "External Tool" = "Ulkoinen työkalu";
 
 /* No comment provided by engineer. */
+"External URL" = "Ulkoinen URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Erittäin kiireellinen hätätapaus";
 
 /* No comment provided by engineer. */
@@ -359,7 +461,13 @@
 "Failed Upload" = "Lataus epäonnistui";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Epäonnistui. Asetukset napauttamalla";
+
+/* No comment provided by engineer. */
 "File" = "Tiedosto";
+
+/* No comment provided by engineer. */
+"File Details" = "Tiedoston tiedot";
 
 /* No comment provided by engineer. */
 "File Upload" = "Tiedoston lataus";
@@ -395,7 +503,13 @@
 "Find your school or district" = "Etsi koulusi tai alueesi";
 
 /* No comment provided by engineer. */
+"for %@" = "- %@";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Unohda %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Etusivu";
 
 /* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
@@ -408,6 +522,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Siirry tähän päivään";
+
+/* No comment provided by engineer. */
+"Grades" = "Arvosanat";
 
 /* No comment provided by engineer. */
 "Grading" = "Arvosanojen anto";
@@ -423,6 +540,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Ryhmät";
+
+/* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Pyydä vanhempiasi skannaamaan tämä viivakoodi Canvas Parent -sovelluksesta, jotta he saavat yhteyden sovellukseen.";
 
 /* No comment provided by engineer. */
 "Help" = "Ohje";
@@ -455,7 +575,13 @@
 "Inbox" = "Saapuneet";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "Saapuvia posteja nolla!";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Laitoksen ilmoitukset";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Vuorovaikutukset on rajoitettu tällä sivulla laitoksesi puolesta.";
@@ -465,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Näyttää olevan hyvä päivä levätä, rentoutua ja latautua.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Näyttää siltä kuin tehtäviä ei vielä olisi luotu tässä tilassa.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
@@ -498,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Kirjasto";
+
+/* like action */
+"Like" = "Tykkää";
 
 /* No comment provided by engineer. */
 "Link" = "Linkki";
@@ -536,6 +668,9 @@
 "Locate QR Code" = "Etsi viivakoodi";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Lukittu, kunnes ”%@” on arvosteltu";
+
+/* No comment provided by engineer. */
 "Log In" = "Kirjaudu sisään";
 
 /* No comment provided by engineer. */
@@ -554,6 +689,9 @@
 "Login Error" = "Kirjautumisvirhe";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI-työkalu";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Varmista, että otat kameran käyttöoikeuden käyttöön asetuksissa";
 
 /* No comment provided by engineer. */
@@ -561,6 +699,30 @@
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
+
+/* No comment provided by engineer. */
+"Mark All as Read" = "Merkitse kaikki luetuiksi";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Merkitse lukemattomaksi";
+
+/* No comment provided by engineer. */
+"Mark as Done" = "Merkitse valmiiksi";
+
+/* No comment provided by engineer. */
+"Mark as Read" = "Merkitse luetuksi";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Merkitse kumotuksi";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Merkitse lukemattomaksi";
+
+/* No comment provided by engineer. */
+"Mark done" = "Merkitse valmiiksi";
+
+/* No comment provided by engineer. */
+"Marked done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
 "me" = "minä";
@@ -575,7 +737,16 @@
 "Membership Update" = "Jäsenyyden päivitys";
 
 /* No comment provided by engineer. */
+"Message" = "Viesti";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Viesti kohteesta %1$@, %2$@, %3$@, %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "Puuttuu";
+
+/* No comment provided by engineer. */
+"Module Item" = "Moduulikohde";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduulit";
@@ -590,10 +761,16 @@
 "New Conferences" = "Uudet konferenssit";
 
 /* No comment provided by engineer. */
+"New Message" = "Uusi viesti";
+
+/* No comment provided by engineer. */
 "New To Do" = "Uusi tehtävä";
 
 /* No comment provided by engineer. */
 "Next" = "Seuraava";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Ei tehtäviä";
 
 /* No comment provided by engineer. */
 "No Conferences" = "Ei konferensseja";
@@ -620,7 +797,13 @@
 "No Modules" = "Ei moduuleita";
 
 /* No comment provided by engineer. */
+"No Pages" = "Ei sivuja";
+
+/* No comment provided by engineer. */
 "No Results" = "Ei tuloksia";
+
+/* No comment provided by engineer. */
+"No Subject" = "Ei aihetta";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
@@ -665,6 +848,9 @@
 "Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
 
 /* No comment provided by engineer. */
+"Options" = "Asetukset";
+
+/* No comment provided by engineer. */
 "orange" = "oranssi";
 
 /* No comment provided by engineer. */
@@ -677,10 +863,16 @@
 "Page" = "Sivu";
 
 /* No comment provided by engineer. */
+"Page Details" = "Sivun tiedot";
+
+/* No comment provided by engineer. */
 "Pages" = "Sivut";
 
 /* No comment provided by engineer. */
 "Pair with Observer" = "Yhdistä havaitsijan kanssa";
+
+/* No comment provided by engineer. */
+"Pairing Code: " = "Parinmuodostuskoodi: ";
 
 /* No comment provided by engineer. */
 "Password" = "Salasana";
@@ -728,6 +920,9 @@
 "published" = "julkaistu";
 
 /* No comment provided by engineer. */
+"Published" = "Julkaistu";
+
+/* No comment provided by engineer. */
 "purple" = "purppura";
 
 /* Description for Push Notification channel */
@@ -735,6 +930,12 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Tietovisa";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Tietovisan tiedot";
+
+/* No comment provided by engineer. */
+"Recipients" = "Vastaanottajat";
 
 /* No comment provided by engineer. */
 "Record Audio" = "Nauhoita ääni";
@@ -749,6 +950,9 @@
 "Redo" = "Suorita uudelleen";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Koskee: %@";
+
+/* No comment provided by engineer. */
 "Remove" = "Poista";
 
 /* No comment provided by engineer. */
@@ -756,6 +960,15 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Kohteen poistaja %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Vastausta";
+
+/* No comment provided by engineer. */
+"Reply" = "Vastaus";
+
+/* No comment provided by engineer. */
+"Reply All" = "Vastaa kaikille";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
@@ -782,6 +995,12 @@
 "Scheduling" = "Aikatauluttaminen";
 
 /* No comment provided by engineer. */
+"Score at least %@" = "Saa pisteitä vähintään  %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Saatu pisteitä vähintään %@";
+
+/* No comment provided by engineer. */
 "Search" = "Hae";
 
 /* No comment provided by engineer. */
@@ -797,10 +1016,19 @@
 "See what's new." = "Katso, mitä uutta on tulossa.";
 
 /* No comment provided by engineer. */
+"Select" = "Valitse";
+
+/* No comment provided by engineer. */
+"Select a Path" = "Valitse polku";
+
+/* No comment provided by engineer. */
 "Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
 "Select One" = "Valitse yksi";
+
+/* No comment provided by engineer. */
+"Selected!" = "Valittu!";
 
 /* No comment provided by engineer. */
 "Send" = "Lähetä";
@@ -815,16 +1043,28 @@
 "Send weekly summary" = "Lähetä viikoittainen yhteenveto";
 
 /* No comment provided by engineer. */
+"Sent" = "Lähetetty";
+
+/* No comment provided by engineer. */
 "Set text color" = "Määritä tekstiväri";
 
 /* No comment provided by engineer. */
 "Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Jaa seuraava yhdistämiskoodi havaitsijan kanssa mahdollistaaksesi heidän muodostavan yhteyden kanssasi. Tämä koodi vanhenee seitsemässä päivässä tai yhden käytön jälkeen.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Näytä yksi kuukausi kerrallaan";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Näytä arvosanat";
+
+/* No comment provided by engineer. */
+"Show more options" = "Näytä lisäasetukset";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
@@ -845,7 +1085,13 @@
 "Something is Wrong" = "Jotakin on väärin";
 
 /* No comment provided by engineer. */
+"Starred" = "Tähdellä merkityt";
+
+/* No comment provided by engineer. */
 "Start recording" = "Aloita nauhoitus";
+
+/* started datetime */
+"Started %@" = "Käynnistetty %@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Lopeta toimiminen käyttäjänä";
@@ -938,6 +1184,9 @@
 "There are no modules to display yet." = "Näytettäviä moduuleita ei vielä näytetä.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Näytettäviä sivuja ei vielä ole.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
 
 /* No comment provided by engineer. */
@@ -950,7 +1199,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Tapahtumien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Arvosanojenn latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Moduulien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Sivujen latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Ihmisten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
@@ -980,10 +1235,16 @@
 "Title..." = "Otsikko...";
 
 /* No comment provided by engineer. */
+"To" = "Vastaanottaja";
+
+/* No comment provided by engineer. */
 "to %@" = "- %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Kokonaisarvosana";
 
 /* No comment provided by engineer. */
 "Total time" = "Aika yhteensä";
@@ -1004,10 +1265,22 @@
 "unpublished" = "julkaisematon";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Julkaisematon";
+
+/* No comment provided by engineer. */
+"Unread" = "Lukematon";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Tukematon kohde";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Päivitetyt kieliasetukset";
 
 /* No comment provided by engineer. */
 "Upload File" = "Lataa tiedosto";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@ lataus on %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Ladataan tiedostoa %1$@/%2$@";
@@ -1037,7 +1310,22 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "Näytä";
+
+/* No comment provided by engineer. */
+"View Less" = "Näytä vähemmän";
+
+/* No comment provided by engineer. */
 "View Modules" = "Tarkastele moduuleita";
+
+/* No comment provided by engineer. */
+"View More" = "Näytä enemmän";
+
+/* No comment provided by engineer. */
+"View more replies" = "Tarkastele lisää vastauksia";
+
+/* No comment provided by engineer. */
+"Viewed" = "Tarkasteltu";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Emme löytäneet ketään sellaista.";
@@ -1079,13 +1367,13 @@
 "You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
 
 /* No comment provided by engineer. */
-"You will be logged out of this student account." = "Sinut kirjataan ulos tältä opiskelijatililtä.";
-
-/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Lopetat toimimasta tänä käyttäjänä ja palaat tilillesi.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Olet ajan tasalla";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Tämän lapsen kursseja ei ehkä vielä julkaista.";

@@ -25,7 +25,7 @@ public protocol CoreWebViewLinkDelegate: class {
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: self)
+        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
         return true
     }
     public var routeLinksFrom: UIViewController { return self }
@@ -64,6 +64,10 @@ open class CoreWebView: WKWebView {
                 self.setNeedsLayout()
             }
         }
+        handle("loadFrameSource") { [weak self] message in
+            guard let src = message.body as? String else { return }
+            self?.loadFrame(src: src)
+        }
     }
 
     public var contentInputAccessoryView: UIView? {
@@ -77,6 +81,15 @@ open class CoreWebView: WKWebView {
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
     }
 
+    func loadFrame(src: String) {
+        let url = URL(string: src)
+        let request = GetWebSessionRequest(to: url)
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, _ in performUIUpdate {
+            guard let response = response else { return }
+            self?.load(URLRequest(url: response.session_url))
+        } }
+    }
+
     func html(for content: String) -> String {
         // If it looks like jQuery is used, include the same version of jQuery as web.
         let jquery = content.contains("$(") || content.contains("$.")
@@ -85,23 +98,30 @@ open class CoreWebView: WKWebView {
 
         return """
             <!doctype html>
+            <html
+                lang="\(CoreWebView.htmlString(Locale.current.identifier))"
+                dir="\(effectiveUserInterfaceLayoutDirection == .leftToRight ? "ltr" : "rtl")"
+            >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
             \(jquery)
             \(content)
+            </html>
         """
     }
 
     var css: String {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
-        let buttonFore = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
+        let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
         return """
             html {
                 background: \(UIColor.named(.backgroundLightest).hexString);
                 color: \(UIColor.named(.textDarkest).hexString);
-                font: -apple-system-body;
+                font-family: system-ui;
+                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
@@ -134,14 +154,14 @@ open class CoreWebView: WKWebView {
                 padding: 12px 8px 12px 8px;
                 background-color: \(buttonBack.hexString);
                 border-radius: 4px;
-                color: \(buttonFore.hexString);
+                color: \(buttonText.hexString);
                 font-weight: 600;
                 text-decoration: none;
                 text-align: center;
             }
             .lock-explanation {
                 font-weight: 500;
-                font-size: 16px;
+                font-size: 1rem;
                 text-align: center;
             }
         """
@@ -185,8 +205,8 @@ open class CoreWebView: WKWebView {
                     if (match.length == 2) {
                         const mediaID = match[1]
                         const video = document.createElement('video')
-                        video.src = 'https://canvas.instructure.com/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
-                        video.setAttribute('poster', 'https://canvas.instructure.com/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
+                        video.src = '/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
+                        video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
                         video.setAttribute('controls', '')
                         video.setAttribute('preload', 'none')
                         iframe.parentNode.parentNode.replaceChild(video, iframe.parentNode)
@@ -195,6 +215,16 @@ open class CoreWebView: WKWebView {
                     iframe.addEventListener('error', event => replace(event.target))
                 }
             })
+
+            // If there is only one iframe
+            // and id="cnvs_content"
+            // and the src is a canvas file
+            // reload the webview with an authenticated version of the iframe's src
+            // https://community.canvaslms.com/thread/31562-canvas-ios-app-not-loading-iframe-content
+            const iframes = document.querySelectorAll('iframe');
+            if (iframes.length == 1 && /\\/courses\\/\\d+\\/files\\/\\d+\\/download/.test(iframes[0].src) && iframes[0].id === "cnvs_content") {
+                window.webkit.messageHandlers.loadFrameSource.postMessage(iframes[0].src)
+            }
 
             // Send content height whenever it changes
             let lastHeight = 0
@@ -219,6 +249,7 @@ open class CoreWebView: WKWebView {
                 checkSize()
                 document.addEventListener('load', checkSize, true)
             })
+            window.addEventListener('error', checkSize, true)
             checkSize()
         """
     }
@@ -261,16 +292,19 @@ extension CoreWebView: WKNavigationDelegate {
         }
     }
 
-    public func scrollIntoView(fragment: String) {
+    public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
         guard autoresizesHeight else { return }
         let script = """
             (() => {
                 let target = document.querySelector('a[name=\"\(fragment)\"],#\(fragment)')
-                return target ? target.clientTop || target.offsetTop : null
+                return target && target.getBoundingClientRect().y
             })()
         """
         evaluateJavaScript(script) { (result: Any?, _: Error?) in
-            guard var offset = result as? CGFloat else { return }
+            guard var offset = result as? CGFloat else {
+                then?(false)
+                return
+            }
             var view: UIView = self
             while let parent = view.superview {
                 offset += view.frame.minY
@@ -280,6 +314,7 @@ extension CoreWebView: WKNavigationDelegate {
                 scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: true)
                 break
             }
+            then?(true)
         }
     }
 }
@@ -290,12 +325,12 @@ extension CoreWebView {
 
     public static func keepCookieAlive(for env: AppEnvironment) {
         guard env.api.loginSession?.accessToken != nil else { return }
-        DispatchQueue.main.async {
+        performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
             cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
                 let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
-                env.api.makeRequest(request) { data, _, _ in DispatchQueue.main.async {
+                env.api.makeRequest(request) { data, _, _ in performUIUpdate {
                     guard let url = data?.session_url else { return }
                     cookieKeepAliveWebView.load(URLRequest(url: url))
                 } }
@@ -305,7 +340,7 @@ extension CoreWebView {
     }
 
     public static func stopCookieKeepAlive() {
-        DispatchQueue.main.async {
+        performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
             cookieKeepAliveTimer = nil
         }

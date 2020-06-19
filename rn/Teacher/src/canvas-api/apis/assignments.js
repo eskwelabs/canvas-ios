@@ -33,7 +33,7 @@ export function getAssignment (courseID: string, assignmentID: string): ApiPromi
   const options = {
     params: {
       include: ['overrides', 'observed_users'],
-      all_dates: true,
+      all_dates: 'true',
     },
   }
 
@@ -59,7 +59,7 @@ export function getAssignmentGradeableStudents (courseID: string, assignmentID: 
 
   let options = {
     params: {
-      per_page: 99,
+      per_page: 100,
     },
   }
   const students = paginate(url, options)
