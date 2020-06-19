@@ -72,7 +72,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         env.pageViewLogger = pageViewLogger
 
         view = SubmissionDetailsView()
-        presenter = SubmissionDetailsPresenter(env: env, view: view, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1")
+        presenter = SubmissionDetailsPresenter(env: env, view: view, context: .course("1"), assignmentID: "1", userID: "1")
     }
 
     func testViewIsReady() {
@@ -336,6 +336,19 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testLockedEmptyViewIsHidden() {
         Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
+    }
+
+    func testLockedEmptyViewIsHiddenWithUntilDateInThePast() {
+        Assignment.make(from: .make(
+            submission: .make(id: "1", assignment_id: "1", user_id: 1, workflow_state: SubmissionWorkflowState.submitted),
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            lock_at: Date().addDays(-5),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
+            )
+        )
         XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
     }
 

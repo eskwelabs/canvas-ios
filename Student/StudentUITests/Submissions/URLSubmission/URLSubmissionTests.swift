@@ -22,13 +22,13 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class URLSubmissionTests: StudentUITestCase {
+class URLSubmissionTests: CoreUITestCase {
     lazy var course = mock(course: .make())
     lazy var assignment = mock(assignment: .make(submission_types: [ .online_url ]))
 
     func testSubmitUrl() {
         mockBaseRequests()
-        mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
+        mockData(CreateSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, body: nil), noCallback: true)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -43,7 +43,7 @@ class URLSubmissionTests: StudentUITestCase {
 
     func testShowSubmission() {
         mockBaseRequests()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             assignment_id: assignment.id,
             user_id: "1",
             submission_type: .online_url,

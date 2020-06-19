@@ -121,17 +121,15 @@ public class CanvasWebView: WKWebView {
         case let .error(description):
             // 🤔 I wonder if I can put emoji in a localized string?
             let title = NSLocalizedString("⚠️ Error Loading Content", comment: "web content failed to load")
-            let fromTemplate = PageTemplateRenderer.htmlString(
+            let fromTemplate = htmlString(
                 title: title,
-                body: "<p>\(description)</p>",
-                viewportWidth: bounds.width
+                body: "<p>\(description)</p>"
             )
             loadHTMLString(fromTemplate, baseURL: nil)
         case let .html(title, body, baseURL):
-            let fromTemplate = PageTemplateRenderer.htmlString(
+            let fromTemplate = htmlString(
                 title: title,
-                body: body,
-                viewportWidth: bounds.width
+                body: body
             )
             loadHTMLString(fromTemplate, baseURL: baseURL)
         case let .url(url):
@@ -162,7 +160,8 @@ public class CanvasWebView: WKWebView {
         }
 
         if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
-            let js = try? String(contentsOf: jsPath, encoding: .utf8) {
+            var js = try? String(contentsOf: jsPath, encoding: .utf8) {
+            js = js.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", bundle: .core, comment: ""))
             let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
             config.userContentController.addUserScript(script)
         }

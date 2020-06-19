@@ -19,7 +19,7 @@
 import Foundation
 
 class QuizController {
-    let service: QuizService
+    let service: CanvasQuizService
     
     fileprivate (set) var quiz: Quiz?
     fileprivate (set) var submission: QuizSubmission?
@@ -32,7 +32,7 @@ class QuizController {
         }
     }
     
-    init(service: QuizService, quiz: Quiz? = nil) {
+    init(service: CanvasQuizService, quiz: Quiz? = nil) {
         self.service = service
         self.quiz = quiz
     }
@@ -76,7 +76,7 @@ class QuizController {
     
     fileprivate func resultURLForAttempt(_ attempt: Int) -> URL? {
         // URLByAppendingPathComponent encoded the version query param wrong so...
-        let url = URL(string: service.baseURL.absoluteString + "/" + service.context.htmlPath + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
+        let url = URL(string: service.baseURL.absoluteString + "/" + service.context.pathComponent + "/quizzes/\(service.quizID)/history?attempt=\(attempt)")
         return url
     }
 }

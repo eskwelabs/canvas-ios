@@ -9,7 +9,6 @@
     "TabBar.\\w+$",
     "\\/Views\\/",
     "CanvasCore\/",
-    "Core\/Use Cases\/SubmitFileSubmission",
     "Frameworks\/",
     "Parent\/",
     "Pods\\/",
@@ -17,7 +16,8 @@
     "Student\/GradesWidget\/",
     "UITestHelpers\/",
     "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
-    "SubmissionButtonPresenter.swift"
+    "SubmissionButtonPresenter.swift",
+    "NSPersistentContainerExtensions.swift"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9

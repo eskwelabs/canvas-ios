@@ -50,8 +50,8 @@ jest.mock('react-native-fs', () => ({
 }))
 
 const selectors = {
-  share: '[testID="view-file.share-btn"]',
-  copy: '[testID="view-file.copy-btn"]',
+  share: '[testID="FileDetails.shareButton"]',
+  copy: '[testID="FileDetails.copyButton"]',
 }
 
 const updatedState = (tree: ShallowWrapper) => new Promise(resolve => tree.setState({}, resolve))
@@ -131,6 +131,17 @@ describe('ViewFile', () => {
 
   it('renders image', async () => {
     props.file.mime_class = 'image'
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve() // wait for mkdir.
+    await Promise.resolve() // wait for file download.
+    await updatedState(tree)
+    tree.update()
+    expect(tree.find('[testID="view-file.image"]').length).toBe(1)
+  })
+
+  it('renders heic', async () => {
+    props.file.mime_class = 'file'
+    props.file['content-type'] = 'image/heic'
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for mkdir.
     await Promise.resolve() // wait for file download.

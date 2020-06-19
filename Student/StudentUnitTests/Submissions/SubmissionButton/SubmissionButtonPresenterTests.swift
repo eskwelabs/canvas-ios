@@ -173,7 +173,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         drainMainQueue()
         XCTAssert(router.viewControllerCalls.isEmpty)
 
-        let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
+        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
         api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())
         wait(for: [router.showExpectation], timeout: 5)
@@ -187,7 +187,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         drainMainQueue()
         XCTAssert(router.calls.isEmpty)
 
-        a.discussionTopic?.htmlUrl = url
+        a.discussionTopic?.htmlURL = url
         presenter.submitType(.discussion_topic, for: a, button: UIView())
         drainMainQueue()
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))

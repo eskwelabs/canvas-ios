@@ -35,6 +35,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         let env = AppEnvironment.shared
         env.router = router
         env.loginDelegate = self
+        env.app = .parent
+        env.window = window
         return env
     }()
 
@@ -66,7 +68,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
-            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
         }
         return false
     }
@@ -94,7 +96,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         }
         Analytics.shared.logSession(session)
         getPreferences()
-        showRootView()
+        GetBrandVariables().fetch(environment: self.environment) { [weak self] _, _, _ in performUIUpdate {
+            self?.showRootView()
+        } }
     }
 
     func showRootView() {
@@ -137,6 +141,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
+    var supportedDeepLinkActions: [String] {
+        return ["create-account"]
+    }
+
     var supportsQRCodeLogin: Bool {
         ExperimentalFeature.qrLoginParent.isEnabled
     }
@@ -203,6 +211,17 @@ extension ParentAppDelegate: LoginDelegate {
     func logout() {
         if let session = environment.currentSession {
             userDidLogout(session: session)
+        }
+    }
+
+    func handleDeepLink(url: URL) {
+        if url.host == "create-account" {
+            let title = NSLocalizedString("Login required", comment: "")
+            let message = NSLocalizedString("It looks like you’re trying to add a student. Try adding this student after you’ve logged in", comment: "")
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
+            guard let vc = topMostViewController() else { return }
+            AppEnvironment.shared.router.show(alert, from: vc, options: .modal())
         }
     }
 }
@@ -278,9 +297,11 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         }
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
         completionHandler([.alert, .sound])
     }
 }

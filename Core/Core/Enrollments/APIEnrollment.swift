@@ -70,7 +70,7 @@ public struct APIEnrollment: Codable, Equatable {
     // let current_period_unposted_current_grade: String?
     // let current_period_unposted_final_grade: String?
 
-    let observed_user: APIUser?
+    public let observed_user: APIUser?
 
     // https://canvas.instructure.com/doc/api/enrollments.html#Grade
     public struct Grades: Codable, Equatable {
@@ -186,7 +186,7 @@ struct PostEnrollmentRequest: APIRequestable {
     let body: Body?
     let method = APIMethod.post
     var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/enrollments"
     }
 }
@@ -200,7 +200,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
 
     public enum State: String {
         case creation_pending, active, invited, current_and_future, completed
-        static var allForParentObserver: [State] {
+        public static var allForParentObserver: [State] {
             return [.creation_pending, .active, .invited, .current_and_future, .completed]
         }
     }
@@ -213,7 +213,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
     let states: [State]?
     let roles: [Role]?
 
-    init(context: Context, userID: String? = nil, gradingPeriodID: String? = nil, types: [String]? = nil, includes: [Include] = [], states: [State]? = nil, roles: [Role]? = nil) {
+    public init(context: Context, userID: String? = nil, gradingPeriodID: String? = nil, types: [String]? = nil, includes: [Include] = [], states: [State]? = nil, roles: [Role]? = nil) {
         self.context = context
         self.userID = userID
         self.gradingPeriodID = gradingPeriodID
@@ -228,6 +228,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
     }
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
+            .value("per_page", "100"),
             .include(includes.map { $0.rawValue }),
         ]
         if let states = states {

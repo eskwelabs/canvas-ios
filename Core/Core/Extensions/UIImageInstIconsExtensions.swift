@@ -28,12 +28,12 @@ extension UIImage {
 
     public enum InstIconName: String, CaseIterable {
         case add, addressBook, alerts, announcement, arrowOpenDown, arrowOpenLeft, arrowOpenRight,
-            assignment, audio, bold, box, bulletList, calendarMonth, check, clock, cloudLock,
-            comment, complete, courses, dashboard, discussion, document, email, empty,
-            exitFullScreen, externalLink, eye, folder, forward, fullScreen, gradebook, group,
+            assignment, audio, bold, box, bulletList, calendarClock, calendarMonth, check, clock,
+            cloudLock, comment, complete, courses, dashboard, discussion, document, edit, email,
+            empty, exitFullScreen, externalLink, eye, folder, forward, fullScreen, gradebook, group,
             hamburger, highlighter, home, image, info, instructure, italic, link, lock, lti, marker,
-            miniArrowDown, miniArrowEnd, miniArrowStart, miniArrowUp, module, more, no,
-            numberedList, off, outcomes, paint, paperclip, pause, pdf, peerReview, play,
+            masteryPaths, miniArrowDown, miniArrowEnd, miniArrowStart, miniArrowUp, module, more,
+            no, note, numberedList, off, outcomes, paint, paperclip, pause, pdf, peerReview, play,
             prerequisite, publish, question, quiz, refresh, reply, replyAll, rubric, settings, star,
             strikethrough, text, textColor, trash, trouble, unlock, user, video, warning, x
     }

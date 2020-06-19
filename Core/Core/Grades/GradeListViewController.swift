@@ -72,7 +72,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         self?.update()
     }
     lazy var enrollments = env.subscribe(GetEnrollments(
-        context: ContextModel(.course, id: courseID),
+        context: .course(courseID),
         userID: userID,
         gradingPeriodID: gradingPeriodID,
         types: [ "StudentEnrollment" ],
@@ -130,6 +130,12 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
         }
+        env.pageViewLogger.startTrackingTimeOnViewController()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/grades", attributes: [:])
     }
 
     @objc func refresh() {
@@ -178,7 +184,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     func updateGradingPeriod(id: String?) {
         gradingPeriodID = id
         enrollments = env.subscribe(GetEnrollments(
-            context: ContextModel(.course, id: courseID),
+            context: .course(courseID),
             userID: userID,
             gradingPeriodID: gradingPeriodID,
             types: [ "StudentEnrollment" ],

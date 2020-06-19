@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let env = AppEnvironment.shared
         env.router = Teacher.router
         env.loginDelegate = self
+        env.app = .teacher
+        env.window = window
         return env
     }()
 
@@ -40,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
         CacheManager.resetAppIfNecessary()
+        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
@@ -171,7 +174,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
 
                 guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
-                if helmVC.moduleName == url.path {
+                let path = url.path.isEmpty ? "/" : url.path
+                if helmVC.moduleName == path {
                     rootView.selectedIndex = index
                     rootView.resetSelectedViewController()
                     return

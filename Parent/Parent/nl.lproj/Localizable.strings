@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Geen onderwerp)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    De cursist die je probeert toe te voegen is op een ander Canvas-instituut.\n                    Meld je aan of maak een account bij dat instituut om die cursist toe te voegen.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ vervalt op %2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begint op %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, ongelezen";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Toevoegen";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Bijlagen toevoegen";
 
 /* No comment provided by engineer. */
 "Add Student" = "Cursist toevoegen";
 
 /* No comment provided by engineer. */
+"Add student with..." = "Cursist toevoegen met…";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Voeg bovenaan cursisten toe of open het algemene menu om je voor te doen als cursist.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "Cursisten bovenaan toevoegen.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Waarschuw me als:";
 
 /* Alerts Tab */
 "Alerts" = "Waarschuwingen";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Er is een fout opgetreden";
+"Already have an account? %@" = "Heb je al een account? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Opdrachtcijfer hoger dan";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Opdrachtcijfer lager dan";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Opdracht ontbreekt";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Opdrachtherinnering";
 
 /* No comment provided by engineer. */
 "Back" = "Terug";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Door op ‘Account maken’ te tikken, ga je akkoord met de %1$@ en erken je het %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Kan geen percentage gebruiken dat hoger is dan 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Kan geen percentage gebruiken dat lager is dan 100";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Kies een cursus voor bericht";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Bericht opstellen";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Cursusaankondigingen";
-
-/* Course Grade High On Description */
-"Course grade above" = "Cursuscijfer hoger dan";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Cursuscijfer lager dan";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Kan QR-code niet parseren of QR-code is ongeldig";
 
 /* Courses Tab */
 "Courses" = "Cursussen";
+
+/* No comment provided by engineer. */
+"Create Account" = "Account maken";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Huidige cursist: %@. Tik om van cursist te wisselen";
@@ -107,7 +80,13 @@
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Ontvangers bewerken";
+"Domain mismatch" = "Domein komt niet overeen";
+
+/* No comment provided by engineer. */
+"Email address" = "E-mailadres";
+
+/* No comment provided by engineer. */
+"Email..." = "E-mail...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Evenementherinnering";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Mislukt. Tik voor opties";
-
-/* No comment provided by engineer. */
-"File" = "Bestand";
-
-/* No comment provided by engineer. */
 "Find School" = "School zoeken";
-
-/* No comment provided by engineer. */
-"for %@" = "voor %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Voorpagina";
 
 /* No comment provided by engineer. */
+"Full name" = "Volledige naam";
+
+/* No comment provided by engineer. */
+"Full name..." = "Volledige naam...";
+
+/* No comment provided by engineer. */
 "Grades" = "Cijfers";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Hoog cursuscijfer kan niet lager zijn dan laag cursuscijfer";
 
 /* No comment provided by engineer. */
 "In-Class" = "In-Klas";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Voer de koppelingscode cursist in die je gekregen hebt.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Aankondigingen van de instelling";
-
-/* Title for an alert view */
-"Invalid Input" = "Ongeldige invoer";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ongeldige drempel";
 
 /* No comment provided by engineer. */
 "Late" = "Laat";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Cursisten beheren";
-
-/* No comment provided by engineer. */
-"Message" = "Bericht";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Bericht van %1$@, %2$@, op %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ontbrekend";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "n.v.t.";
 
-/* No comment provided by engineer. */
-"New Message" = "Nieuw bericht";
-
 /* Empty Courses Text */
 "No Courses" = "Geen cursussen";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Geen beoordeling";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Geen cursisten";
 
 /* No comment provided by engineer. */
-"No Subject" = "Geen onderwerp";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Koppelingscode";
 
 /* No comment provided by engineer. */
+"Password" = "Wachtwoord";
+
+/* No comment provided by engineer. */
+"Password is required" = "Wachtwoord is vereist";
+
+/* No comment provided by engineer. */
+"Password..." = "Wachtwoord...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Toestemming vereist";
 
 /* No comment provided by engineer. */
-"Recipients" = "Geadresseerden";
+"Please enter an email address" = "Voer een e-mailadres in";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Voer volledige naam in";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Privacybeleid";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR-code";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Betreffende: %@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Betreffende: %1$@, opdracht -  %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Antwoord";
-
-/* No comment provided by engineer. */
-"Reply All" = "Allen beantwoorden";
-
-/* No comment provided by engineer. */
 "Retry" = "Opnieuw proberen";
-
-/* No comment provided by engineer. */
-"Send" = "Versturen";
 
 /* No comment provided by engineer. */
 "Settings" = "Instellingen";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Instellingen. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Vak";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Aanmelden";
 
 /* No comment provided by engineer. */
 "Submitted" = "Ingediend";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Servicevoorwaarden";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "De waarde moet een getal zijn tussen 0 en 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Er is een probleem met het laden van het DiscussionKit databasebestand.";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van cursisten. Ophalen om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Deze aankondiging is vervallen.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
-
-/* No comment provided by engineer. */
-"To" = "Naar";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemen met inloggen";
@@ -298,10 +262,13 @@
 "Unread" = "Ongelezen";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "%1$@ wordt geüpload om %2$@";
+"Welcome, Admin!" = "Welkom beheerder!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "Welkom beheerder!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Je kunt geen hoge drempel instellen die lager is dan of gelijk aan een voorheen ingestelde lage drempel.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Je kunt geen lage drempel instellen die hoger is dan of gelijk aan een voorheen ingestelde hoge drempel.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";

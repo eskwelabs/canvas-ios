@@ -19,19 +19,18 @@
 import Foundation
 import CoreData
 
-public final class Plannable: NSManagedObject {
-    public enum PlannableType: String, Codable {
-        case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
-        case other
-    }
+public enum PlannableType: String, Codable {
+    case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
+    case other
+}
 
+public final class Plannable: NSManagedObject {
     public typealias JSON = APIPlannable
 
     @NSManaged public var id: String
     @NSManaged public var typeRaw: String
     @NSManaged public var title: String?
     @NSManaged public var htmlURL: URL?
-    @NSManaged public var contextImage: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date?
@@ -50,8 +49,24 @@ public final class Plannable: NSManagedObject {
     }
 
     public var context: Context? {
-        get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
+        get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
+    }
+
+    @discardableResult
+    public static func save(_ item: PlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
+        model.id = item.plannableID
+        model.plannableType = item.plannableType
+        model.htmlURL = item.htmlURL
+        model.contextName = item.contextName
+        model.title = item.plannableTitle
+        model.date = item.date
+        model.pointsPossible = item.pointsPossible
+        model.details = item.details
+        model.context = item.context
+        model.userID = userID
+        return model
     }
 
     @discardableResult
@@ -61,7 +76,6 @@ public final class Plannable: NSManagedObject {
         model.id = item.plannable_id.value
         model.typeRaw = item.plannable_type
         model.htmlURL = item.html_url?.rawValue
-        model.contextImage = item.context_image
         model.contextName = item.context_name
         model.title = item.plannable?.title
         model.date = item.plannable_date
@@ -71,13 +85,13 @@ public final class Plannable: NSManagedObject {
 
         if let type = item.context_type.flatMap({ ContextType(rawValue: $0.lowercased()) }) {
             if type == .course, let id = item.course_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
             if type == .group, let id = item.group_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
             if type == .user, let id = item.user_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
         }
         return model
@@ -99,7 +113,7 @@ extension Plannable {
         case .wiki_page:
             return UIImage.icon(.document, .line)
         case .planner_note:
-            return UIImage.icon(.document, .line)
+            return UIImage.icon(.note, .line)
         case .calendar_event:
             return UIImage.icon(.calendarMonth, .line)
         case .assessment_request:

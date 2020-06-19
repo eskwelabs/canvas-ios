@@ -22,14 +22,14 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class AssignmentDetailsTests: StudentUITestCase {
+class AssignmentDetailsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     func testUnsubmittedUpload() {
         // FLAKY: color cache doesn't always get updated
         mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            course.canvasContextID: "#123456",
+            Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
         let assignment = mock(assignment: .make(
             description: "A description",
@@ -86,10 +86,8 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
 
-        let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
-        let authorName = app.webViews.staticTexts.element(boundBy: 1).label
-        let message = app.webViews.staticTexts.element(boundBy: 2).label
-        XCTAssertEqual(authorAvatar, "B")
+        let authorName = app.webViews.links.element(boundBy: 0).label
+        let message = app.webViews.staticTexts.element(boundBy: 0).label
         XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
     }
@@ -212,7 +210,7 @@ class AssignmentDetailsTests: StudentUITestCase {
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
         mockBaseRequests()
-        mockData(GetCourseRequest(courseID: course.id), value: APICourse.make(enrollments: []))
+        mockData(GetCourseRequest(courseID: course.id.value), value: APICourse.make(enrollments: []))
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))

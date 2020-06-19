@@ -30,10 +30,10 @@ class UserFilesTests: CoreUITestCase {
         mockBaseRequests()
         mockData(GetAccountHelpLinksRequest(), value: nil)
         mockData(GetGlobalNavExternalToolsRequest(), value: [])
-        mockData(GetContextFolderHierarchyRequest(context: ContextModel(.user, id: "self")), value: [root])
-        mockData(ListFoldersRequest(context: root), value: [])
-        mockData(ListFilesRequest(context: root), value: [])
-        mockData(GetFolderRequest(context: nil, id: root.id), value: root)
+        mockData(GetContextFolderHierarchyRequest(context: .user("self")), value: [root])
+        mockData(ListFoldersRequest(context: Context(.folder, id: root.id.value)), value: [])
+        mockData(ListFilesRequest(context: Context(.folder, id: root.id.value)), value: [])
+        mockData(GetFolderRequest(context: nil, id: root.id.value), value: root)
         sleep(1)
 
         logIn()
@@ -60,17 +60,17 @@ class UserFilesTests: CoreUITestCase {
         wait(for: [uploadExpectation], timeout: 30)
     }
 
-    func xtestAddFileAudio() {
+    func testAddFileAudio() {
         FilesList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        app.find(id: "audio-recorder.record-btn").tap()
-        app.find(id: "audio-recorder.stop-btn").tap()
+        AudioRecorder.recordButton.tap()
+        AudioRecorder.stopButton.tap()
 
         mockUpload {
-            app.find(id: "audio-recorder.done-btn").tap()
+            AudioRecorder.sendButton.tap()
         }
     }
 

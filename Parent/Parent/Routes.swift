@@ -40,7 +40,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.conversations) { _, _ in
-        return ConversationListViewController.create()
+        return ParentConversationListViewController.create()
     },
 
     RouteHandler(.conversation(":conversationID")) { _, params in
@@ -56,7 +56,7 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
-            return CourseSyllabusViewController(courseID: courseID, studentID: studentID, session: session)
+            return SyllabusViewController.create(courseID: courseID)
         }
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
@@ -98,14 +98,12 @@ let router = Router(routes: [
     RouteHandler(.profileObservees()) { url, _ in
         let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
         let showPrompt = Bool(showPromptValue ?? "") ?? false
-
-        guard let session = Session.current else { return nil }
-        return SettingsViewController.create(session: session, showAddStudentPrompt: showPrompt)
+        return StudentListViewController.create(showAddStudentPrompt: showPrompt)
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
-        guard let session = Session.current, let userID = params["userID"] else { return nil }
-        return StudentSettingsViewController.create(session, studentID: userID)
+        guard let userID = params["userID"] else { return nil }
+        return StudentDetailsViewController.create(studentID: userID)
     },
 
     RouteHandler(.errorReport(for: ":type")) { _, params in
@@ -123,11 +121,10 @@ let router = Router(routes: [
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
-    RouteHandler(.showFile(fileID: ":fileID")) { _, params in
-        guard let fileID = params["fileID"] else { return nil }
-        let vc = FileDetailsViewController.create(context: ContextModel.currentUser, fileID: fileID)
-        return vc
-    },
+    RouteHandler("/files/:fileID", factory: fileViewController),
+    RouteHandler("/files/:fileID/download", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileViewController),
 
     RouteHandler(.developerMenu) { _, _ in
         return DeveloperMenuViewController.create()
@@ -142,16 +139,25 @@ let router = Router(routes: [
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
+    RouteHandler(.createAccount(accountID: ":accountID", pairingCode: ":pairingCode")) { url, params in
+        guard ExperimentalFeature.parentQRCodePairing.isEnabled else { return nil }
+        guard
+            let queryItem = url.queryItems?.first,
+            queryItem.name == "baseURL",
+            let host = queryItem.value,
+            let accountID = params["accountID"],
+            let code = params["pairingCode"],
+            let baseURL = URL(string: "https://\(host)")
+         else { return nil }
+        return CreateAccountViewController.create(baseURL: baseURL, accountID: accountID, pairingCode: code)
+    },
+
 ]) { url, _, _ in
-    var components = url
-    if components.scheme?.hasPrefix("http") == false {
-        components.scheme = "https"
-    }
-    guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
-    let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        performUIUpdate {
-            AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
-        }
-    }
+    Router.open(url: url)
+}
+
+private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    guard let fileID = params["fileID"] else { return nil }
+    let context = Context(path: url.path) ?? .currentUser
+    return FileDetailsViewController.create(context: context, fileID: fileID)
 }

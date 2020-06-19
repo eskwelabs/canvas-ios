@@ -23,6 +23,8 @@ extension NSNotification.Name {
     public static let SplitViewControllerWillChangeDisplayModeNotification = Notification.Name( "com.eskwelabs.core.notification.splitview.willChangeDisplayMode")
 
     public static let quizRefresh = Notification.Name( "com.eskwelabs.core.notification.quizRefresh")
+
+    public static let celebrateSubmission = Notification.Name( "com.eskwelabs.core.notification.celebrateSubmission")
 }
 
 extension NotificationCenter {

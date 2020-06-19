@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Sem assunto)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    O aluno que você está tentando adicionar está em uma instituição do Canvas diferente.\n                    Faça login ou crie uma conta nessa instituição para adicionar este aluno.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ vence às %2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ começará às %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, em %2$@, a última mensagem foi em %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, não lido";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Adicionar";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Adicionar anexos";
 
 /* No comment provided by engineer. */
 "Add Student" = "Adicionar Estudante";
 
 /* No comment provided by engineer. */
+"Add student with..." = "Adicionar aluno com...";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Adicione alunos ao topo ou visite o menu global para se fingir de aluno.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "Adicione alunos ao topo.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Avisem-me quando:";
 
 /* Alerts Tab */
 "Alerts" = "Alertas";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Ocorreu um erro";
+"Already have an account? %@" = "Já tem uma conta? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Aviso";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Nota da tarefa acima";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Nota da tarefa abaixo";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Tarefa em falta";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Lembrete da tarefa";
 
 /* No comment provided by engineer. */
 "Back" = "Voltar";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ao tocar em \"Criar conta\", você concorda com o %1$@ e reconhece o %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendário";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Cancelar";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Não é possível usar um percentual maior que 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Não é possível usar um percentual menor que 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Apanhados em Alertas";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Escolher um curso para enviar mensagem";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Compor mensagem";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Avisos do curso";
-
-/* Course Grade High On Description */
-"Course grade above" = "Nota do curso acima";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Nota do curso abaixo";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Não foi possível analisar o código QR, código QR inválido";
 
 /* Courses Tab */
 "Courses" = "Cursos";
+
+/* No comment provided by engineer. */
+"Create Account" = "Criar conta";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Aluno atual: %@. toque para alternar alunos";
@@ -107,7 +80,13 @@
 "Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Editar recipientes";
+"Domain mismatch" = "Incompatibilidade de domínio";
+
+/* No comment provided by engineer. */
+"Email address" = "Endereço de e-mail";
+
+/* No comment provided by engineer. */
+"Email..." = "E-mail...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Lembrete do evento";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Falhou em carregar (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Falhou. Toque para opções";
-
-/* No comment provided by engineer. */
-"File" = "Arquivo";
-
-/* No comment provided by engineer. */
 "Find School" = "Encontrar escola";
-
-/* No comment provided by engineer. */
-"for %@" = "para %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Primeira página";
 
 /* No comment provided by engineer. */
+"Full name" = "Nome completo";
+
+/* No comment provided by engineer. */
+"Full name..." = "Nome completo...";
+
+/* No comment provided by engineer. */
 "Grades" = "Notas";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "A maior nota de tarefa não pode ser menor que a menor nota de tarefa";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "A maior nota do curso não pode ser menor que a menor nota do curso";
 
 /* No comment provided by engineer. */
 "In-Class" = "Em sala de aula";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Insira o código de emparelhamento do aluno fornecido.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Avisos da instituição";
-
-/* Title for an alert view */
-"Invalid Input" = "Entrada inválida";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Limiar inválida.";
 
 /* No comment provided by engineer. */
 "Late" = "Atrasado";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "A menor nota de tarefa não pode ser maior que a maior nota de tarefa";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "A menor nota do curso não pode ser maior que a maior nota do curso";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Gerenciar alunos";
-
-/* No comment provided by engineer. */
-"Message" = "Mensagem";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Mensagem de %1$@, %2$@, em %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Faltante";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
-/* No comment provided by engineer. */
-"New Message" = "Nova mensagem";
-
 /* Empty Courses Text */
 "No Courses" = "Sem Cursos";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Sem Nota";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Sem Alunos";
 
 /* No comment provided by engineer. */
-"No Subject" = "Sem assunto";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Código de emparelhamento";
 
 /* No comment provided by engineer. */
+"Password" = "Senha";
+
+/* No comment provided by engineer. */
+"Password is required" = "Senha é necessária";
+
+/* No comment provided by engineer. */
+"Password..." = "Senha...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Permissão necessária";
 
 /* No comment provided by engineer. */
-"Recipients" = "Recipientes";
+"Please enter an email address" = "Insira um endereço de e-mail";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Insira nome completo";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Política de privacidade";
+
+/* No comment provided by engineer. */
+"QR Code" = "Código QR";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Sobre: %@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tarefa - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Responder";
-
-/* No comment provided by engineer. */
-"Reply All" = "Responder a todos";
-
-/* No comment provided by engineer. */
 "Retry" = "Tentar novamente";
-
-/* No comment provided by engineer. */
-"Send" = "Enviar";
 
 /* No comment provided by engineer. */
 "Settings" = "Configurações";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Configurações. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Assunto";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Conectar";
 
 /* No comment provided by engineer. */
 "Submitted" = "Enviado";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Programa";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Termos de Serviço";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "O valor deve ser um número entre 0 e 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Houve um problema ao carregar o arquivo do banco de dados AlertKit .";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Houve um problema ao carregar o arquivo do banco de dados DiscussionKit .";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Houve um erro ao carregar alunos. Puxe para atualizar para tentar novamente.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Este aviso expirou.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Os cursos desse aluno podem ainda não ter sido publicados.";
-
-/* No comment provided by engineer. */
-"To" = "Para";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemas ao fazer login";
@@ -298,10 +262,13 @@
 "Unread" = "Não lido";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Carregando %1$@ está em %2$@";
+"Welcome, Admin!" = "Bem-vindo, Admin!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "Bem-vindo, Admin!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Não é possível definir um limite alto que seja inferior ou igual a um limite baixo definido anteriormente.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Não é possível definir um limite baixo que seja superior ou igual a um limite alto definido anteriormente.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";

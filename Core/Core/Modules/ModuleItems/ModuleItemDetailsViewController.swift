@@ -75,7 +75,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     func update() {
         guard store.requested, !store.pending else { return }
         let itemViewController = self.itemViewController()
-        let showLocked = item?.isAssignment != true && item?.lockedForUser == true
+        let showLocked = env.app != .teacher && item?.isAssignment != true && item?.lockedForUser == true
         lockedView.isHidden = !showLocked
         lockedTitleLabel.text = item?.title
         if let lockExplanation = item?.lockExplanation {
@@ -135,7 +135,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
             return ExternalURLViewController.create(name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 id: toolID,
                 url: url,
                 launchType: .module_item,

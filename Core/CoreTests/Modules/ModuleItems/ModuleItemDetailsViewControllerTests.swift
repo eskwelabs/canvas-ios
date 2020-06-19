@@ -26,14 +26,9 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
     lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         router.mock("/courses/1/files/2?origin=module_item_details") {
-            FileDetailsViewController.create(context: ContextModel(.course, id: "1"), fileID: "2")
+            FileDetailsViewController.create(context: .course("1"), fileID: "2")
         }
         api.mock(controller.store, value: .make(
             id: "3",
@@ -107,6 +102,23 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.lockedTitleLabel.text, "Discuss this thing!")
     }
 
+    func testLockedForUserTeacherApp() {
+        environment.app = .teacher
+        router.mock("/courses/1/quizzes/2?origin=module_item_details") {
+            DetailViewController()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            title: "Discuss this thing!",
+            content: .quiz("2"),
+            url: URL(string: "/courses/1/quizzes/2")!,
+            content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.children.first as? DetailViewController)
+        XCTAssertTrue(controller.lockedView.isHidden)
+    }
+
     func testAssignmentLockedForUser() {
         router.mock("/courses/1/assignments/2?origin=module_item_details") {
             DetailViewController()
@@ -114,7 +126,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         api.mock(controller.store, value: .make(
             id: "3",
             title: "Submit this thing!",
-            content: .assignment("1"),
+            content: .assignment("2"),
             url: URL(string: "/courses/1/assignments/2")!,
             content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
         ))
@@ -166,5 +178,23 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         ))
         controller.view.layoutIfNeeded()
         wait(for: [expectation], timeout: 1)
+    }
+
+    func testMarkAsViewedWhenCompletedNilDoesNotPostNotification() {
+        router.mock("/?origin=module_item_details") { DetailViewController() }
+        let expectation = XCTestExpectation(description: "notification was sent when it should not have been")
+        expectation.isInverted = true
+        var token: NSObjectProtocol?
+        token = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { _ in
+            NotificationCenter.default.removeObserver(token!)
+            expectation.fulfill()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            url: URL(string: "/")!,
+            completion_requirement: .make(type: .must_view, completed: nil)
+        ))
+        controller.view.layoutIfNeeded()
+        wait(for: [expectation], timeout: 0.1)
     }
 }

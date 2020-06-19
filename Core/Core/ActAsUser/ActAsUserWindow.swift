@@ -137,6 +137,10 @@ class ActAsUserOverlay: UIView {
         } else {
             buttonContainer.frame = frame
         }
+        // Make the button go last in order, but still activate correctly
+        button.accessibilityActivationPoint = CGPoint(x: frame.midX, y: frame.midY)
+        frame.origin.y = UIScreen.main.bounds.maxY - frame.height
+        button.accessibilityFrame = frame
     }
 
     @objc func stopActing() {
@@ -150,7 +154,7 @@ class ActAsUserOverlay: UIView {
         var title = NSLocalizedString("Stop acting as...", bundle: .core, comment: "")
         if session?.isFakeStudent == true {
             title = NSLocalizedString("Leave Student View", bundle: .core, comment: "")
-            message = NSLocalizedString("You will be logged out of this student account.", bundle: .core, comment: "")
+            message = NSLocalizedString("Are you sure you want to exit Student View?", bundle: .core, comment: "")
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in

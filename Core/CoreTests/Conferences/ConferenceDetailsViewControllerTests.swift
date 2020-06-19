@@ -21,14 +21,13 @@ import XCTest
 @testable import TestsFoundation
 
 class ConferenceDetailsViewControllerTests: CoreTestCase {
-    let course1 = ContextModel(.course, id: "1")
+    let course1 = Context(.course, id: "1")
     var conferenceID = "1"
     lazy var controller = ConferenceDetailsViewController.create(context: course1, conferenceID: conferenceID)
 
     override func setUp() {
         super.setUp()
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!)
-        environment.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(controller.course, value: .make())
         api.mock(controller.conferences, value: GetConferencesRequest.Response(conferences: [
@@ -72,7 +71,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
             .make(description: "", ended_at: Clock.now, recordings: [ .make(
                 created_at: Clock.now,
                 duration_minutes: 65,
-                playback_formats: [ .make(length: "", type: "", url: URL(string: "/playback")!) ],
+                playback_formats: [ .make(length: "", type: "video", url: URL(string: "/playback")!) ],
                 playback_url: nil,
                 title: "Recording 1"
             ), ]),
@@ -92,5 +91,23 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
         XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/playback")))
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
+    }
+
+    func testConferenceWithStatistics() {
+        api.mock(controller.conferences, value: .init(conferences: [
+            .make(id: conferenceID, recordings: [
+                .make(
+                    playback_formats: [
+                        .make(type: "statistics", url: URL(string: "/statistics")!),
+                        .make(type: "video", url: URL(string: "/playback")!),
+                    ],
+                    playback_url: nil
+                ),
+            ]),
+        ]))
+        controller.view.layoutIfNeeded()
+        let index0 = IndexPath(row: 0, section: 0)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
+        XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/playback")))
     }
 }

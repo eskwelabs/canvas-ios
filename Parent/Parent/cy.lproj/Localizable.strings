@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Dim pwnc)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Mae’r myfyriwr rydych chi’n ceisio ei ychwanegu yn perthyn i un o sefydliadau eraill Canvas.\n                    Mae angen i chi fewngofnodi neu greu cyfrif gyda’r sefydliad hwnnw i ychwanegu’r myfyriwr yma.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ erbyn %2$@";
@@ -7,56 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, yn %2$@, roedd y neges ddiwethaf am %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, heb eu darllen";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Ychwanegu";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Ychwanegu Atodiadau";
 
 /* No comment provided by engineer. */
 "Add Student" = "Ychwanegu Myfyriwr";
 
 /* No comment provided by engineer. */
+"Add student with..." = "Ychwanegu myfyriwr gyda...";
+
+/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ychwanegwch fyfyrwyr at y brig neu ewch i’r ddewislen gyffredinol i esgus eich bod chi’n fyfyriwr.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add students at the top." = "Ychwanegu myfyrwyr ar y brig.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Rhowch wybod i mi pan:";
 
 /* Alerts Tab */
 "Alerts" = "Negeseuon Hysbysu";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Gwall";
+"Already have an account? %@" = "Oes gennych chi gyfrif yn barod? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Gradd yr aseiniad yn uwch na";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Gradd yr aseiniad yn is na";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Aseiniad ar goll";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Nodyn atgoffa ar gyfer aseiniad";
 
 /* No comment provided by engineer. */
 "Back" = "Yn ôl";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Drwy daro ‘Creu Cyfrif’, rydych chi’n cytuno i’r %1$@ ac yn cydnabod y %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendr";
@@ -67,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Methu defnyddio canran mwy na 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Methu defnyddio canran llai na 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Dewiswch gwrs i anfon neges ato";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Creu Neges";
@@ -88,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Cyhoeddiadau cwrs";
-
-/* Course Grade High On Description */
-"Course grade above" = "Gradd y cwrs yn uwch na";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Gradd y cwrs yn is na";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Doedd dim modd dosrannu’r cod QR, roedd y cod QR yn annilys";
 
 /* Courses Tab */
 "Courses" = "Cyrsiau";
+
+/* No comment provided by engineer. */
+"Create Account" = "Creu Cyfrif";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Myfyriwr Presennol: %@. Tapiwch i newid myfyrwyr";
@@ -107,7 +80,13 @@
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Golygu Derbynwyr";
+"Domain mismatch" = "Dydy’r parth ddim yn cyfateb";
+
+/* No comment provided by engineer. */
+"Email address" = "Cyfeiriad e-bost";
+
+/* No comment provided by engineer. */
+"Email..." = "E-bost...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
@@ -119,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
-
-/* No comment provided by engineer. */
-"File" = "Ffeil";
-
-/* No comment provided by engineer. */
 "Find School" = "Dod o hyd i Ysgol";
-
-/* No comment provided by engineer. */
-"for %@" = "ar gyfer %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
+"Full name" = "Enw llawn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Enw llawn...";
+
+/* No comment provided by engineer. */
 "Grades" = "Graddau";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Ni all gradd aseiniad uchel fod yn is na gradd aseiniad isel";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Ni all gradd cwrs uchel fod yn is na gradd cwrs isel";
 
 /* No comment provided by engineer. */
 "In-Class" = "Yn y dosbarth";
@@ -154,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Rhowch y cod paru myfyriwr a roddwyd i chi.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Cyhoeddiadau sefydliadau";
-
-/* Title for an alert view */
-"Invalid Input" = "Mewnbwn Annilys";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Trothwy Annilys";
 
 /* No comment provided by engineer. */
 "Late" = "Yn Hwyr";
@@ -169,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Ni all gradd aseiniad isel fod yn uwch na gradd aseiniad uchel";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Ni all gradd cwrs isel fod yn uwch na gradd cwrs uchel";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
-
-/* No comment provided by engineer. */
-"Message" = "Neges";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Neges gan %1$@, %2$@, ar %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ar goll";
@@ -199,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "Amherthnasol";
 
-/* No comment provided by engineer. */
-"New Message" = "Neges Newydd";
-
 /* Empty Courses Text */
 "No Courses" = "Dim Cyrsiau";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Dim Gradd";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Dim Myfyrwyr";
 
 /* No comment provided by engineer. */
-"No Subject" = "Dim Pwnc";
-
-/* OK Button Title */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Cod Paru";
 
 /* No comment provided by engineer. */
+"Password" = "Cyfrinair";
+
+/* No comment provided by engineer. */
+"Password is required" = "Rhaid rhoi cyfrinair";
+
+/* No comment provided by engineer. */
+"Password..." = "Cyfrinair...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
 
 /* No comment provided by engineer. */
-"Recipients" = "Derbynwyr";
+"Please enter an email address" = "Rhowch gyfeiriad e-bost";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Rhowch enw llawn";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Polisi Preifatrwydd";
+
+/* No comment provided by engineer. */
+"QR Code" = "Cod QR";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Ynghylch: %@";
@@ -238,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Ynghylch: %1$@, Aseinaid - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Ateb";
-
-/* No comment provided by engineer. */
-"Reply All" = "Ateb Pawb";
-
-/* No comment provided by engineer. */
 "Retry" = "Ailgynnig";
-
-/* No comment provided by engineer. */
-"Send" = "Anfon";
 
 /* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
@@ -255,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Gosodiadau. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Pwnc";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Mewngofnodi";
 
 /* No comment provided by engineer. */
 "Submitted" = "Wedi cyflwyno";
@@ -273,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Maes Llafur";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Telerau Gwasanaeth";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Mae’n rhaid i’r gwerth fod yn rhif rhwng 0 a 100.";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AlertKit.";
 
@@ -283,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata DiscussionKit.";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Gwall wrth lwytho myfyrwyr. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Mae cyhoeddiad hwn wedi dod i ben.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
-
-/* No comment provided by engineer. */
-"To" = "I";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
@@ -298,10 +262,13 @@
 "Unread" = "Heb ddarllen";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
+"Welcome, Admin!" = "Croeso, Weinyddwr!";
 
 /* No comment provided by engineer. */
-"Welcome, Admin!" = "Croeso, Weinyddwr!";
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Does dim modd i chi osod trothwy uchel sy’n is neu’n gyfartal â throthwy isel sydd wedi’i osod yn barod.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Does dim modd i chi osod trothwy isel sy’n uwch neu’n gyfartal â throthwy uchel sydd wedi’i osod yn barod.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";

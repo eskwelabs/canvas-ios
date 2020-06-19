@@ -25,6 +25,6 @@ enum PagesList {
     }
 
     static func page(index: Int) -> Element {
-        return app.find(id: "PageListCell.\(index)")
+        return app.find(id: "PageList.\(index)")
     }
 }

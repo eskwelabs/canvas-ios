@@ -341,20 +341,6 @@ class RouterTests: CoreTestCase {
         XCTAssertNotNil(router.match(components))
     }
 
-    func testRouteToExternalURL() {
-        let mockView = MockViewController()
-        let url = URLComponents(string: "https://foobar.com/support")!
-        var didUseLocalSupportRoute = false
-        let router = Router(routes: [
-            RouteHandler("/support") { _, _ in
-                didUseLocalSupportRoute = true
-                return UIViewController()
-            },
-        ]) { _, _, _ in }
-        router.route(to: url, from: mockView)
-        XCTAssertFalse(didUseLocalSupportRoute)
-    }
-
     func testShowAlertController() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _ in }
@@ -403,5 +389,42 @@ class RouterTests: CoreTestCase {
         router.show(mockView, from: UIViewController(), options: .modal(.fullScreen, embedInNav: true))
         XCTAssertNotNil(mockView.navigationController)
         XCTAssertEqual(mockView.navigationController?.modalPresentationStyle, .fullScreen)
+    }
+
+    func testOpen() {
+        var url = URL(string: "https://canvas.instructure.com/relative/url")!
+        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url))
+        Router.open(url: .parse("relative/url"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://canvas.instructure.com/root/relative/url")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse("/root/relative/url"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "http://insecure.protocol/")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse("http://insecure.protocol/"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://absolute.com")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "tel:+18002036755")!
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "mailto:support@email.example")!
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://canvas.instructure.com/")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        for proto in [ "canvas-courses", "canvas-student", "canvas-teacher", "canvas-parent" ] {
+            Router.open(url: .parse("\(proto)://canvas.instructure.com/"))
+            XCTAssertEqual(login.externalURL?.absoluteURL, url)
+        }
     }
 }

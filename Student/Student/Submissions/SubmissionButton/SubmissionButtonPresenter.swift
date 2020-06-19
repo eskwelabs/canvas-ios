@@ -21,6 +21,7 @@ import SafariServices
 import UIKit
 import Core
 import WebKit
+import Lottie
 
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
@@ -40,12 +41,16 @@ class SubmissionButtonPresenter: NSObject {
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
     var selectedSubmissionTypes: [SubmissionType] = []
+    lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
         self.view = view
         self.assignmentID = assignmentID
         super.init()
+
+        flags.refresh()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCelebrate(_:)), name: .celebrateSubmission, object: nil)
     }
 
     func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
@@ -98,26 +103,27 @@ class SubmissionButtonPresenter: NSObject {
 
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
         Analytics.shared.logEvent("assignment_submit_selected")
-        guard let view = view as? UIViewController, let userID = assignment.submission?.userID else { return }
+        guard let view = view as? UIViewController else { return }
         let courseID = assignment.courseID
         switch type {
         case .basic_lti_launch, .external_tool:
             Analytics.shared.logEvent("assignment_launchlti_selected")
             LTITools(
                 env: env,
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 launchType: .assessment,
                 assignmentID: assignment.id
             ).presentTool(from: view, animated: true)
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")
-            guard let url = assignment.discussionTopic?.htmlUrl else { return }
+            guard let url = assignment.discussionTopic?.htmlURL else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
             Analytics.shared.logEvent("submit_mediarecording_selected")
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
+            guard let userID = assignment.submission?.userID else { return }
             env.router.show(TextSubmissionViewController.create(
                 courseID: courseID,
                 assignmentID: assignment.id,
@@ -132,6 +138,7 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
             Analytics.shared.logEvent("submit_url_selected")
+            guard let userID = assignment.submission?.userID else { return }
             env.router.show(UrlSubmissionViewController.create(
                 courseID: courseID,
                 assignmentID: assignment.id,
@@ -283,7 +290,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let createSubmission = { (mediaID: String?, error: Error?) -> Void in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
-                context: ContextModel(.course, id: assignment.courseID),
+                context: .course(assignment.courseID),
                 assignmentID: assignment.id,
                 userID: userID,
                 submissionType: .media_recording,
@@ -293,5 +300,25 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         }
         let upload = { mediaUploader.fetch(environment: env, createSubmission) }
         view?.present(uploading, animated: true, completion: upload)
+    }
+}
+
+extension SubmissionButtonPresenter {
+    @objc func handleCelebrate(_ notification: Notification) {
+        if flags.first(where: { $0.name == "disable_celebrations" })?.enabled != true,
+            notification.userInfo?["assignmentID"] as? String == assignmentID {
+            performUIUpdate { self.showConfetti() }
+        }
+    }
+
+    func showConfetti() {
+        guard let view = (view as? UIViewController)?.view.window else { return }
+        let animation = AnimationView(name: "confetti")
+        view.addSubview(animation)
+        animation.pin(inside: view)
+        animation.contentMode = .scaleAspectFill
+        animation.play { _ in
+            animation.removeFromSuperview()
+        }
     }
 }

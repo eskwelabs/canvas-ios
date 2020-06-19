@@ -307,21 +307,13 @@ NativeModules.NativeFileSystem = {
   convertToJPEG: jest.fn(() => Promise.resolve('/image.jpg')),
 }
 
-NativeModules.ModuleItemsProgress = {
-  viewedDiscussion: jest.fn(),
-  viewedPage: jest.fn(),
-  contributedDiscussion: jest.fn(),
+NativeModules.UserDefaults = {
+  didChangeNotification: 'NSUserDefaultsDidChangeNotification',
+  getShowGradesOnDashboard: jest.fn(() => Promise.resolve(false)),
 }
 
 jest.mock('../../src/common/components/AuthenticatedWebView', () => 'AuthenticatedWebView')
 jest.mock('../../src/common/components/A11yGroup', () => 'A11yGroup')
-jest.mock('react-native-device-info', () => {
-  return {
-    getVersion: () => {
-      return '1.0'
-    },
-  }
-})
 
 jest.mock('../../src/canvas-api/httpClient')
 

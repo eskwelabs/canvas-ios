@@ -1,5 +1,5 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Uten tittel)";
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Eleven du forsøker å legge til, er på en annen Canvas-institusjon.\n                    Logg inn eller opprett en konto hos den institusjonen for å legge til denne eleven.\n                    ";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ har frist %2$@";
@@ -7,53 +7,41 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ Vil begynne %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, den siste meldingen var %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, ulest";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Legg til";
 
 /* No comment provided by engineer. */
-"Add Attachments" = "Legg til vedlegg";
-
-/* No comment provided by engineer. */
 "Add Student" = "Legg til elev";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
+"Add student with..." = "Legg til elev med...";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Legg til elever på øverst eller besøk den globale menyen for å maskere deg som student.";
+
+/* No comment provided by engineer. */
+"Add students at the top." = "Legg til elever på toppen.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Varsle meg når:";
 
 /* Alerts Tab */
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Det oppsto et avvik";
+"Already have an account? %@" = "Har du allerede en konto? %@";
 
 /* No comment provided by engineer. */
 "Announcement" = "Kunngjøring";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Oppgavevurdering over";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Oppgavevurdering under";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Oppgave mangler";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Oppgavepåminnelse";
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ved å klikke på “Opprett konto”, godtar du %1$@ og erkjenner %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -64,17 +52,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Kan ikke bruke prosent som er høyere enn 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Kan ikke bruke prosent som er mindre enn 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Hengt opp i varsler";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Velg et fag du vil sende melding til";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Skriv melding";
@@ -85,17 +64,14 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
-/* Course Announcement Description */
-"Course announcements" = "Beskjeder for fag";
-
-/* Course Grade High On Description */
-"Course grade above" = "Fagvurdering over";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Fagvurdering under";
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Kunne ikke analysere QR-koden, QR-kode ugyldig";
 
 /* Courses Tab */
 "Courses" = "Fag";
+
+/* No comment provided by engineer. */
+"Create Account" = "Opprett konto";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Nåværende elever: %@. Trykk for å bytte mellom elever";
@@ -104,7 +80,13 @@
 "Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Rediger mottakere";
+"Domain mismatch" = "Domenefeil";
+
+/* No comment provided by engineer. */
+"Email address" = "E-postadresse";
+
+/* No comment provided by engineer. */
+"Email..." = "E-post...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Hendelsespåminnelse";
@@ -116,28 +98,19 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke laste inn (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Mislyktes. Trykk for alternativer";
-
-/* No comment provided by engineer. */
-"File" = "Fil";
-
-/* No comment provided by engineer. */
 "Find School" = "Finne skole";
-
-/* No comment provided by engineer. */
-"for %@" = "for %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
+"Full name" = "Fullt navn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Fullt navn...";
+
+/* No comment provided by engineer. */
 "Grades" = "Vurderinger";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Høy oppgavevurdering kan ikke være lavere enn lav oppgavevurdering";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Høy fagvurdering kan ikke være lavere enn lav fagvurdering";
 
 /* No comment provided by engineer. */
 "In-Class" = "I klassen";
@@ -151,11 +124,8 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Oppgi elevparingskoden som ble gitt til deg.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Institusjonbeskjeder";
-
-/* Title for an alert view */
-"Invalid Input" = "Ugyldig inndata";
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ugyldig terskel";
 
 /* No comment provided by engineer. */
 "Late" = "Sent";
@@ -166,20 +136,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sent: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Lav oppgavevurdering kan ikke være høyere enn høy oppgavevurdering";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Lav fagvurdering kan ikke være høyere enn høy fagvurdering";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Administrer elever";
-
-/* No comment provided by engineer. */
-"Message" = "Melding";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Melding fra %1$@, %2$@, den %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Mangler";
@@ -196,32 +154,44 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
-/* No comment provided by engineer. */
-"New Message" = "Ny melding";
-
 /* Empty Courses Text */
 "No Courses" = "Ingen fag";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ingen vurdering";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Ingen elever";
 
 /* No comment provided by engineer. */
-"No Subject" = "Intet tittel";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Paringskode";
 
 /* No comment provided by engineer. */
+"Password" = "Passord";
+
+/* No comment provided by engineer. */
+"Password is required" = "Passord kreves";
+
+/* No comment provided by engineer. */
+"Password..." = "Passord...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Tillatelse kreves";
 
 /* No comment provided by engineer. */
-"Recipients" = "Mottakere";
+"Please enter an email address" = "Angi en e-postadresse";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Angi fullt navn";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "retningslinjer for personvern";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR-kode";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Vedrørende: %@";
@@ -235,16 +205,7 @@
 "Regarding: %@, Assignment - %@" = "Vedrørende: %1$@, Oppgave - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Svar";
-
-/* No comment provided by engineer. */
-"Reply All" = "Svar alle";
-
-/* No comment provided by engineer. */
 "Retry" = "Forsøk igjen";
-
-/* No comment provided by engineer. */
-"Send" = "Send";
 
 /* No comment provided by engineer. */
 "Settings" = "Innstillinger";
@@ -252,8 +213,8 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Innstillinger. %@";
 
-/* No comment provided by engineer. */
-"Subject" = "Tittel";
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Logg inn";
 
 /* No comment provided by engineer. */
 "Submitted" = "Innlevert";
@@ -270,6 +231,12 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Fagoversikt";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Brukervilkår";
+
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Verdien må være et tall mellom 0 og 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Det oppstod et problem under lasting av AlertKit databasefilen.";
 
@@ -280,13 +247,13 @@
 "There was a problem loading the DiscussionKit database file." = "Det oppstod et problem under lasting av DiscussionKit databasefilen.";
 
 /* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Det oppsto en feil under lasting av elever. Dra for å oppdatere og prøve på nytt.";
+
+/* No comment provided by engineer. */
 "This announcement has expired." = "Denne kunngjøringen har utløpt-";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Det kan være at denne elevens fag ikke har blitt publisert enda.";
-
-/* No comment provided by engineer. */
-"To" = "Til";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemer med innloggingen";
@@ -295,7 +262,13 @@
 "Unread" = "Ulest";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Opplasting %1$@ er på %2$@";
+"Welcome, Admin!" = "Velkommen, admin!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Du kan ikke sette en høy terskel som er lavere eller lik en tidligere satt terskel.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Du kan ikke sette en lav terskel som er høyere eller lik en tidligere satt terskel.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du må tillate varsler i Innstillingene for å stille inn påminnelser.";

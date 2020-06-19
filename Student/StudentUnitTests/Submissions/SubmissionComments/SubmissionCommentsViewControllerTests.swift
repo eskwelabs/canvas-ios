@@ -22,7 +22,7 @@ import Foundation
 @testable import Student
 
 class SubmissionCommentsViewControllerTests: StudentTestCase {
-    var context = ContextModel(.course, id: "1")
+    var context = Context(.course, id: "1")
     var assignmentID  = "2"
     var userID = "3"
     var submissionID = "4"
@@ -41,11 +41,6 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
     )
     var tableView: UITableView {
         return controller.tableView!
-    }
-
-    override func setUp() {
-        super.setUp()
-        env.mockStore = false
     }
 
     func testLayout() {
