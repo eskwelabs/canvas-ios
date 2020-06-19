@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "492704721CF4AF7100C631C6"
-               BuildableName = "Eskwelabs.app"
-               BlueprintName = "Student"
+               BuildableName = "Eskwelabs Student.app"
+               BlueprintName = "Eskwelabs Student"
                ReferencedContainer = "container:Eskwelabs Student.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "492704721CF4AF7100C631C6"
-            BuildableName = "Eskwelabs.app"
-            BlueprintName = "Student"
+            BuildableName = "Eskwelabs Student.app"
+            BlueprintName = "Eskwelabs Student"
             ReferencedContainer = "container:Eskwelabs Student.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,8 +94,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "492704721CF4AF7100C631C6"
-            BuildableName = "Eskwelabs.app"
-            BlueprintName = "Student"
+            BuildableName = "Eskwelabs Student.app"
+            BlueprintName = "Eskwelabs Student"
             ReferencedContainer = "container:Eskwelabs Student.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
