@@ -192,7 +192,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {
-        let controller = LoginWebViewController.create(host: "learn.canvas.net", loginDelegate: loginDelegate, method: method)
+        let controller = LoginWebViewController.create(host: "courses.eskwelabs.com", loginDelegate: loginDelegate, method: method)
         env.router.show(controller, from: self)
     }
 

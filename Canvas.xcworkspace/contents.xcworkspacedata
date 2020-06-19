@@ -60,7 +60,7 @@
       location = "group:scripts">
    </FileRef>
    <FileRef
-      location = "group:Student/Student.xcodeproj">
+      location = "group:/Users/caleb/Projects/eskwelabs/canvas-ios/Student/Eskwelabs Student.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:rn/Teacher/ios/Teacher.xcodeproj">
